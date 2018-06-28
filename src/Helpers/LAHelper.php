@@ -7,16 +7,16 @@
  * Developer Website: http://dwijitsolutions.com
  */
 
-namespace Dwij\Laraadmin\Helpers;
+namespace WahnStudios\Dwij\LaradminHelpers;
 
 use DB;
 use Log;
 
-use Dwij\Laraadmin\Models\Module;
+use WahnStudios\Dwij\LaradminModels\Module;
 
 /**
  * Class LAHelper
- * @package Dwij\Laraadmin\Helpers
+ * @package WahnStudios\Dwij\LaradminHelpers
  *
  * This is LaraAdmin Helper class contains methods required for Admin Panel functionality.
  */
@@ -384,7 +384,7 @@ class LAHelper
 			<div class="dd-handle dd3-handle"></div>
 			<div class="dd3-content"><i class="fa ' . $menu->icon . '"></i> ' . $menu->name . ' ' . $editing . '</div>';
         
-        $childrens = \Dwij\Laraadmin\Models\Menu::where("parent", $menu->id)->orderBy('hierarchy', 'asc')->get();
+        $childrens = \WahnStudios\Dwij\LaradminModels\Menu::where("parent", $menu->id)->orderBy('hierarchy', 'asc')->get();
         
         if(count($childrens) > 0) {
             $str .= '<ol class="dd-list">';
@@ -408,7 +408,7 @@ class LAHelper
      */
     public static function print_menu($menu, $active = false)
     {
-        $childrens = \Dwij\Laraadmin\Models\Menu::where("parent", $menu->id)->orderBy('hierarchy', 'asc')->get();
+        $childrens = \WahnStudios\Dwij\LaradminModels\Menu::where("parent", $menu->id)->orderBy('hierarchy', 'asc')->get();
 
         $treeview = "";
         $subviewSign = "";
@@ -449,7 +449,7 @@ class LAHelper
      */
     public static function print_menu_topnav($menu, $active = false)
     {
-        $childrens = \Dwij\Laraadmin\Models\Menu::where("parent", $menu->id)->orderBy('hierarchy', 'asc')->get();
+        $childrens = \WahnStudios\Dwij\LaradminModels\Menu::where("parent", $menu->id)->orderBy('hierarchy', 'asc')->get();
         
         $treeview = "";
         $treeview2 = "";

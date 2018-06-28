@@ -7,24 +7,24 @@
  * Developer Website: http://dwijitsolutions.com
  */
 
-namespace Dwij\Laraadmin\Controllers;
+namespace WahnStudios\Dwij\LaradminControllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
-use Dwij\Laraadmin\Helpers\LAHelper;
-use Dwij\Laraadmin\Models\Module;
-use Dwij\Laraadmin\Models\ModuleFields;
-use Dwij\Laraadmin\Models\ModuleFieldTypes;
-use Dwij\Laraadmin\CodeGenerator;
+use WahnStudios\Dwij\LaradminHelpers\LAHelper;
+use WahnStudios\Dwij\LaradminModels\Module;
+use WahnStudios\Dwij\LaradminModels\ModuleFields;
+use WahnStudios\Dwij\LaradminModels\ModuleFieldTypes;
+use WahnStudios\Dwij\LaradminCodeGenerator;
 use App\Role;
 use Schema;
-use Dwij\Laraadmin\Models\Menu;
+use WahnStudios\Dwij\LaradminModels\Menu;
 
 /**
  * Class ModuleController
- * @package Dwij\Laraadmin\Controllers
+ * @package WahnStudios\Dwij\LaradminControllers
  *
  */
 class ModuleController extends Controller

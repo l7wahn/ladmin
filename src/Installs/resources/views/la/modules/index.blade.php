@@ -1,7 +1,7 @@
 @extends("la.layouts.app")
 
 <?php
-use Dwij\Laraadmin\Models\Module;
+use WahnStudios\Dwij\LaradminModels\Module;
 ?>
 
 @section("contentheader_title", "Modules")

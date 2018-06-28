@@ -11,10 +11,10 @@ namespace Dwij\Laraadmin;
 
 use Exception;
 use Illuminate\Filesystem\Filesystem;
-use Dwij\Laraadmin\Models\Module;
-use Dwij\Laraadmin\Models\ModuleFieldTypes;
-use Dwij\Laraadmin\Helpers\LAHelper;
-use Dwij\Laraadmin\Models\Menu;
+use WahnStudios\Dwij\LaradminModels\Module;
+use WahnStudios\Dwij\LaradminModels\ModuleFieldTypes;
+use WahnStudios\Dwij\LaradminHelpers\LAHelper;
+use WahnStudios\Dwij\LaradminModels\Menu;
 
 /**
  * Class CodeGenerator

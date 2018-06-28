@@ -17,9 +17,9 @@ use DB;
 use Validator;
 use Datatables;
 use Collective\Html\FormFacade as Form;
-use Dwij\Laraadmin\Models\Module;
-use Dwij\Laraadmin\Models\ModuleFields;
-use Dwij\Laraadmin\Helpers\LAHelper;
+use WahnStudios\Dwij\LaradminModels\Module;
+use WahnStudios\Dwij\LaradminModels\ModuleFields;
+use WahnStudios\Dwij\LaradminHelpers\LAHelper;
 use Artisan;
 
 use App\Models\Backup;

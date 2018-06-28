@@ -7,7 +7,7 @@
  * Developer Website: http://dwijitsolutions.com
  */
 
-namespace Dwij\Laraadmin\Models;
+namespace WahnStudios\Dwij\LaradminModels;
 
 use Illuminate\Database\Eloquent\Model;
 

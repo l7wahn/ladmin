@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
-use Dwij\Laraadmin\Helpers\LAHelper;
+use WahnStudios\Dwij\LaradminHelpers\LAHelper;
 
 /**
  * Class LAProvider
@@ -44,7 +44,7 @@ class LAProvider extends ServiceProvider
         //echo "Laraadmin Migrations started...";
         // Artisan::call('migrate', ['--path' => "vendor/dwij/laraadmin/src/Migrations/"]);
         //echo "Migrations completed !!!.";
-        // Execute by php artisan vendor:publish --provider="Dwij\Laraadmin\LAProvider"
+        // Execute by php artisan vendor:publish --provider="WahnStudios\Dwij\LaradminLAProvider"
         
         /*
         |--------------------------------------------------------------------------
@@ -118,19 +118,19 @@ class LAProvider extends ServiceProvider
         $loader->alias('Gravatar', \Creativeorange\Gravatar\Facades\Gravatar::class);
         
         // For LaraAdmin Code Generation
-        $loader->alias('CodeGenerator', \Dwij\Laraadmin\CodeGenerator::class);
+        $loader->alias('CodeGenerator', \WahnStudios\Dwij\LaradminCodeGenerator::class);
         
         // For LaraAdmin Form Helper
-        $loader->alias('LAFormMaker', \Dwij\Laraadmin\LAFormMaker::class);
+        $loader->alias('LAFormMaker', \WahnStudios\Dwij\LaradminLAFormMaker::class);
         
         // For LaraAdmin Helper
-        $loader->alias('LAHelper', \Dwij\Laraadmin\Helpers\LAHelper::class);
+        $loader->alias('LAHelper', \WahnStudios\Dwij\LaradminHelpers\LAHelper::class);
         
         // LaraAdmin Module Model 
-        $loader->alias('Module', \Dwij\Laraadmin\Models\Module::class);
+        $loader->alias('Module', \WahnStudios\Dwij\LaradminModels\Module::class);
         
         // For LaraAdmin Configuration Model
-        $loader->alias('LAConfigs', \Dwij\Laraadmin\Models\LAConfigs::class);
+        $loader->alias('LAConfigs', \WahnStudios\Dwij\LaradminModels\LAConfigs::class);
         
         // For Entrust
         $loader->alias('Entrust', \Zizaco\Entrust\EntrustFacade::class);
@@ -144,9 +144,9 @@ class LAProvider extends ServiceProvider
         |--------------------------------------------------------------------------
         */
         
-        $this->app->make('Dwij\Laraadmin\Controllers\ModuleController');
-        $this->app->make('Dwij\Laraadmin\Controllers\FieldController');
-        $this->app->make('Dwij\Laraadmin\Controllers\MenuController');
+        $this->app->make('WahnStudios\Dwij\LaradminControllers\ModuleController');
+        $this->app->make('WahnStudios\Dwij\LaradminControllers\FieldController');
+        $this->app->make('WahnStudios\Dwij\LaradminControllers\MenuController');
         
         // For LAEditor
         if(file_exists(__DIR__ . '/../../laeditor')) {
@@ -212,10 +212,10 @@ class LAProvider extends ServiceProvider
         */
         
         $commands = [
-            \Dwij\Laraadmin\Commands\Migration::class,
-            \Dwij\Laraadmin\Commands\Crud::class,
-            \Dwij\Laraadmin\Commands\Packaging::class,
-            \Dwij\Laraadmin\Commands\LAInstall::class
+            \WahnStudios\Dwij\LaradminCommands\Migration::class,
+            \WahnStudios\Dwij\LaradminCommands\Crud::class,
+            \WahnStudios\Dwij\LaradminCommands\Packaging::class,
+            \WahnStudios\Dwij\LaradminCommands\LAInstall::class
         ];
         
         // For LAEditor

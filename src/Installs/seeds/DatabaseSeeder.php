@@ -9,11 +9,11 @@
 
 use Illuminate\Database\Seeder;
 
-use Dwij\Laraadmin\Models\Module;
-use Dwij\Laraadmin\Models\ModuleFields;
-use Dwij\Laraadmin\Models\ModuleFieldTypes;
-use Dwij\Laraadmin\Models\Menu;
-use Dwij\Laraadmin\Models\LAConfigs;
+use WahnStudios\Dwij\LaradminModels\Module;
+use WahnStudios\Dwij\LaradminModels\ModuleFields;
+use WahnStudios\Dwij\LaradminModels\ModuleFieldTypes;
+use WahnStudios\Dwij\LaradminModels\Menu;
+use WahnStudios\Dwij\LaradminModels\LAConfigs;
 
 use App\Role;
 use App\Permission;

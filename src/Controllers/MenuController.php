@@ -7,7 +7,7 @@
  * Developer Website: http://dwijitsolutions.com
  */
 
-namespace Dwij\Laraadmin\Controllers;
+namespace WahnStudios\Dwij\LaradminControllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
@@ -15,15 +15,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
 
-use Dwij\Laraadmin\Models\Menu;
-use Dwij\Laraadmin\Models\Module;
-use Dwij\Laraadmin\Models\ModuleFields;
-use Dwij\Laraadmin\Models\ModuleFieldTypes;
-use Dwij\Laraadmin\Helpers\LAHelper;
+use WahnStudios\Dwij\LaradminModels\Menu;
+use WahnStudios\Dwij\LaradminModels\Module;
+use WahnStudios\Dwij\LaradminModels\ModuleFields;
+use WahnStudios\Dwij\LaradminModels\ModuleFieldTypes;
+use WahnStudios\Dwij\LaradminHelpers\LAHelper;
 
 /**
  * Class MenuController
- * @package Dwij\Laraadmin\Controllers
+ * @package WahnStudios\Dwij\LaradminControllers
  *
  * Works after managing Menus and their hierarchy
  */

@@ -7,15 +7,15 @@
  * Developer Website: http://dwijitsolutions.com
  */
 
-namespace Dwij\Laraadmin\Commands;
+namespace WahnStudios\Dwij\LaradminCommands;
 
 use Illuminate\Console\Command;
 
-use Dwij\Laraadmin\CodeGenerator;
+use WahnStudios\Dwij\LaradminCodeGenerator;
 
 /**
  * Class Migration
- * @package Dwij\Laraadmin\Commands
+ * @package WahnStudios\Dwij\LaradminCommands
  *
  * Command to generation new sample migration file or complete migration file from DB Context
  * if '--generate' parameter is used after command, it generate migration from database.

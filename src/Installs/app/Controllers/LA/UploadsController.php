@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Response as FacadeResponse;
 use Illuminate\Support\Facades\Input;
 use Collective\Html\FormFacade as Form;
 
-use Dwij\Laraadmin\Models\Module;
-use Dwij\Laraadmin\Helpers\LAHelper;
+use WahnStudios\Dwij\LaradminModels\Module;
+use WahnStudios\Dwij\LaradminHelpers\LAHelper;
 use Zizaco\Entrust\EntrustFacade as Entrust;
 
 use Auth;

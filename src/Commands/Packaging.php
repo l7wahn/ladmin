@@ -7,15 +7,15 @@
  * Developer Website: http://dwijitsolutions.com
  */
 
-namespace Dwij\Laraadmin\Commands;
+namespace WahnStudios\Dwij\LaradminCommands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use Dwij\Laraadmin\Helpers\LAHelper;
+use WahnStudios\Dwij\LaradminHelpers\LAHelper;
 
 /**
  * Class Packaging
- * @package Dwij\Laraadmin\Commands
+ * @package WahnStudios\Dwij\LaradminCommands
  *
  * Command to put latest development and changes of project into LaraAdmin package.
  * [For LaraAdmin Developer's Only]

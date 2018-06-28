@@ -9,7 +9,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Dwij\Laraadmin\Models\Module;
+use WahnStudios\Dwij\LaradminModels\Module;
 
 class CreatePermissionsTable extends Migration
 {

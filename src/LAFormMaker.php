@@ -11,8 +11,8 @@ namespace Dwij\Laraadmin;
 
 use Schema;
 use Collective\Html\FormFacade as Form;
-use Dwij\Laraadmin\Models\Module;
-use Dwij\Laraadmin\Models\ModuleFieldTypes;
+use WahnStudios\Dwij\LaradminModels\Module;
+use WahnStudios\Dwij\LaradminModels\ModuleFieldTypes;
 
 /**
  * Class LAFormMaker
