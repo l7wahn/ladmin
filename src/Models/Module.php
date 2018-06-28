@@ -7,7 +7,7 @@
  * Developer Website: http://dwijitsolutions.com
  */
 
-namespace WahnStudios\Dwij\LaradminModels;
+namespace Dwij\LaradminModels;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
@@ -15,11 +15,11 @@ use Illuminate\Database\Schema\Blueprint;
 use Exception;
 use Log;
 use DB;
-use WahnStudios\Dwij\LaradminHelpers\LAHelper;
+use Dwij\LaradminHelpers\LAHelper;
 
 /**
  * Class Module
- * @package WahnStudios\Dwij\LaradminModels
+ * @package Dwij\LaradminModels
  *
  * Most important Model of LaraAdmin which looks after Module, ModuleField Generation.
  * It also handles Module migrations via "generate" method to create Module Schema in Database.

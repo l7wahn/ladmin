@@ -7,16 +7,16 @@
  * Developer Website: http://dwijitsolutions.com
  */
 
-namespace WahnStudios\Dwij\Laraadmin;
+namespace Dwij\Laraadmin;
 
 use Schema;
 use Collective\Html\FormFacade as Form;
-use WahnStudios\Dwij\LaradminModels\Module;
-use WahnStudios\Dwij\LaradminModels\ModuleFieldTypes;
+use Dwij\LaradminModels\Module;
+use Dwij\LaradminModels\ModuleFieldTypes;
 
 /**
  * Class LAFormMaker
- * @package WahnStudios\Dwij\Laraadmin
+ * @package Dwij\Laraadmin
  *
  * This class is blade directive implementation for Form Elements in Module as well as other utilities
  * for Access Control. It also has method process_values which processes fields data from its context.

@@ -7,19 +7,19 @@
  * Developer Website: http://dwijitsolutions.com
  */
 
-namespace WahnStudios\Dwij\LaradminCommands;
+namespace Dwij\LaradminCommands;
 
 use Config;
 use Artisan;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use WahnStudios\Dwij\LaradminModels\Module;
-use WahnStudios\Dwij\LaradminCodeGenerator;
+use Dwij\LaradminModels\Module;
+use Dwij\LaradminCodeGenerator;
 
 /**
  * Class Crud
- * @package WahnStudios\Dwij\LaradminCommands
+ * @package Dwij\LaradminCommands
  *
  * Command that generates CRUD's for a Module. Takes Module name as input.
  */

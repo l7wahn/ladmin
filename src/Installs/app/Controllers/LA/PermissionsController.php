@@ -17,9 +17,9 @@ use DB;
 use Validator;
 use Datatables;
 use Collective\Html\FormFacade as Form;
-use WahnStudios\Dwij\LaradminModels\Module;
-use WahnStudios\Dwij\LaradminModels\ModuleFields;
-use WahnStudios\Dwij\LaradminHelpers\LAHelper;
+use Dwij\LaradminModels\Module;
+use Dwij\LaradminModels\ModuleFields;
+use Dwij\LaradminHelpers\LAHelper;
 use Zizaco\Entrust\EntrustFacade as Entrust;
 
 use App\Permission;

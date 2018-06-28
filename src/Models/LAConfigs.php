@@ -7,7 +7,7 @@
  * Developer Website: http://dwijitsolutions.com
  */
 
-namespace WahnStudios\Dwij\LaradminModels;
+namespace Dwij\LaradminModels;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
@@ -15,11 +15,11 @@ use Illuminate\Database\Schema\Blueprint;
 use Exception;
 use Log;
 use DB;
-use WahnStudios\Dwij\LaradminHelpers\LAHelper;
+use Dwij\LaradminHelpers\LAHelper;
 
 /**
  * Class LAConfigs
- * @package WahnStudios\Dwij\LaradminModels
+ * @package Dwij\LaradminModels
  *
  * Config Class looks after LaraAdmin configurations.
  * Check details on http://laraadmin.com/docs

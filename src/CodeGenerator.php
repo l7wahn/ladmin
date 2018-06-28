@@ -7,18 +7,18 @@
  * Developer Website: http://dwijitsolutions.com
  */
 
-namespace WahnStudios\Dwij\Laraadmin;
+namespace Dwij\Laraadmin;
 
 use Exception;
 use Illuminate\Filesystem\Filesystem;
-use WahnStudios\Dwij\LaradminModels\Module;
-use WahnStudios\Dwij\LaradminModels\ModuleFieldTypes;
-use WahnStudios\Dwij\LaradminHelpers\LAHelper;
-use WahnStudios\Dwij\LaradminModels\Menu;
+use Dwij\LaradminModels\Module;
+use Dwij\LaradminModels\ModuleFieldTypes;
+use Dwij\LaradminHelpers\LAHelper;
+use Dwij\LaradminModels\Menu;
 
 /**
  * Class CodeGenerator
- * @package WahnStudios\Dwij\Laraadmin
+ * @package Dwij\Laraadmin
  *
  * This class performs the Code Generation for Controller, Model, CRUDs Views, Routes, Menu and Migrations.
  * This also generates the naming config which contains names for controllers, tables and everything required

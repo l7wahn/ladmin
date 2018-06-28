@@ -11,7 +11,7 @@ namespace App\Http\Controllers\LA;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use WahnStudios\Dwij\LaradminModels\LAConfigs;
+use Dwij\LaradminModels\LAConfigs;
 
 class LAConfigController extends Controller
 {

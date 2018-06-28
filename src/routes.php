@@ -1,6 +1,6 @@
 <?php
 
-use WahnStudios\Dwij\LaradminHelpers\LAHelper;
+use Dwij\LaradminHelpers\LAHelper;
 
 $as = "";
 if(LAHelper::laravel_ver() == 5.3 || LAHelper::laravel_ver() == 5.4) {
@@ -8,11 +8,11 @@ if(LAHelper::laravel_ver() == 5.3 || LAHelper::laravel_ver() == 5.4) {
 }
 
 /**
- * Connect routes with ADMIN_PANEL permission(for security) and 'WahnStudios\Dwij\LaradminControllers' namespace
+ * Connect routes with ADMIN_PANEL permission(for security) and 'Dwij\LaradminControllers' namespace
  * and '/admin' url.
  */
 Route::group([
-    'namespace' => 'WahnStudios\Dwij\LaradminControllers',
+    'namespace' => 'Dwij\LaradminControllers',
     'as' => $as,
     'middleware' => ['web', 'auth', 'permission:ADMIN_PANEL', 'role:SUPER_ADMIN']
 ], function () {

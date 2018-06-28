@@ -9,7 +9,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use WahnStudios\Dwij\LaradminModels\Module;
+use Dwij\LaradminModels\Module;
 
 class __migration_class_name__ extends Migration
 {

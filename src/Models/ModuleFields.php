@@ -7,18 +7,18 @@
  * Developer Website: http://dwijitsolutions.com
  */
 
-namespace WahnStudios\Dwij\LaradminModels;
+namespace Dwij\LaradminModels;
 
 use Illuminate\Database\Eloquent\Model;
 use Schema;
 use Log;
 use DB;
 
-use WahnStudios\Dwij\LaradminModels\Module;
+use Dwij\LaradminModels\Module;
 
 /**
  * Class ModuleFields
- * @package WahnStudios\Dwij\LaradminModels
+ * @package Dwij\LaradminModels
  *
  * Module Fields Model which works for create / update of fields via "Module Manager"
  * This uses "Module::create_field_schema" method to actually create database schema

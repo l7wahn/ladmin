@@ -17,10 +17,10 @@ use DB;
 use Validator;
 use Datatables;
 use Collective\Html\FormFacade as Form;
-use WahnStudios\Dwij\LaradminModels\Module;
-use WahnStudios\Dwij\LaradminModels\ModuleFields;
-use WahnStudios\Dwij\LaradminModels\LAConfigs;
-use WahnStudios\Dwij\LaradminHelpers\LAHelper;
+use Dwij\LaradminModels\Module;
+use Dwij\LaradminModels\ModuleFields;
+use Dwij\LaradminModels\LAConfigs;
+use Dwij\LaradminHelpers\LAHelper;
 
 use App\User;
 use App\Models\Employee;

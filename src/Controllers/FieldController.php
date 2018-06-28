@@ -7,7 +7,7 @@
  * Developer Website: http://dwijitsolutions.com
  */
 
-namespace WahnStudios\Dwij\LaradminControllers;
+namespace Dwij\LaradminControllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,14 +15,14 @@ use App\Http\Requests;
 use DB;
 use Schema;
 
-use WahnStudios\Dwij\LaradminModels\Module;
-use WahnStudios\Dwij\LaradminModels\ModuleFields;
-use WahnStudios\Dwij\LaradminModels\ModuleFieldTypes;
-use WahnStudios\Dwij\LaradminHelpers\LAHelper;
+use Dwij\LaradminModels\Module;
+use Dwij\LaradminModels\ModuleFields;
+use Dwij\LaradminModels\ModuleFieldTypes;
+use Dwij\LaradminHelpers\LAHelper;
 
 /**
  * Class FieldController
- * @package WahnStudios\Dwij\LaradminControllers
+ * @package Dwij\LaradminControllers
  *
  * Controller looks after
  */

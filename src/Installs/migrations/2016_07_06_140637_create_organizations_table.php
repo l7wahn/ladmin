@@ -9,7 +9,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use WahnStudios\Dwij\LaradminModels\Module;
+use Dwij\LaradminModels\Module;
 
 class CreateOrganizationsTable extends Migration
 {

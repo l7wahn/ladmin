@@ -3,8 +3,8 @@
 @section('htmlheader_title', 'Module View')
 
 <?php
-use WahnStudios\Dwij\LaradminModels\Module;
-use WahnStudios\Dwij\LaradminModels\ModuleFields;
+use Dwij\LaradminModels\Module;
+use Dwij\LaradminModels\ModuleFields;
 ?>
 
 @section('main-content')

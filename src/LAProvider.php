@@ -7,18 +7,18 @@
  * Developer Website: http://dwijitsolutions.com
  */
 
-namespace WahnStudios\Dwij\Laraadmin;
+namespace Dwij\Laraadmin;
 
 use Artisan;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
-use WahnStudios\Dwij\LaradminHelpers\LAHelper;
+use Dwij\LaradminHelpers\LAHelper;
 
 /**
  * Class LAProvider
- * @package WahnStudios\Dwij\Laraadmin
+ * @package Dwij\Laraadmin
  *
  * This is LaraAdmin Service Provider which looks after managing aliases, other required providers, blade directives
  * and Commands.
@@ -44,7 +44,7 @@ class LAProvider extends ServiceProvider
         //echo "Laraadmin Migrations started...";
         // Artisan::call('migrate', ['--path' => "vendor/dwij/laraadmin/src/Migrations/"]);
         //echo "Migrations completed !!!.";
-        // Execute by php artisan vendor:publish --provider="WahnStudios\Dwij\LaradminLAProvider"
+        // Execute by php artisan vendor:publish --provider="Dwij\LaradminLAProvider"
         
         /*
         |--------------------------------------------------------------------------
@@ -118,19 +118,19 @@ class LAProvider extends ServiceProvider
         $loader->alias('Gravatar', \Creativeorange\Gravatar\Facades\Gravatar::class);
         
         // For LaraAdmin Code Generation
-        $loader->alias('CodeGenerator', \WahnStudios\Dwij\LaradminCodeGenerator::class);
+        $loader->alias('CodeGenerator', \Dwij\LaradminCodeGenerator::class);
         
         // For LaraAdmin Form Helper
-        $loader->alias('LAFormMaker', \WahnStudios\Dwij\LaradminLAFormMaker::class);
+        $loader->alias('LAFormMaker', \Dwij\LaradminLAFormMaker::class);
         
         // For LaraAdmin Helper
-        $loader->alias('LAHelper', \WahnStudios\Dwij\LaradminHelpers\LAHelper::class);
+        $loader->alias('LAHelper', \Dwij\LaradminHelpers\LAHelper::class);
         
         // LaraAdmin Module Model 
-        $loader->alias('Module', \WahnStudios\Dwij\LaradminModels\Module::class);
+        $loader->alias('Module', \Dwij\LaradminModels\Module::class);
         
         // For LaraAdmin Configuration Model
-        $loader->alias('LAConfigs', \WahnStudios\Dwij\LaradminModels\LAConfigs::class);
+        $loader->alias('LAConfigs', \Dwij\LaradminModels\LAConfigs::class);
         
         // For Entrust
         $loader->alias('Entrust', \Zizaco\Entrust\EntrustFacade::class);
@@ -144,9 +144,9 @@ class LAProvider extends ServiceProvider
         |--------------------------------------------------------------------------
         */
         
-        $this->app->make('WahnStudios\Dwij\LaradminControllers\ModuleController');
-        $this->app->make('WahnStudios\Dwij\LaradminControllers\FieldController');
-        $this->app->make('WahnStudios\Dwij\LaradminControllers\MenuController');
+        $this->app->make('Dwij\LaradminControllers\ModuleController');
+        $this->app->make('Dwij\LaradminControllers\FieldController');
+        $this->app->make('Dwij\LaradminControllers\MenuController');
         
         // For LAEditor
         if(file_exists(__DIR__ . '/../../laeditor')) {
@@ -212,10 +212,10 @@ class LAProvider extends ServiceProvider
         */
         
         $commands = [
-            \WahnStudios\Dwij\LaradminCommands\Migration::class,
-            \WahnStudios\Dwij\LaradminCommands\Crud::class,
-            \WahnStudios\Dwij\LaradminCommands\Packaging::class,
-            \WahnStudios\Dwij\LaradminCommands\LAInstall::class
+            \Dwij\LaradminCommands\Migration::class,
+            \Dwij\LaradminCommands\Crud::class,
+            \Dwij\LaradminCommands\Packaging::class,
+            \Dwij\LaradminCommands\LAInstall::class
         ];
         
         // For LAEditor

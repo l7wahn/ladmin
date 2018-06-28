@@ -7,18 +7,18 @@
  * Developer Website: http://dwijitsolutions.com
  */
 
-namespace WahnStudios\Dwij\LaradminCommands;
+namespace Dwij\LaradminCommands;
 
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use WahnStudios\Dwij\LaradminHelpers\LAHelper;
+use Dwij\LaradminHelpers\LAHelper;
 use Eloquent;
 use DB;
 
 /**
  * Class LAInstall
- * @package WahnStudios\Dwij\LaradminCommands
+ * @package Dwij\LaradminCommands
  *
  * Command to install LaraAdmin package into project which moves lot of file from 'src/Installs' directory to Project
  */

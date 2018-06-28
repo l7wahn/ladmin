@@ -1,6 +1,6 @@
 <?php
 
-use WahnStudios\Dwij\LaradminHelpers\LAHelper;
+use Dwij\LaradminHelpers\LAHelper;
 
 /* ================== Homepage ================== */
 Route::get('/', 'HomeController@index');
