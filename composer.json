@@ -3,7 +3,7 @@
     "description": "Fork of Laradmin for my own work",
     "keywords": ["php", "laravel", "crm", "admin", "cms", "administrator"],
     "license": "MIT",
-    "homepage": "http://laraadmin.com",
+    "homepage": "http://laraadmin.com", 
     "support": {
         "issues": "https://github.com/dwijitsolutions/laraadmin/issues",
         "source": "https://github.com/dwijitsolutions/laraadmin"
