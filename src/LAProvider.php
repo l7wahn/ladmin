@@ -7,7 +7,7 @@
  * Developer Website: http://dwijitsolutions.com
  */
 
-namespace Dwij\Laraadmin;
+namespace WahnStudios\Dwij\Laraadmin;
 
 use Artisan;
 use Illuminate\Support\Facades\Blade;
@@ -18,7 +18,7 @@ use WahnStudios\Dwij\LaradminHelpers\LAHelper;
 
 /**
  * Class LAProvider
- * @package Dwij\Laraadmin
+ * @package WahnStudios\Dwij\Laraadmin
  *
  * This is LaraAdmin Service Provider which looks after managing aliases, other required providers, blade directives
  * and Commands.
