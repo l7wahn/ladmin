@@ -1,28 +1,13 @@
 <?php
 
-<<<<<<< HEAD
-=======
-use Dwij\LaradminHelpers\LAHelper;
-
->>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 $as = "";
 if(\Dwij\Laraadmin\Helpers\LAHelper::laravel_ver() == 5.3) {
 	$as = config('laraadmin.adminRoute').'.';
 }
 
-<<<<<<< HEAD
 Route::group([
     'namespace'  => 'Dwij\Laraadmin\Controllers',
 	'as' => $as,
-=======
-/**
- * Connect routes with ADMIN_PANEL permission(for security) and 'Dwij\LaradminControllers' namespace
- * and '/admin' url.
- */
-Route::group([
-    'namespace' => 'Dwij\LaradminControllers',
-    'as' => $as,
->>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
     'middleware' => ['web', 'auth', 'permission:ADMIN_PANEL', 'role:SUPER_ADMIN']
 ], function () {
     

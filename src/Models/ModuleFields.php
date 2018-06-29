@@ -1,30 +1,14 @@
 <?php
 
-<<<<<<< HEAD
 namespace Dwij\Laraadmin\Models;
-=======
-namespace Dwij\LaradminModels;
->>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 
 use Illuminate\Database\Eloquent\Model;
 use Schema;
 use Log;
 use DB;
 
-<<<<<<< HEAD
 use Dwij\Laraadmin\Models\Module;
 
-=======
-use Dwij\LaradminModels\Module;
-
-/**
- * Class ModuleFields
- * @package Dwij\LaradminModels
- *
- * Module Fields Model which works for create / update of fields via "Module Manager"
- * This uses "Module::create_field_schema" method to actually create database schema
- */
->>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 class ModuleFields extends Model
 {
     protected $table = 'module_fields';

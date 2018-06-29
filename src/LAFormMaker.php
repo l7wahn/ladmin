@@ -1,36 +1,11 @@
 <?php
-<<<<<<< HEAD
-=======
-/**
- * Code generated using LaraAdmin
- * Help: http://laraadmin.com
- * LaraAdmin is open-sourced software licensed under the MIT license.
- * Developed by: Dwij IT Solutions
- * Developer Website: http://dwijitsolutions.com
- */
-
->>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 namespace Dwij\Laraadmin;
 
 use Schema;
 use Collective\Html\FormFacade as Form;
-<<<<<<< HEAD
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFieldTypes;
 
-=======
-use Dwij\LaradminModels\Module;
-use Dwij\LaradminModels\ModuleFieldTypes;
-
-/**
- * Class LAFormMaker
- * @package Dwij\Laraadmin
- *
- * This class is blade directive implementation for Form Elements in Module as well as other utilities
- * for Access Control. It also has method process_values which processes fields data from its context.
- *
- */
->>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 class LAFormMaker
 {
 	

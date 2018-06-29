@@ -1,11 +1,7 @@
 @extends("la.layouts.app")
 
 <?php
-<<<<<<< HEAD
 use Dwij\Laraadmin\Models\Module;
-=======
-use Dwij\LaradminModels\Module;
->>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 ?>
 
 @section("contentheader_title", "Menus")
@@ -40,11 +36,7 @@ use Dwij\LaradminModels\Module;
 						</div>
 						<div class="tab-pane" id="tab-custom-link">
 							
-<<<<<<< HEAD
 							{!! Form::open(['action' => '\Dwij\Laraadmin\Controllers\MenuController@store', 'id' => 'menu-custom-form']) !!}
-=======
-							{!! Form::open(['action' => '\Dwij\LaradminControllers\MenuController@store', 'id' => 'menu-custom-form']) !!}
->>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 								<input type="hidden" name="type" value="custom">
 								<div class="form-group">
 									<label for="url" style="font-weight:normal;">URL</label>
@@ -87,11 +79,7 @@ use Dwij\LaradminModels\Module;
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Edit Menu Item</h4>
 			</div>
-<<<<<<< HEAD
 			{!! Form::open(['action' => ['\Dwij\Laraadmin\Controllers\MenuController@update', 1], 'id' => 'menu-edit-form']) !!}
-=======
-			{!! Form::open(['action' => ['\Dwij\LaradminControllers\MenuController@update', 1], 'id' => 'menu-edit-form']) !!}
->>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 			<input name="_method" type="hidden" value="PUT">
 			<div class="modal-body">
 				<div class="box-body">

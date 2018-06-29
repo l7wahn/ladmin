@@ -7,11 +7,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-<<<<<<< HEAD
 use Dwij\Laraadmin\Models\Module;
-=======
-use Dwij\LaradminModels\Module;
->>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 
 class CreateUsersTable extends Migration
 {

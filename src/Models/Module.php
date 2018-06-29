@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<< HEAD
 namespace Dwij\Laraadmin\Models;
-=======
-namespace Dwij\LaradminModels;
->>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
@@ -12,21 +8,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Exception;
 use Log;
 use DB;
-<<<<<<< HEAD
 use Dwij\Laraadmin\Helpers\LAHelper;
 
-=======
-use Dwij\LaradminHelpers\LAHelper;
-
-/**
- * Class Module
- * @package Dwij\LaradminModels
- *
- * Most important Model of LaraAdmin which looks after Module, ModuleField Generation.
- * It also handles Module migrations via "generate" method to create Module Schema in Database.
- *
- */
->>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 class Module extends Model
 {
 	protected $table = 'modules';

@@ -4,11 +4,7 @@
  * Help: http://laraadmin.com
  */
 
-<<<<<<< HEAD
 namespace Dwij\Laraadmin\Controllers;
-=======
-namespace Dwij\LaradminControllers;
->>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
@@ -16,27 +12,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
 
-<<<<<<< HEAD
 use Dwij\Laraadmin\Models\Menu;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
 use Dwij\Laraadmin\Models\ModuleFieldTypes;
 use Dwij\Laraadmin\Helpers\LAHelper;
 
-=======
-use Dwij\LaradminModels\Menu;
-use Dwij\LaradminModels\Module;
-use Dwij\LaradminModels\ModuleFields;
-use Dwij\LaradminModels\ModuleFieldTypes;
-use Dwij\LaradminHelpers\LAHelper;
-
-/**
- * Class MenuController
- * @package Dwij\LaradminControllers
- *
- * Works after managing Menus and their hierarchy
- */
->>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 class MenuController extends Controller
 {
     

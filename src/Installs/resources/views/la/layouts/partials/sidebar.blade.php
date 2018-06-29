@@ -37,11 +37,7 @@
             <!-- Optionally, you can add icons to the links -->
             <li><a href="{{ url(config('laraadmin.adminRoute')) }}"><i class='fa fa-home'></i> <span>Dashboard</span></a></li>
             <?php
-<<<<<<< HEAD
             $menuItems = Dwij\Laraadmin\Models\Menu::where("parent", 0)->orderBy('hierarchy', 'asc')->get();
-=======
-            $menuItems = Dwij\LaradminModels\Menu::where("parent", 0)->orderBy('hierarchy', 'asc')->get();
->>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
             ?>
             @foreach ($menuItems as $menu)
                 @if($menu->type == "module")

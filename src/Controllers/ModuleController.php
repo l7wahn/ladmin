@@ -4,17 +4,12 @@
  * Help: http://laraadmin.com
  */
 
-<<<<<<< HEAD
 namespace Dwij\Laraadmin\Controllers;
-=======
-namespace Dwij\LaradminControllers;
->>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
-<<<<<<< HEAD
 use Dwij\Laraadmin\Helpers\LAHelper;
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
@@ -24,22 +19,6 @@ use App\Role;
 use Schema;
 use Dwij\Laraadmin\Models\Menu;
 
-=======
-use Dwij\LaradminHelpers\LAHelper;
-use Dwij\LaradminModels\Module;
-use Dwij\LaradminModels\ModuleFields;
-use Dwij\LaradminModels\ModuleFieldTypes;
-use Dwij\LaradminCodeGenerator;
-use App\Role;
-use Schema;
-use Dwij\LaradminModels\Menu;
-
-/**
- * Class ModuleController
- * @package Dwij\LaradminControllers
- *
- */
->>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 class ModuleController extends Controller
 {
 	

@@ -4,33 +4,16 @@
  * Help: http://laraadmin.com
  */
 
-<<<<<<< HEAD
 namespace Dwij\Laraadmin\Commands;
-=======
-namespace Dwij\LaradminCommands;
->>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-<<<<<<< HEAD
 use Dwij\Laraadmin\Helpers\LAHelper;
 use Eloquent;
 use DB;
 
 
-=======
-use Dwij\LaradminHelpers\LAHelper;
-use Eloquent;
-use DB;
-
-/**
- * Class LAInstall
- * @package Dwij\LaradminCommands
- *
- * Command to install LaraAdmin package into project which moves lot of file from 'src/Installs' directory to Project
- */
->>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 class LAInstall extends Command
 {
 	/**
