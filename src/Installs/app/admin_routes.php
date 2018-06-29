@@ -1,7 +1,5 @@
 <?php
 
-use WahnStudios\Dwij\LaradminHelpers\LAHelper;
-
 /* ================== Homepage ================== */
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
@@ -17,7 +15,7 @@ Route::get('files/{hash}/{name}', 'LA\UploadsController@get_file');
 */
 
 $as = "";
-if(LAHelper::laravel_ver() == 5.3 || LAHelper::laravel_ver() == 5.4) {
+if(\Dwij\Laraadmin\Helpers\LAHelper::laravel_ver() == 5.3) {
 	$as = config('laraadmin.adminRoute').'.';
 	
 	// Routes for Laravel 5.3

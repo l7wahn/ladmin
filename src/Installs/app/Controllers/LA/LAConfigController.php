@@ -1,17 +1,14 @@
 <?php
 /**
- * Controller generated using LaraAdmin
+ * Controller genrated using LaraAdmin
  * Help: http://laraadmin.com
- * LaraAdmin is open-sourced software licensed under the MIT license.
- * Developed by: Dwij IT Solutions
- * Developer Website: http://dwijitsolutions.com
  */
 
 namespace App\Http\Controllers\LA;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use WahnStudios\Dwij\LaradminModels\LAConfigs;
+use Dwij\Laraadmin\Models\LAConfigs;
 
 class LAConfigController extends Controller
 {

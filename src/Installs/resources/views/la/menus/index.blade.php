@@ -1,7 +1,7 @@
 @extends("la.layouts.app")
 
 <?php
-use WahnStudios\Dwij\LaradminModels\Module;
+use Dwij\Laraadmin\Models\Module;
 ?>
 
 @section("contentheader_title", "Menus")
@@ -30,13 +30,13 @@ use WahnStudios\Dwij\LaradminModels\Module;
 						<div class="tab-pane active" id="tab-modules">
 							<ul>
 							@foreach ($modules as $module)
-								<li><i class="fa {{ $module->fa_icon }}"></i> {{ $module->label }} <a module_id="{{ $module->id }}" class="addModuleMenu pull-right"><i class="fa fa-plus"></i></a></li>
+								<li><i class="fa {{ $module->fa_icon }}"></i> {{ $module->name }} <a module_id="{{ $module->id }}" class="addModuleMenu pull-right"><i class="fa fa-plus"></i></a></li>
 							@endforeach
 							</ul>
 						</div>
 						<div class="tab-pane" id="tab-custom-link">
 							
-							{!! Form::open(['action' => '\WahnStudios\Dwij\LaradminControllers\MenuController@store', 'id' => 'menu-custom-form']) !!}
+							{!! Form::open(['action' => '\Dwij\Laraadmin\Controllers\MenuController@store', 'id' => 'menu-custom-form']) !!}
 								<input type="hidden" name="type" value="custom">
 								<div class="form-group">
 									<label for="url" style="font-weight:normal;">URL</label>
@@ -79,7 +79,7 @@ use WahnStudios\Dwij\LaradminModels\Module;
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabel">Edit Menu Item</h4>
 			</div>
-			{!! Form::open(['action' => ['\WahnStudios\Dwij\LaradminControllers\MenuController@update', 1], 'id' => 'menu-edit-form']) !!}
+			{!! Form::open(['action' => ['\Dwij\Laraadmin\Controllers\MenuController@update', 1], 'id' => 'menu-edit-form']) !!}
 			<input name="_method" type="hidden" value="PUT">
 			<div class="modal-body">
 				<div class="box-body">

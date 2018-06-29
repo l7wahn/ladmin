@@ -1,19 +1,12 @@
 <?php
-/**
- * Code generated using LaraAdmin
- * Help: http://laraadmin.com
- * LaraAdmin is open-sourced software licensed under the MIT license.
- * Developed by: Dwij IT Solutions
- * Developer Website: http://dwijitsolutions.com
- */
 
 use Illuminate\Database\Seeder;
 
-use WahnStudios\Dwij\LaradminModels\Module;
-use WahnStudios\Dwij\LaradminModels\ModuleFields;
-use WahnStudios\Dwij\LaradminModels\ModuleFieldTypes;
-use WahnStudios\Dwij\LaradminModels\Menu;
-use WahnStudios\Dwij\LaradminModels\LAConfigs;
+use Dwij\Laraadmin\Models\Module;
+use Dwij\Laraadmin\Models\ModuleFields;
+use Dwij\Laraadmin\Models\ModuleFieldTypes;
+use Dwij\Laraadmin\Models\Menu;
+use Dwij\Laraadmin\Models\LAConfigs;
 
 use App\Role;
 use App\Permission;
@@ -163,8 +156,5 @@ class DatabaseSeeder extends Seeder
 			$module->is_gen=true;
 			$module->save();	
 		}
-
-		/* ================ Call Other Seeders ================ */
-		
 	}
 }
