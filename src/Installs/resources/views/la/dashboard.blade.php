@@ -1,8 +1,8 @@
 @extends('la.layouts.app')
 
-@section('htmlheader_title') Dashboard @endsection
-@section('contentheader_title') Dashboard @endsection
-@section('contentheader_description') Organisation Overview @endsection
+@section('htmlheader_title') @tslt("Dashboard") @endsection
+@section('contentheader_title') @tslt("Dashboard") @endsection
+@section('contentheader_description') @tslt("Organisation Overview") @endsection
 
 @section('main-content')
 <!-- Main content -->

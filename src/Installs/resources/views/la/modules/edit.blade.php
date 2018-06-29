@@ -1,11 +1,11 @@
 @extends("la.layouts.app")
 
-@section("contentheader_title", "Edit course: ")
-@section("contentheader_description", $course->$view_col)
-@section("section", "Courses")
-@section("sub_section", "Edit")
+@section("contentheader_title", __t("Edit course: "))
+@section("contentheader_description", __t($course->$view_col))
+@section("section", __t("Courses"))
+@section("sub_section", __t("Edit"))
 
-@section("htmlheader_title", "Course Edit : ".$course->$view_col)
+@section("htmlheader_title", __t("Course Edit : ".$course->$view_col))
 
 @section("main-content")
 <div class="box">
@@ -19,7 +19,7 @@
 					
                     <br>
 					<div class="form-group">
-						{!! Form::submit( 'Update', ['class'=>'btn btn-success']) !!} <button class="btn btn-default pull-right"><a href="{{ url(config('laraadmin.adminRoute') . '/courses') }}">Cancel</a></button>
+						{!! Form::submit( 'Update', ['class'=>'btn btn-success']) !!} <button class="btn btn-default pull-right"><a href="{{ url(config('laraadmin.adminRoute') . '/courses') }}">@tslt("Cancel")</a></button>
 					</div>
 				{!! Form::close() !!}
 				

@@ -45,7 +45,7 @@ class LAInstall extends Command
 		try {
 			$this->info('LaraAdmin installation started...');
 			
-			$from = base_path('vendor/dwij/laraadmin/src/Installs');
+			$from = base_path('vendor/l7wahn/ladmin/src/Installs');
 			$to = base_path();
 			
 			$this->info('from: '.$from." to: ".$to);

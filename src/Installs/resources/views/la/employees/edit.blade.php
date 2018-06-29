@@ -1,14 +1,14 @@
 @extends("la.layouts.app")
 
 @section("contentheader_title")
-	<a href="{{ url(config('laraadmin.adminRoute') . '/employees') }}">Employees</a> :
+	<a href="{{ url(config('laraadmin.adminRoute') . '/employees') }}">@tslt("Employees")</a> :
 @endsection
-@section("contentheader_description", $employee->$view_col)
+@section("contentheader_description", __t($employee->$view_col))
 @section("section", "Employees")
 @section("section_url", url(config('laraadmin.adminRoute') . '/employees'))
-@section("sub_section", "Edit")
+@section("sub_section", __t("Edit"))
 
-@section("htmlheader_title", "Employee Edit : ".$employee->$view_col)
+@section("htmlheader_title", "Employee Edit : ".__t($employee->$view_col))
 
 @section("main-content")
 
@@ -65,7 +65,7 @@
 					</div>
 					<br>
 					<div class="form-group">
-						{!! Form::submit( 'Update', ['class'=>'btn btn-success']) !!} <button class="btn btn-default pull-right"><a href="{{ url(config('laraadmin.adminRoute') . '/employees') }}">Cancel</a></button>
+						{!! Form::submit( 'Update', ['class'=>'btn btn-success']) !!} <button class="btn btn-default pull-right"><a href="{{ url(config('laraadmin.adminRoute') . '/employees') }}">@tslt("Cancel")</a></button>
 					</div>
 				{!! Form::close() !!}
 				

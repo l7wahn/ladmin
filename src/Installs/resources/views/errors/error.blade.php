@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{{ $title }}</title>
+        <title>{{ __t($title) }}</title>
 
         <link href="https://fonts.googleapis.com/css?family=Roboto:200,400" rel="stylesheet" type="text/css">
 		<link href="{{ asset('la-assets/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
@@ -57,12 +57,12 @@
                 <div class="title">{{ $title }}</div>
 				<p>{!! $message !!}</p>
 				@if(Auth::guest())
-					<a href="{{ url('/') }}">Homepage</a> | 
-					<a href="javascript:history.back()">Go Back</a>
-				@else
-					<a href="{{ url(config('laraadmin.adminRoute')) }}">Dashboard.</a> | 
-					<a href="javascript:history.back()">Go Back</a>
-				@endif
+                    <a href="{{ url('/') }}">@tlst("Homepage")</a> | 
+                    <a href="javascript:history.back()">@tlst("Go Back")</a>
+                @else
+                    <a href="{{ url(config('laraadmin.adminRoute')) }}">@tlst("Dashboard").</a> | 
+                    <a href="javascript:history.back()">@tlst("Go Back")</a>
+                @endif
             </div>
         </div>
     </body>

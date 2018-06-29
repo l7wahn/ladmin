@@ -45,7 +45,7 @@ class LAFormMaker
 				$params['class'] = $class;
 			}
 			if(!isset($params['placeholder'])) {
-				$params['placeholder'] = 'Enter '.$label;
+				$params['placeholder'] = __t('Enter ').__t($label);
 			}
 			if($minlength) {
 				$params['data-rule-minlength'] = $minlength;
@@ -89,8 +89,8 @@ class LAFormMaker
 					$out .= Form::textarea($field_name, $default_val, $params);
 					break;
 				case 'Checkbox':
-					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' :</label>';
-					$out .= '<input type="hidden" value="false" name="'.$field_name.'_hidden">';
+					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' :</label>';
+					$out .= '<input type="hidden" value="false" name="'.__t($field_name).'_hidden">';
 					
 					// ############### Remaining
 					unset($params['placeholder']);
@@ -108,7 +108,7 @@ class LAFormMaker
 					$out .= '<div class="Switch Round On" style="vertical-align:top;margin-left:10px;"><div class="Toggle"></div></div>';
 					break;
 				case 'Currency':
-					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' :</label>';
 					
 					if($default_val == null) {
 						$default_val = $defaultvalue;
@@ -124,7 +124,7 @@ class LAFormMaker
 					$out .= Form::number($field_name, $default_val, $params);
 					break;
 				case 'Date':
-					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' :</label>';
 					
 					if($default_val == null) {
 						$default_val = $defaultvalue;
@@ -147,7 +147,7 @@ class LAFormMaker
 					// $out .= Form::date($field_name, $default_val, $params);
 					break;
 				case 'Datetime':
-					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' :</label>';
 					
 					if($default_val == null) {
 						$default_val = $defaultvalue;
@@ -167,7 +167,7 @@ class LAFormMaker
 					$out .= "<span class='input-group-addon'><span class='fa fa-calendar'></span></span></div>";
 					break;
 				case 'Decimal':
-					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' :</label>';
 					
 					if($default_val == null) {
 						$default_val = $defaultvalue;
@@ -181,16 +181,14 @@ class LAFormMaker
 					$out .= Form::number($field_name, $default_val, $params);
 					break;
 				case 'Dropdown':
-					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' :</label>';
 					
 					unset($params['data-rule-maxlength']);
 					$params['data-placeholder'] = $params['placeholder'];
 					unset($params['placeholder']);
 					$params['rel'] = "select2";
 					
-					//echo $defaultvalue;
-					//
-					jLog($defaultvalue, "DV");
+					
 					if($default_val == null && $required == 1){
 						$default_val = 1;
 						
@@ -210,7 +208,7 @@ class LAFormMaker
 					$out .= Form::select($field_name, $popup_vals, $default_val, $params);
 					break;
 				case 'Email':
-					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' :</label>';
 					
 					if($default_val == null) {
 						$default_val = $defaultvalue;
@@ -224,7 +222,7 @@ class LAFormMaker
 					$out .= Form::email($field_name, $default_val, $params);
 					break;
 				case 'File':
-					$out .= '<label for="'.$field_name.'" style="display:block;">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'" style="display:block;">'.__t($label).$required_ast.' :</label>';
 					
 					if($default_val == null) {
 						$default_val = $defaultvalue;
@@ -243,7 +241,7 @@ class LAFormMaker
 					}
 					if(isset($upload->id)) {
 						$out .= "<a class='btn btn-default btn_upload_file hide' file_type='file' selecter='".$field_name."'>Upload <i class='fa fa-cloud-upload'></i></a>
-							<a class='uploaded_file' target='_blank' href='".url("files/".$upload->hash.DIRECTORY_SEPARATOR.$upload->name)."'><i class='fa fa-file-o'></i><i title='Remove File' class='fa fa-times'></i></a>";
+							<a class='uploaded_file' target='_blank' href='".url("files/".$upload->hash.DIRECTORY_SEPARATOR.$upload->name)."'><i class='fa fa-file-o'></i><i title='".__t("Remove File")."' class='fa fa-times'></i></a>";
 					} else {
 						$out .= "<a class='btn btn-default btn_upload_file' file_type='file' selecter='".$field_name."'>Upload <i class='fa fa-cloud-upload'></i></a>
 							<a class='uploaded_file hide' target='_blank'><i class='fa fa-file-o'></i><i title='Remove File' class='fa fa-times'></i></a>";
@@ -251,7 +249,7 @@ class LAFormMaker
 					break;
 
 				case 'Files':
-					$out .= '<label for="'.$field_name.'" style="display:block;">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'" style="display:block;">'.__t($label).$required_ast.' :</label>';
 					
 					if($default_val == null) {
 						$default_val = $defaultvalue;
@@ -279,7 +277,7 @@ class LAFormMaker
 								} else {
 									$fileImage = "<i class='fa fa-file-o'></i>";
 								}
-								$uploadImages .= "<a class='uploaded_file2' upload_id='".$upload->id."' target='_blank' href='".url("files/".$upload->hash.DIRECTORY_SEPARATOR.$upload->name)."'>".$fileImage."<i title='Remove File' class='fa fa-times'></i></a>";
+								$uploadImages .= "<a class='uploaded_file2' upload_id='".$upload->id."' target='_blank' href='".url("files/".$upload->hash.DIRECTORY_SEPARATOR.$upload->name)."'>".$fileImage."<i title='".__t("Remove File")."' class='fa fa-times'></i></a>";
 							}
 						}
 						
@@ -291,11 +289,11 @@ class LAFormMaker
 						$out .= Form::hidden($field_name, "[]", $params);
 						$out .= "<div class='uploaded_files'></div>";
 					}
-					$out .= "<a class='btn btn-default btn_upload_files' file_type='files' selecter='".$field_name."' style='margin-top:5px;'>Upload <i class='fa fa-cloud-upload'></i></a>";
+					$out .= "<a class='btn btn-default btn_upload_files' file_type='files' selecter='".$field_name."' style='margin-top:5px;'>".__t("Upload")." <i class='fa fa-cloud-upload'></i></a>";
 					break;
 
 				case 'Float':
-					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' :</label>';
 					
 					if($default_val == null) {
 						$default_val = $defaultvalue;
@@ -309,7 +307,7 @@ class LAFormMaker
 					$out .= Form::number($field_name, $default_val, $params);
 					break;
 				case 'HTML':
-					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' :</label>';
 					
 					if($default_val == null) {
 						$default_val = $defaultvalue;
@@ -320,11 +318,11 @@ class LAFormMaker
 					}
 					
 					// ############### Remaining
-					$out .= '<div class="htmlbox" id="htmlbox_'.$field_name.'" contenteditable>'.$default_val.'</div>';
+					$out .= '<div class="htmlbox" id="htmlbox_'.$field_name.'" contenteditable>'.__($default_val).'</div>';
 					$out .= Form::hidden($field_name, $default_val, $params);
 					break;
 				case 'Image':
-					$out .= '<label for="'.$field_name.'" style="display:block;">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'" style="display:block;">'.__t($label).$required_ast.' :</label>';
 					
 					if($default_val == null) {
 						$default_val = $defaultvalue;
@@ -342,16 +340,16 @@ class LAFormMaker
 						$upload = \App\Models\Upload::find($default_val);
 					}
 					if(isset($upload->id)) {
-						$out .= "<a class='btn btn-default btn_upload_image hide' file_type='image' selecter='".$field_name."'>Upload <i class='fa fa-cloud-upload'></i></a>
-							<div class='uploaded_image'><img src='".url("files/".$upload->hash.DIRECTORY_SEPARATOR.$upload->name."?s=150")."'><i title='Remove Image' class='fa fa-times'></i></div>";
+						$out .= "<a class='btn btn-default btn_upload_image hide' file_type='image' selecter='".$field_name."'>".__t("Upload")." <i class='fa fa-cloud-upload'></i></a>
+							<div class='uploaded_image'><img src='".url("files/".$upload->hash.DIRECTORY_SEPARATOR.$upload->name."?s=150")."'><i title='".__t("Remove Image")."' class='fa fa-times'></i></div>";
 					} else {
 						$out .= "<a class='btn btn-default btn_upload_image' file_type='image' selecter='".$field_name."'>Upload <i class='fa fa-cloud-upload'></i></a>
-							<div class='uploaded_image hide'><img src=''><i title='Remove Image' class='fa fa-times'></i></div>";
+							<div class='uploaded_image hide'><img src=''><i title='".__t("Remove Image")."' class='fa fa-times'></i></div>";
 					}
 					
 					break;
 				case 'Integer':
-					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' :</label>';
 					
 					unset($params['data-rule-maxlength']);
 					if($default_val == null) {
@@ -365,7 +363,7 @@ class LAFormMaker
 					$out .= Form::number($field_name, $default_val, $params);
 					break;
 				case 'Mobile':
-					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' :</label>';
 					
 					if($default_val == null) {
 						$default_val = $defaultvalue;
@@ -378,10 +376,10 @@ class LAFormMaker
 					$out .= Form::text($field_name, $default_val, $params);
 					break;
 				case 'Multiselect':
-					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' :</label>';
 					
 					unset($params['data-rule-maxlength']);
-					$params['data-placeholder'] = "Select multiple ".str_plural($label);
+					$params['data-placeholder'] = __t("Select multiple ").str_plural(__t($label));
 					unset($params['placeholder']);
 					$params['multiple'] = "true";
 					$params['rel'] = "select2";
@@ -405,7 +403,7 @@ class LAFormMaker
 					$out .= Form::select($field_name."[]", $popup_vals, $default_val, $params);
 					break;
 				case 'Name':
-					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' :</label>';
 					
 					if($default_val == null) {
 						$default_val = $defaultvalue;
@@ -418,12 +416,12 @@ class LAFormMaker
 					$out .= Form::text($field_name, $default_val, $params);
 					break;
 				case 'Password':
-					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' :</label>';
 					
 					$out .= Form::password($field_name, $params);
 					break;
 				case 'Radio':
-					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' : </label><br>';
+					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' : </label><br>';
 					
 					// ############### Remaining
 					unset($params['placeholder']);
@@ -445,7 +443,7 @@ class LAFormMaker
 							if($default_val != "" && $default_val == $value) {
 								$sel = true;
 							}
-							$out .= '<label>'.(Form::radio($field_name, $key, $sel)).' '.$value.' </label>';
+							$out .= '<label>'.(Form::radio($field_name, $key, $sel)).' '.__t($value).' </label>';
 						}
 						$out .= '</div>';
 						break;
@@ -461,13 +459,13 @@ class LAFormMaker
 							if($default_val != "" && $default_val == $value) {
 								$sel = true;
 							}
-							$out .= '<label>'.(Form::radio($field_name, $value, $sel)).' '.$value.' </label>';
+							$out .= '<label>'.(Form::radio($field_name, $value, $sel)).' '.__t($value).' </label>';
 						}
 						$out .= '</div>';
 						break;
 					}
 				case 'String':
-					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' :</label>';
 					
 					if($default_val == null) {
 						$default_val = $defaultvalue;
@@ -479,7 +477,7 @@ class LAFormMaker
 					$out .= Form::text($field_name, $default_val, $params);
 					break;
 				case 'Taginput':
-					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' :</label>';
 					
 					if(isset($params['data-rule-maxlength'])) {
 						$params['maximumSelectionLength'] = $params['data-rule-maxlength'];
@@ -487,7 +485,7 @@ class LAFormMaker
 					}
 					$params['multiple'] = "true";
 					$params['rel'] = "taginput";
-					$params['data-placeholder'] = "Add multiple ".str_plural($label);
+					$params['data-placeholder'] = "Add multiple ".str_plural(__t($label));
 					unset($params['placeholder']);
 					
 					// Override the edit value
@@ -513,7 +511,7 @@ class LAFormMaker
 					$out .= Form::select($field_name."[]", $default_val, $default_val, $params);
 					break;
 				case 'Textarea':
-					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' :</label>';
 					
 					$params['cols'] = 30;
 					$params['rows'] = 3;
@@ -529,7 +527,7 @@ class LAFormMaker
 					$out .= Form::textarea($field_name, $default_val, $params);
 					break;
 				case 'TextField':
-					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' :</label>';
 					
 					if($default_val == null) {
 						$default_val = $defaultvalue;
@@ -542,7 +540,7 @@ class LAFormMaker
 					$out .= Form::text($field_name, $default_val, $params);
 					break;
 				case 'URL':
-					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' :</label>';
 					
 					if($default_val == null) {
 						$default_val = $defaultvalue;
@@ -660,7 +658,7 @@ class LAFormMaker
 			}
 			
 			$out = '<div class="form-group">';
-			$out .= '<label for="'.$field_name.'" class="col-md-2">'.$label.' :</label>';
+			$out .= '<label for="'.$field_name.'" class="col-md-2">'.__t($label).' :</label>';
 			
 			$value = $row->$field_name;
 			
@@ -672,9 +670,9 @@ class LAFormMaker
 					break;
 				case 'Checkbox':
 					if($value == 0) {
-						$value = "<div class='label label-danger'>False</div>";
+						$value = "<div class='label label-danger'>".__t("False")."</div>";
 					} else {
-						$value = "<div class='label label-success'>True</div>";
+						$value = "<div class='label label-success'>".__t("True")."</div>";
 					}
 					break;
 				case 'Currency':
@@ -697,7 +695,7 @@ class LAFormMaker
 						if($value != 0) {
 							$moduleVal = Module::getByTable(str_replace("@", "", $fieldObj['popup_vals']));
 							if(isset($moduleVal->id)) {
-								$value = "<a href='".url(config("laraadmin.adminRoute")."/".$moduleVal->name_db."/".$value)."' class='label label-primary'>".$values[$value]."</a> ";
+								$value = "<a href='".url(config("laraadmin.adminRoute")."/".$moduleVal->name_db."/".$value)."' class='label label-primary'>".__t($values[$value])."</a> ";
 							} else {
 								$value = "<a class='label label-primary'>".$values[$value]."</a> ";
 							}
@@ -707,7 +705,7 @@ class LAFormMaker
 					}
 					break;
 				case 'Email':
-					$value = '<a href="mailto:'.$value.'">'.$value.'</a>';
+					$value = '<a href="mailto:'.$value.'">'.__t($value).'</a>';
 					break;
 				case 'File':
 					if($value != 0) {
@@ -716,10 +714,10 @@ class LAFormMaker
 							$value = '<a class="preview" target="_blank" href="'.url("files/".$upload->hash.DIRECTORY_SEPARATOR.$upload->name).'">
 							<span class="fa-stack fa-lg"><i class="fa fa-square fa-stack-2x"></i><i class="fa fa-file-o fa-stack-1x fa-inverse"></i></span> '.$upload->name.'</a>';
 						} else {
-							$value = 'Uplaoded file not found.';
+							$value = __t('Uploaded file not found.');
 						}
 					} else {
-						$value = 'No file.';
+						$value = __t('No file.');
 					}
 					break;
 				case 'Files':
@@ -744,7 +742,7 @@ class LAFormMaker
 						}
 						$value = $uploads_html;
 					} else {
-						$value = 'No files found.';
+						$value = __t('No files found.');
 					}
 					break;
 				case 'Float':
@@ -759,7 +757,7 @@ class LAFormMaker
 					if(isset($upload->id)) {
 						$value = '<a class="preview" target="_blank" href="'.url("files/".$upload->hash.DIRECTORY_SEPARATOR.$upload->name).'"><img src="'.url("files/".$upload->hash.DIRECTORY_SEPARATOR.$upload->name."?s=150").'"></a>';
 					} else {
-						$value = 'Uplaoded image not found.';
+						$value = __t('Uplaoded image not found.');
 					}
 					break;
 				case 'Integer':

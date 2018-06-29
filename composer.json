@@ -39,6 +39,7 @@
             "Dwij\\Laraadmin\\": "src/"
         },
         "files": [
+            "src/extra/functions.php"
         ]
     }
 }

@@ -1,14 +1,14 @@
 @extends("la.layouts.app")
 
-@section("contentheader_title", "Backups")
-@section("contentheader_description", "backups listing")
-@section("section", "Backups")
-@section("sub_section", "Listing")
-@section("htmlheader_title", "Backups Listing")
+@section("contentheader_title", __t("Backups"))
+@section("contentheader_description", __t("backups listing"))
+@section("section", __t("Backups"))
+@section("sub_section", __t("Listing"))
+@section("htmlheader_title", __t("Backups Listing"))
 
 @section("headerElems")
 @la_access("Backups", "create")
-	<button class="btn btn-success btn-sm pull-right" id="CreateBackup">Create Backup</button>
+	<button class="btn btn-success btn-sm pull-right" id="CreateBackup">@tslt("Create Backup")</button>
 @endla_access
 @endsection
 
@@ -31,10 +31,10 @@
 		<thead>
 		<tr class="success">
 			@foreach( $listing_cols as $col )
-			<th>{{ $module->fields[$col]['label'] or ucfirst($col) }}</th>
+			<th>{{ __t(isset($module->fields[$col]['label']) ? $module->fields[$col]['label'] : ucfirst($col)) }}</th>
 			@endforeach
 			@if($show_actions)
-			<th>Actions</th>
+			<th>@tslt("Actions")</th>
 			@endif
 		</tr>
 		</thead>
@@ -62,7 +62,7 @@ $(function () {
 		language: {
 			lengthMenu: "_MENU_",
 			search: "_INPUT_",
-			searchPlaceholder: "Search"
+			searchPlaceholder: "@tslt("Search")"
 		},
 		@if($show_actions)
 		columnDefs: [ { orderable: false, targets: [-1] }],
@@ -74,17 +74,17 @@ $(function () {
 			url: "{{ url(config('laraadmin.adminRoute') . '/create_backup_ajax') }}",
 			method: 'POST',
 			beforeSend: function() {
-				$("#CreateBackup").html('<i class="fa fa-refresh fa-spin"></i> Creating Backup...');
+				$("#CreateBackup").html('<i class="fa fa-refresh fa-spin"></i> @tslt("Creating Backup...")');
 			},
 			headers: {
 		    	'X-CSRF-Token': $('input[name="_token"]').val()
     		},
 			success: function( data ) {
 				if(data.status == "success") {
-					$("#CreateBackup").html('<i class="fa fa-check"></i> Backup Created');
+					$("#CreateBackup").html('<i class="fa fa-check"></i> @tslt("Backup Created")');
 					$('body').pgNotification({
 						style: 'circle',
-						title: 'Backup Creation',
+						title: '@tslt("Search")Backup Creation',
 						message: data.message,
 						position: "top-right",
 						timeout: 0,
@@ -95,10 +95,10 @@ $(function () {
 						window.location.reload();
 					}, 1000);
 				} else {
-					$("#CreateBackup").html('Create Backup');
+					$("#CreateBackup").html('@tslt("Create Backup")');
 					$('body').pgNotification({
 						style: 'circle',
-						title: 'Backup creation failed',
+						title: '@tslt("Backup creation failed")',
 						message: data.message,
 						position: "top-right",
 						timeout: 0,

@@ -6,8 +6,8 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="fileManagerLabel">Select File</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="@tslt("Close")"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="fileManagerLabel">@tslt("Select File")</h4>
 			</div>
 			<div class="modal-body p0">
 				<div class="row">
@@ -15,10 +15,10 @@
 						<div class="fm_folder_selector">
 							<form action="{{ url(config('laraadmin.adminRoute') . '/upload_files')}}" id="fm_dropzone" enctype="multipart/form-data" method="POST">
 								{{ csrf_field() }}
-								<div class="dz-message"><i class="fa fa-cloud-upload"></i><br>Drop files here to upload</div>
+								<div class="dz-message"><i class="fa fa-cloud-upload"></i><br>@tslt("Drop files here to upload")</div>
 								
 								@if(!config('laraadmin.uploads.private_uploads'))
-									<label class="fm_folder_title">Is Public ?</label>
+									<label class="fm_folder_title">@tslt("Is Public") ?</label>
 									{{ Form::checkbox("public", "public", config("laraadmin.uploads.default_public"), []) }}
 									<div class="Switch Ajax Round On"><div class="Toggle"></div></div>
 								@endif
@@ -30,7 +30,7 @@
 							<div class="row">
 								<div class="col-xs-2 col-sm-7 col-md-7"></div>
 								<div class="col-xs-10 col-sm-5 col-md-5">
-									<input type="search" class="form-control pull-right" placeholder="Search file name">
+									<input type="search" class="form-control pull-right" placeholder="@tslt("Search file name")">
 								</div>
 							</div>
 						</div>

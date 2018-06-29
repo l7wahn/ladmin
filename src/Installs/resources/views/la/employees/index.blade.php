@@ -1,14 +1,14 @@
 @extends("la.layouts.app")
 
-@section("contentheader_title", "Employees")
-@section("contentheader_description", "employees listing")
-@section("section", "Employees")
-@section("sub_section", "Listing")
-@section("htmlheader_title", "Employees Listing")
+@section("contentheader_title", __t("Employees"))
+@section("contentheader_description", __t("employees listing"))
+@section("section", __t("Employees"))
+@section("sub_section", __t("Listing"))
+@section("htmlheader_title", __t("Employees Listing"))
 
 @section("headerElems")
 @la_access("Employees", "create")
-	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add Employee</button>
+	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">@tslt("Add") @tslt("Employee")</button>
 @endla_access
 @endsection
 
@@ -31,10 +31,10 @@
 		<thead>
 		<tr class="success">
 			@foreach( $listing_cols as $col )
-			<th>{{ $module->fields[$col]['label'] or ucfirst($col) }}</th>
+			<th>{{ __t(isset($module->fields[$col]['label']) ? $module->fields[$col]['label'] : ucfirst($col)) }}</th>
 			@endforeach
 			@if($show_actions)
-			<th>Actions</th>
+			<th>@tslt("Actions")</th>
 			@endif
 		</tr>
 		</thead>
@@ -51,7 +51,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Add Employee</h4>
+				<h4 class="modal-title" id="myModalLabel">@tslt("Add") @tslt("Employee")</h4>
 			</div>
 			{!! Form::open(['action' => 'LA\EmployeesController@store', 'id' => 'employee-add-form']) !!}
 			<div class="modal-body">
@@ -88,7 +88,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">@tslt("Close")</button>
 				{!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
 			</div>
 			{!! Form::close() !!}
@@ -114,7 +114,7 @@ $(function () {
 		language: {
 			lengthMenu: "_MENU_",
 			search: "_INPUT_",
-			searchPlaceholder: "Search"
+			searchPlaceholder: "@tslt("Search")"
 		},
 		@if($show_actions)
 		columnDefs: [ { orderable: false, targets: [-1] }],

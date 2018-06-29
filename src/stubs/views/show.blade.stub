@@ -1,7 +1,7 @@
 @extends('la.layouts.app')
 
 @section('htmlheader_title')
-	__singular_cap_var__ View
+	@tslt("__singular_cap_var__") @tslt("View")
 @endsection
 
 
@@ -94,9 +94,9 @@
 	</div>
 
 	<ul data-toggle="ajax-tab" class="nav nav-tabs profile" role="tablist">
-		<li class=""><a href="{{ url(config('laraadmin.adminRoute') . '/__db_table_name__') }}" data-toggle="tooltip" data-placement="right" title="Back to __module_name_2__"><i class="fa fa-chevron-left"></i></a></li>
-		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-general-info" data-target="#tab-info"><i class="fa fa-bars"></i> General Info</a></li>
-		<li class=""><a role="tab" data-toggle="tab" href="#tab-timeline" data-target="#tab-timeline"><i class="fa fa-clock-o"></i> Timeline</a></li>
+		<li class=""><a href="{{ url(config('laraadmin.adminRoute') . '/__db_table_name__') }}" data-toggle="tooltip" data-placement="right" title="@tslt("Back to __module_name_2__")"><i class="fa fa-chevron-left"></i></a></li>
+		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-general-info" data-target="#tab-info"><i class="fa fa-bars"></i> @tslt("General Info")</a></li>
+		<li class=""><a role="tab" data-toggle="tab" href="#tab-timeline" data-target="#tab-timeline"><i class="fa fa-clock-o"></i> @tslt("Timeline") </a></li>
 	</ul>
 
 	<div class="tab-content">
@@ -104,10 +104,10 @@
 			<div class="tab-content">
 				<div class="panel infolist">
 					<div class="panel-default panel-heading">
-						<h4>General Info</h4>
+						<h4>@tslt("General Info")</h4>
 					</div>
 					<div class="panel-body">
-						__display_fields__
+						@tslt("__display_fields__")
 					</div>
 				</div>
 			</div>

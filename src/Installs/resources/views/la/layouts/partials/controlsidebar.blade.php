@@ -9,7 +9,7 @@
     <div class="tab-content">
         <!-- Home tab content -->
         <div class="tab-pane active" id="control-sidebar-home-tab">
-            <h3 class="control-sidebar-heading">Recent Activity</h3>
+            <h3 class="control-sidebar-heading">@tslt("Recent Activity")</h3>
             <ul class='control-sidebar-menu'>
                 <li>
                     <a href='javascript::;'>
@@ -22,7 +22,7 @@
                 </li>
             </ul><!-- /.control-sidebar-menu -->
 
-            <h3 class="control-sidebar-heading">Tasks Progress</h3>
+            <h3 class="control-sidebar-heading">@tslt("Tasks Progress")</h3>
             <ul class='control-sidebar-menu'>
                 <li>
                     <a href='javascript::;'>
@@ -39,18 +39,18 @@
 
         </div><!-- /.tab-pane -->
         <!-- Stats tab content -->
-        <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
+        <div class="tab-pane" id="control-sidebar-stats-tab">@tslt("Stats Tab Content")</div><!-- /.tab-pane -->
         <!-- Settings tab content -->
         <div class="tab-pane" id="control-sidebar-settings-tab">
             <form method="post">
-                <h3 class="control-sidebar-heading">General Settings</h3>
+                <h3 class="control-sidebar-heading">@tslt("General Settings")</h3>
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
-                        Report panel usage
+                        @tslt("Report panel usage")
                         <input type="checkbox" class="pull-right" checked />
                     </label>
                     <p>
-                        Some information about this general settings option
+                        @tslt("Some information about this general settings option")
                     </p>
                 </div><!-- /.form-group -->
             </form>

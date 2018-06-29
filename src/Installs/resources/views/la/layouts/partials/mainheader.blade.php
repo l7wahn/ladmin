@@ -28,7 +28,7 @@
 	@else
 		<!-- Sidebar toggle button-->
 		<a href="#" class="sidebar-toggle b-l" data-toggle="offcanvas" role="button">
-			<span class="sr-only">Toggle navigation</span>
+			<span class="sr-only">@tslt("Toggle navigation")</span>
 		</a>
 		@include('la.layouts.partials.notifs')
 	@endif

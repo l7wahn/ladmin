@@ -1,14 +1,14 @@
 @extends("la.layouts.app")
 
-@section("contentheader_title", "Uploads")
-@section("contentheader_description", "Uploaded images & files")
-@section("section", "Uploads")
-@section("sub_section", "Listing")
-@section("htmlheader_title", "Uploaded images & files")
+@section("contentheader_title", __t("Uploads"))
+@section("contentheader_description", __t("Uploaded images & files"))
+@section("section", __t("Uploads"))
+@section("sub_section", __t("Listing"))
+@section("htmlheader_title", __t("Uploaded images & files"))
 
 @section("headerElems")
 @la_access("Uploads", "create")
-	<button id="AddNewUploads" class="btn btn-success btn-sm pull-right">Add New</button>
+	<button id="AddNewUploads" class="btn btn-success btn-sm pull-right">@tslt("Add") @tslt("New")</button>
 @endla_access
 @endsection
 
@@ -27,7 +27,7 @@
 <form action="{{ url(config('laraadmin.adminRoute') . '/upload_files') }}" id="fm_dropzone_main" enctype="multipart/form-data" method="POST">
     {{ csrf_field() }}
     <a id="closeDZ1"><i class="fa fa-times"></i></a>
-    <div class="dz-message"><i class="fa fa-cloud-upload"></i><br>Drop files here to upload</div>
+    <div class="dz-message"><i class="fa fa-cloud-upload"></i><br>@tslt("Drop files here to upload")</div>
 </form>
 
 <div class="box box-success">
@@ -48,7 +48,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
                 <!--<button type="button" class="next"><i class="fa fa-chevron-right"></i></button>
                 <button type="button" class="prev"><i class="fa fa-chevron-left"></i></button>-->
-				<h4 class="modal-title" id="myModalLabel">File: </h4>
+				<h4 class="modal-title" id="myModalLabel">@tslt("File"): </h4>
 			</div>
 			<div class="modal-body p0">
                     <div class="row m0">
@@ -61,20 +61,20 @@
                             {!! Form::open(['class' => 'file-info-form']) !!}
                                 <input type="hidden" name="file_id" value="0">
                                 <div class="form-group">
-                                    <label for="filename">File Name</label>
-                                    <input class="form-control" placeholder="File Name" name="filename" type="text" @if(!config('laraadmin.uploads.allow_filename_change') || !Module::hasFieldAccess("Uploads", "name", "write")) readonly @endif value="">
+                                    <label for="filename">@tslt("File Name")</label>
+                                    <input class="form-control" placeholder="@tslt("File Name")" name="filename" type="text" @if(!config('laraadmin.uploads.allow_filename_change') || !Module::hasFieldAccess("Uploads", "name", "write")) readonly @endif value="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="url">URL</label>
-                                    <input class="form-control" placeholder="URL" name="url" type="text" readonly value="">
+                                    <label for="url">@tslt("URL")</label>
+                                    <input class="form-control" placeholder="@tslt("URL")" name="url" type="text" readonly value="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="caption">Label</label>
-                                    <input class="form-control" placeholder="Caption" name="caption" type="text" value="" @if(!Module::hasFieldAccess("Uploads", "caption", "write")) readonly @endif>
+                                    <label for="caption">@tslt("Label")</label>
+                                    <input class="form-control" placeholder="@tslt("Label")" name="caption" type="text" value="" @if(!Module::hasFieldAccess("Uploads", "caption", "write")) readonly @endif>
                                 </div>
                                 @if(!config('laraadmin.uploads.private_uploads'))
                                     <div class="form-group">
-                                        <label for="public">Is Public ?</label>
+                                        <label for="public">@tslt("Is Public") ?</label>
                                         {{ Form::checkbox("public", "public", false, []) }}
                                         <div class="Switch Ajax Round On" style="vertical-align:top;margin-left:10px;"><div class="Toggle"></div></div>
                                     </div>
@@ -84,11 +84,11 @@
                     </div><!--.row-->
 			</div>
 			<div class="modal-footer">
-				<a class="btn btn-success" id="downFileBtn" href="">Download</a>
+				<a class="btn btn-success" id="downFileBtn" href="">@tslt("Download")</a>
 				@la_access("Uploads", "delete")
-                <button type="button" class="btn btn-danger" id="delFileBtn">Delete</button>
+                <button type="button" class="btn btn-danger" id="delFileBtn">@tslt("Delete")</button>
 				@endla_access
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">@tslt("Close")</button>
 			</div>
 		</div>
 	</div>
@@ -251,7 +251,7 @@ function loadUploadedFiles() {
                     $("ul.files_container").append(li);
                 }
             } else {
-                $("ul.files_container").html("<div class='text-center text-danger' style='margin-top:40px;'>No Files</div>");
+                $("ul.files_container").html("<div class='text-center text-danger' style='margin-top:40px;'>@trans("No Files")</div>");
             }
         }
     });

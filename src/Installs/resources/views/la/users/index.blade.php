@@ -1,10 +1,10 @@
 @extends("la.layouts.app")
 
-@section("contentheader_title", "Users")
-@section("contentheader_description", "users listing")
-@section("section", "Users")
-@section("sub_section", "Listing")
-@section("htmlheader_title", "Users Listing")
+@section("contentheader_title", __t("Users"))
+@section("contentheader_description", __t("users listing"))
+@section("section", __t("Users"))
+@section("sub_section", __t("Listing"))
+@section("htmlheader_title", __t("Users Listing"))
 
 @section("headerElems")
 
@@ -29,10 +29,10 @@
 		<thead>
 		<tr class="success">
 			@foreach( $listing_cols as $col )
-			<th>{{ $module->fields[$col]['label'] or ucfirst($col) }}</th>
+			<th>{{ __t(isset($module->fields[$col]['label']) ? $module->fields[$col]['label'] : ucfirst($col)) }}</th>
 			@endforeach
 			@if($show_actions)
-			<th>Actions</th>
+			<th>@tslt("Actions")</th>
 			@endif
 		</tr>
 		</thead>
@@ -60,7 +60,7 @@ $(function () {
 		language: {
 			lengthMenu: "_MENU_",
 			search: "_INPUT_",
-			searchPlaceholder: "Search"
+			searchPlaceholder: "@tslt("Search")"
 		},
 		@if($show_actions)
 		columnDefs: [ { orderable: false, targets: [-1] }],

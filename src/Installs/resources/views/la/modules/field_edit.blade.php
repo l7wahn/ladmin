@@ -1,12 +1,12 @@
 @extends("la.layouts.app")
 
-@section("contentheader_title", "Edit Field: ".$field->label)
-@section("contentheader_description", "from ".$module->model." module")
-@section("section", "Module ".$module->name)
+@section("contentheader_title", __t("Edit")." ".__t("Field").": ".__t($field->label))
+@section("contentheader_description", __t("from")." ".$module->model." ".__t("module"))
+@section("section", __t("Module")." ".__t($module->name))
 @section("section_url", url(config('laraadmin.adminRoute') . '/modules/'.$module->id))
-@section("sub_section", "Edit Field")
+@section("sub_section", __t("Edit")." ".__t("Field"))
 
-@section("htmlheader_title", "Field Edit : ".$field->label)
+@section("htmlheader_title", __t("Field")." ".__t("Edit").": ".__t($field->label))
 
 @section("main-content")
 <div class="box">
@@ -20,53 +20,53 @@
 					{{ Form::hidden("module_id", $module->id) }}
 					
 					<div class="form-group">
-						<label for="label">Field Label :</label>
-						{{ Form::text("label", null, ['class'=>'form-control', 'placeholder'=>'Field Label', 'data-rule-minlength' => 2, 'data-rule-maxlength'=>20, 'required' => 'required']) }}
+						<label for="label">@tslt("Field Label") :</label>
+						{{ Form::text("label", null, ['class'=>'form-control', 'placeholder'=>__t('Field Label'), 'data-rule-minlength' => 2, 'data-rule-maxlength'=>20, 'required' => 'required']) }}
 					</div>
 					
 					<div class="form-group">
-						<label for="colname">Column Name :</label>
-						{{ Form::text("colname", null, ['class'=>'form-control', 'placeholder'=>'Column Name (lowercase)', 'data-rule-minlength' => 2, 'data-rule-maxlength'=>20, 'data-rule-banned-words' => 'true', 'required' => 'required']) }}
+						<label for="colname">@tslt("Column Name "):</label>
+						{{ Form::text("colname", null, ['class'=>'form-control', 'placeholder'=> __t('Column Name').__t('lowercase'), 'data-rule-minlength' => 2, 'data-rule-maxlength'=>20, 'data-rule-banned-words' => 'true', 'required' => 'required']) }}
 					</div>
 					
 					<div class="form-group">
-						<label for="field_type">UI Type:</label>
+						<label for="field_type">@tslt("UI Type"):</label>
 						{{ Form::select("field_type", $ftypes, null, ['class'=>'form-control', 'required' => 'required']) }}
 					</div>
 					
 					<div id="unique_val">
 						<div class="form-group">
-							<label for="unique">Unique:</label>
+							<label for="unique">@tslt("Unique"):</label>
 							{{ Form::checkbox("unique", "unique") }}
 							<div class="Switch Round Off" style="vertical-align:top;margin-left:10px;"><div class="Toggle"></div></div>
 						</div>
 					</div>
 
 					<div class="form-group">
-						<label for="defaultvalue">Default Value :</label>
-						{{ Form::text("defaultvalue", null, ['class'=>'form-control', 'placeholder'=>'Default Value']) }}
+						<label for="defaultvalue">@tslt("Default Value") :</label>
+						{{ Form::text("defaultvalue", null, ['class'=>'form-control', 'placeholder'=>__t('Default Value')]) }}
 					</div>
 					
 					<div id="length_div">
 						<div class="form-group">
-							<label for="minlength">Minimum :</label>
-							{{ Form::number("minlength", null, ['class'=>'form-control', 'placeholder'=>'Default Value']) }}
+							<label for="minlength">@tslt("Minimum") :</label>
+							{{ Form::number("minlength", null, ['class'=>'form-control', 'placeholder'=>__t('Default Value')]) }}
 						</div>
 						
 						<div class="form-group">
-							<label for="maxlength">Maximum :</label>
-							{{ Form::number("maxlength", null, ['class'=>'form-control', 'placeholder'=>'Default Value']) }}
+							<label for="maxlength">@tslt("Maximum") :</label>
+							{{ Form::number("maxlength", null, ['class'=>'form-control', 'placeholder'=>__t('Default Value')]) }}
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label for="required">Required:</label>
+						<label for="required">@tslt("Required"):</label>
 						{{ Form::checkbox("required", "required") }}
 						<div class="Switch Round Off" style="vertical-align:top;margin-left:10px;"><div class="Toggle"></div></div>
 					</div>
 					
 					<div class="form-group values">
-						<label for="popup_vals">Values :</label>
+						<label for="popup_vals">@tslt("asas")Values :</label>
 						<?php
 						$default_val = "";
 						$popup_value_type_table = false;
@@ -80,8 +80,8 @@
 						}
 						?>
 						<div class="radio" style="margin-bottom:20px;">
-							<label>{{ Form::radio("popup_value_type", "table", $popup_value_type_table) }} From Table</label>
-							<label>{{ Form::radio("popup_value_type", "list", $popup_value_type_list) }} From List</label>
+							<label>{{ Form::radio("popup_value_type", "table", $popup_value_type_table) }} @tslt("From Table")</label>
+							<label>{{ Form::radio("popup_value_type", "list", $popup_value_type_list) }} @tslt("From List")</label>
 						</div>
 						{{ Form::select("popup_vals_table", $tables, $default_val, ['class'=>'form-control', 'rel' => '']) }}
 						
@@ -100,7 +100,7 @@
 					
                     <br>
 					<div class="form-group">
-						{!! Form::submit( 'Update', ['class'=>'btn btn-success']) !!} <button class="btn btn-default pull-right"><a href="{{ url(config('laraadmin.adminRoute') . '/modules/'.$module->id) }}">Cancel</a></button>
+						{!! Form::submit( 'Update', ['class'=>'btn btn-success']) !!} <button class="btn btn-default pull-right"><a href="{{ url(config('laraadmin.adminRoute') . '/modules/'.$module->id) }}">@tslt("Cancel")</a></button>
 					</div>
 				{!! Form::close() !!}
 				

@@ -1,6 +1,6 @@
 @extends('la.layouts.app')
 
-@section('htmlheader_title', 'Module View')
+@section('htmlheader_title', __t('Module View'))
 
 <?php
 use Dwij\Laraadmin\Models\Module;
@@ -22,9 +22,9 @@ use Dwij\Laraadmin\Models\Module;
 				<div class="col-md-9">
 					<a class="text-white" href="{{ url(config('laraadmin.adminRoute') . '/'.$module->name_db) }}"><h4 data-toggle="tooltip" data-placement="left" title="Open {{ $module->model }} Module" class="name">{{ $module->label }}</h4></a>
 					<div class="row stats">
-						<div class="col-md-12">{{ Module::itemCount($module->name) }} Items</div>
+						<div class="col-md-12">{{ Module::itemCount($module->name) }} @tslt("Items")</div>
 					</div>
-					<p class="desc">@if(isset($module->is_gen) && $module->is_gen) <div class="label2 success">Module Generated</div> @else <div class="label2 danger" style="border:solid 1px #FFF;">Module not Generated</div> @endif</p>
+					<p class="desc">@if(isset($module->is_gen) && $module->is_gen) <div class="label2 success">@tslt("Module Generated")</div> @else <div class="label2 danger" style="border:solid 1px #FFF;">@tslt("Module not Generated")</div> @endif</p>
 				</div>
 			</div>
 		</div>
@@ -43,15 +43,15 @@ use Dwij\Laraadmin\Models\Module;
 		<div class="col-md-4">
 			@if($module->view_col != "")
 				@if(isset($module->is_gen) && $module->is_gen)
-					<div class="dats1 text-center"><a data-toggle="tooltip" data-placement="left" title="Update Module" class="btn btn-sm btn-success" style="border-color:#FFF;" id="generate_update" href="#"><i class="fa fa-refresh"></i> Update Module</a></div>
-					<div class="dats1 text-center"><a data-toggle="tooltip" data-placement="left" title="Update Migration File" class="btn btn-sm btn-success" style="border-color:#FFF;" id="update_migr" href="#"><i class="fa fa-database"></i> Update Migration</a></div>
+					<div class="dats1 text-center"><a data-toggle="tooltip" data-placement="left" title="@tslt("Update Module")" class="btn btn-sm btn-success" style="border-color:#FFF;" id="generate_update" href="#"><i class="fa fa-refresh"></i> @tslt("Update Module")</a></div>
+					<div class="dats1 text-center"><a data-toggle="tooltip" data-placement="left" title="@tslt("Update Migration File")" class="btn btn-sm btn-success" style="border-color:#FFF;" id="update_migr" href="#"><i class="fa fa-database"></i> @tslt("Update Migration")</a></div>
 				@else
-					<div class="dats1 text-center"><a data-toggle="tooltip" data-placement="left" title="Generate Migration + CRUD + Module" class="btn btn-sm btn-success" style="border-color:#FFF;" id="generate_migr_crud" href="#"><i class="fa fa-cube"></i> Generate Migration + CRUD</a></div>
+					<div class="dats1 text-center"><a data-toggle="tooltip" data-placement="left" title="@tslt("Generate Migration + CRUD + Module")" class="btn btn-sm btn-success" style="border-color:#FFF;" id="generate_migr_crud" href="#"><i class="fa fa-cube"></i> @tslt("Generate Migration + CRUD")</a></div>
 					
- 					<div class="dats1 text-center"><a data-toggle="tooltip" data-placement="left" title="Generate Migration File" class="btn btn-sm btn-success" style="border-color:#FFF;" id="generate_migr" href="#"><i class="fa fa-database"></i> Generate Migration</a></div>
+ 					<div class="dats1 text-center"><a data-toggle="tooltip" data-placement="left" title="@tslt("Generate Migration File")" class="btn btn-sm btn-success" style="border-color:#FFF;" id="generate_migr" href="#"><i class="fa fa-database"></i> @tslt("Generate Migration")</a></div>
 				@endif
 			@else
-				<div class="dats1 text-center">To generate Migration or CRUD, set the view column using the <i class='fa fa-eye'></i> icon next to a column</div>
+				<div class="dats1 text-center">@tslt("To generate Migration or CRUD, set the view column using the") <i class='fa fa-eye'></i> @tslt("icon next to a column")</div>
 			@endif
 		</div>
 		
@@ -61,21 +61,21 @@ use Dwij\Laraadmin\Models\Module;
 	</div>
 
 	<ul id="module-tabs" data-toggle="ajax-tab" class="nav nav-tabs profile" role="tablist">
-		<li class=""><a href="{{ url(config('laraadmin.adminRoute') . '/modules') }}" data-toggle="tooltip" data-placement="right" title="Back to Modules"> <i class="fa fa-chevron-left"></i>&nbsp;</a></li>
+		<li class=""><a href="{{ url(config('laraadmin.adminRoute') . '/modules') }}" data-toggle="tooltip" data-placement="right" title="@tslt("Back to Modules")"> <i class="fa fa-chevron-left"></i>&nbsp;</a></li>
 		
 		<li class="tab-pane" id="fields">
-			<a id="tab_fields" role="tab" data-toggle="tab" class="tab_info" href="#fields" data-target="#tab-info"><i class="fa fa-bars"></i> Module Fields</a>
+			<a id="tab_fields" role="tab" data-toggle="tab" class="tab_info" href="#fields" data-target="#tab-info"><i class="fa fa-bars"></i> @tslt("Module Fields")</a>
 		</li>
 		
 		<li class="tab-pane" id="access">
-			<a id="tab_access" role="tab" data-toggle="tab"  class="tab_info " href="#access" data-target="#tab-access"><i class="fa fa-key"></i> Access</a>
+			<a id="tab_access" role="tab" data-toggle="tab"  class="tab_info " href="#access" data-target="#tab-access"><i class="fa fa-key"></i> @tslt("Access")</a>
 		</li>
 		
 		<li class="tab-pane" id="sort">
-			<a id="tab_sort" role="tab" data-toggle="tab"  class="tab_info " href="#sort" data-target="#tab-sort"><i class="fa fa-sort"></i> Sort</a>
+			<a id="tab_sort" role="tab" data-toggle="tab"  class="tab_info " href="#sort" data-target="#tab-sort"><i class="fa fa-sort"></i> @tslt("Sort")</a>
 		</li>
 		
-		<a data-toggle="modal" data-target="#AddFieldModal" class="btn btn-success btn-sm pull-right btn-add-field" style="margin-top:10px;margin-right:10px;">Add Field</a>
+		<a data-toggle="modal" data-target="#AddFieldModal" class="btn btn-success btn-sm pull-right btn-add-field" style="margin-top:10px;margin-right:10px;">@tslt("Add Field")</a>
 	</ul>
 
 	<div class="tab-content">
@@ -91,15 +91,15 @@ use Dwij\Laraadmin\Models\Module;
 						<tr class="success">
 							<th style="display:none;"></th>
 							<th>#</th>
-							<th>Label</th>
-							<th>Column</th>
-							<th>Type</th>
-							<th>Unique</th>
-							<th>Default</th>
-							<th>Min</th>
-							<th>Max</th>
-							<th>Required</th>
-							<th>Values</th>
+							<th>@tslt("Label")</th>
+							<th>@tslt("Column")</th>
+							<th>@tslt("Type")</th>
+							<th>@tslt("Unique")</th>
+							<th>@tslt("Default")</th>
+							<th>@tslt("Min")</th>
+							<th>@tslt("Max")</th>
+							<th>@tslt("Required")</th>
+							<th>@tslt("Values")</th>
 							<th><i class="fa fa-cogs"></i></th>
 						</tr>
 						</thead>
@@ -111,11 +111,11 @@ use Dwij\Laraadmin\Models\Module;
 									<td>{{ $field['label'] }}</td>
 									<td>{{ $field['colname'] }}</td>
 									<td>{{ $ftypes[$field['field_type']] }}</td>
-									<td>@if($field['unique']) <span class="text-danger">True</span>@endif </td>
+									<td>@if($field['unique']) <span class="text-danger">@tslt("True")</span>@endif </td>
 									<td>{{ $field['defaultvalue'] }}</td>
 									<td>{{ $field['minlength'] }}</td>
 									<td>{{ $field['maxlength'] }}</td>
-									<td>@if($field['required']) <span class="text-danger">True</span>@endif </td>
+									<td>@if($field['required']) <span class="text-danger">@tslt("True")</span>@endif </td>
 									<td><?php echo LAHelper::parseValues($field['popup_vals']) ?></td>
 									<td>
 										<a href="{{ url(config('laraadmin.adminRoute') . '/module_fields/'.$field['id'].'/edit') }}" class="btn btn-edit-field btn-warning btn-xs" style="display:inline;padding:2px 5px 3px 5px;" id="edit_{{ $field['colname'] }}"><i class="fa fa-edit"></i></a>
@@ -134,8 +134,8 @@ use Dwij\Laraadmin\Models\Module;
 		</div>
 		<div role="tabpanel" class="tab-pane fade in p20 bg-white" id="tab-access">
 			<div class="guide1">
-				<span class="pull-left">Module Access for Roles</span>
-				<i class="fa fa-circle gray"></i> Invisible <i class="fa fa-circle orange"></i> Read-Only <i class="fa fa-circle green"></i> Write
+				<span class="pull-left">@tslt("Module Access for Roles")</span>
+				<i class="fa fa-circle gray"></i> @tslt("Invisible") <i class="fa fa-circle orange"></i> @tslt("Read-Only") <i class="fa fa-circle green"></i> @tslt("Write")
 			</div>
 			<form action="{{ url(config('laraadmin.adminRoute') . '/save_role_module_permissions/'.$module->id) }}" method="post">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -143,21 +143,21 @@ use Dwij\Laraadmin\Models\Module;
 					<thead>
 						<tr class="blockHeader">
 							<th width="14%">
-								<input class="alignTop" type="checkbox" id="role_select_all" >&nbsp; Roles
+								<input class="alignTop" type="checkbox" id="role_select_all" >&nbsp; @tslt("Roles")
 							</th>
 							<th width="14%">
-								<input type="checkbox" id="view_all" >&nbsp; View
+								<input type="checkbox" id="view_all" >&nbsp; @tslt("View")
 							</th>
 							<th width="14%">
-								<input type="checkbox" id="create_all" >&nbsp; Create
+								<input type="checkbox" id="create_all" >&nbsp; @tslt("Create")
 							</th>
 							<th width="14%">
-								<input type="checkbox" id="edit_all" >&nbsp; Edit
+								<input type="checkbox" id="edit_all" >&nbsp; @tslt("Edit")
 							</th>
 							<th width="14%">
-								<input class="alignTop" type="checkbox" id="delete_all" >&nbsp; Delete
+								<input class="alignTop" type="checkbox" id="delete_all" >&nbsp; @tslt("Delete")
 							</th>
-							<th width="14%">Field Privileges</th>
+							<th width="14%">@tslt("Field Privileges")</th>
 						</tr>
 					</thead>
 					@foreach($roles as $role)
@@ -219,19 +219,19 @@ use Dwij\Laraadmin\Models\Module;
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">×</span>
 				</button>
-				<h4 class="modal-title">Module Delete</h4>
+				<h4 class="modal-title">@tslt("Module Delete")</h4>
 			</div>
 			<div class="modal-body">
-				<p>Do you really want to delete module <b id="moduleNameStr" class="text-danger"></b> ?</p>
-				<p>Following files will be deleted:</p>
+				<p>@tslt("Do you really want to delete module") <b id="moduleNameStr" class="text-danger"></b> ?</p>
+				<p>@tslt("Following files will be deleted"):</p>
 				<div id="moduleDeleteFiles"></div>
-				<p class="text-danger">Note: Migration file will not be deleted but modified.</p>
+				<p class="text-danger">@tslt("Note: Migration file will not be deleted but modified").</p>
 			</div>
 			<div class="modal-footer">
 				{{ Form::open(['route' => [config('laraadmin.adminRoute') . '.modules.destroy', 0], 'id' => 'module_del_form', 'method' => 'delete', 'style'=>'display:inline']) }}
-					<button class="btn btn-danger btn-delete pull-left" type="submit">Yes</button>
+					<button class="btn btn-danger btn-delete pull-left" type="submit">@tslt("Yes")</button>
 				{{ Form::close() }}
-				<a data-dismiss="modal" class="btn btn-default pull-right" >No</a>				
+				<a data-dismiss="modal" class="btn btn-default pull-right" >@tslt("No")</a>				
 			</div>
 		</div>
 		<!-- /.modal-content -->
@@ -244,30 +244,30 @@ use Dwij\Laraadmin\Models\Module;
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Add {{ $module->model }} Field</h4>
+				<h4 class="modal-title" id="myModalLabel">@tslt("Add") {{ __t($module->model) }} @tslt("Field")</h4> 
 			</div>
 			{!! Form::open(['route' => config('laraadmin.adminRoute') . '.module_fields.store', 'id' => 'field-form']) !!}
 			{{ Form::hidden("module_id", $module->id) }}
 			<div class="modal-body">
 				<div class="box-body">
 					<div class="form-group">
-						<label for="label">Field Label :</label>
+						<label for="label">@tslt('Field Label') :</label>
 						{{ Form::text("label", null, ['class'=>'form-control', 'placeholder'=>'Field Label', 'data-rule-minlength' => 2, 'data-rule-maxlength'=>20, 'required' => 'required']) }}
 					</div>
 					
 					<div class="form-group">
-						<label for="colname">Column Name :</label>
-						{{ Form::text("colname", null, ['class'=>'form-control', 'placeholder'=>'Column Name (lowercase)', 'data-rule-minlength' => 2, 'data-rule-maxlength'=>20, 'data-rule-banned-words' => 'true', 'required' => 'required']) }}
+						<label for="colname">@tslt('Column Name') :</label>
+						{{ Form::text("colname", null, ['class'=>'form-control', 'placeholder'=>__t('Column Name').__t('lowercase'), 'data-rule-minlength' => 2, 'data-rule-maxlength'=>20, 'data-rule-banned-words' => 'true', 'required' => 'required']) }}
 					</div>
 					
 					<div class="form-group">
-						<label for="field_type">UI Type:</label>
+						<label for="field_type">@tslt('UI Type'):</label>
 						{{ Form::select("field_type", $ftypes, null, ['class'=>'form-control', 'required' => 'required']) }}
 					</div>
 					
 					<div id="unique_val">
 						<div class="form-group">
-							<label for="unique">Unique:</label>
+							<label for="unique">@tslt('Unique'):</label>
 							{{ Form::checkbox("unique", "unique", false, []) }}
 							<div class="Switch Round Off" style="vertical-align:top;margin-left:10px;"><div class="Toggle"></div></div>
 						</div>
@@ -275,25 +275,25 @@ use Dwij\Laraadmin\Models\Module;
 					
 					<div id="default_val">
 						<div class="form-group">
-							<label for="defaultvalue">Default Value :</label>
-							{{ Form::text("defaultvalue", null, ['class'=>'form-control', 'placeholder'=>'Default Value']) }}
+							<label for="defaultvalue">@tslt('Default Value') :</label>
+							{{ Form::text("defaultvalue", null, ['class'=>'form-control', 'placeholder'=>__t('Default Value')]) }}
 						</div>
 					</div>
 
 					<div id="length_div">
 						<div class="form-group">
-							<label for="minlength">Minimum :</label>
-							{{ Form::number("minlength", null, ['class'=>'form-control', 'placeholder'=>'Minimum Value']) }}
+							<label for="minlength">@tslt('Minimum') :</label>
+							{{ Form::number("minlength", null, ['class'=>'form-control', 'placeholder'=> __t('Minimum Value')]) }}
 						</div>
 						
 						<div class="form-group">
-							<label for="maxlength">Maximum :</label>
-							{{ Form::number("maxlength", null, ['class'=>'form-control', 'placeholder'=>'Maximum Value']) }}
+							<label for="maxlength">@tslt('Maximum') :</label>
+							{{ Form::number("maxlength", null, ['class'=>'form-control', 'placeholder'=>__t('Maximum Value')]) }}
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label for="required">Required:</label>
+						<label for="required">@tslt('Required'):</label>
 						{{ Form::checkbox("required", "required", false, []) }}
 						<div class="Switch Round Off" style="vertical-align:top;margin-left:10px;"><div class="Toggle"></div></div>
 					</div>
@@ -306,18 +306,18 @@ use Dwij\Laraadmin\Models\Module;
 					-->
 					
 					<div class="form-group values">
-						<label for="popup_vals">Values :</label>
+						<label for="popup_vals">@tslt('Values') :</label>
 						<div class="radio" style="margin-bottom:20px;">
-							<label>{{ Form::radio("popup_value_type", "table", true) }} From Table</label>
-							<label>{{ Form::radio("popup_value_type", "list", false) }} From List</label>
+							<label>{{ Form::radio("popup_value_type", "table", true) }} @tslt('From Table')</label>
+							<label>{{ Form::radio("popup_value_type", "list", false) }} @tslt('From List')</label>
 						</div>
 						{{ Form::select("popup_vals_table", $tables, "", ['id'=>'popup_vals_table', 'class'=>'form-control', 'rel' => '']) }}
 						
-						<select id="popup_vals_list" class="form-control popup_vals_list" rel="taginput" multiple="1" data-placeholder="Add Multiple values (Press Enter to add)" name="popup_vals_list[]">
+						<select id="popup_vals_list" class="form-control popup_vals_list" rel="taginput" multiple="1" data-placeholder="@tslt("(Add Multiple values (Press Enter to add))")" name="popup_vals_list[]">
 							@if(env('APP_ENV') == "testing")
-								<option>Bloomsbury</option>
-								<option>Marvel</option>
-								<option>Universal</option>
+								<option>@tslt('Bloomsbury')</option>
+								<option>@tslt('Marvel')</option>
+								<option>@tslt('Universal')</option>
 							@endif
 						</select>
 					</div>
@@ -325,7 +325,7 @@ use Dwij\Laraadmin\Models\Module;
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">@tslt('Close')</button>
 				{!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
 			</div>
 			{!! Form::close() !!}

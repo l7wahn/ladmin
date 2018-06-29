@@ -1,14 +1,14 @@
 @extends("la.layouts.app")
 
 @section("contentheader_title")
-	<a href="{{ url(config('laraadmin.adminRoute') . '/__db_table_name__') }}">__singular_cap_var__</a> :
+	<a href="{{ url(config('laraadmin.adminRoute') . '/__db_table_name__') }}">__t(__singular_cap_var__)</a> :
 @endsection
-@section("contentheader_description", $__singular_var__->$view_col)
-@section("section", "__module_name_2__")
+@section("contentheader_description", __t($__singular_var__->$view_col))
+@section("section", __t("__module_name_2__"))
 @section("section_url", url(config('laraadmin.adminRoute') . '/__db_table_name__'))
 @section("sub_section", "Edit")
 
-@section("htmlheader_title", "__module_name_2__ Edit : ".$__singular_var__->$view_col)
+@section("htmlheader_title", __t("__module_name_2__ Edit : ".$__singular_var__->$view_col))
 
 @section("main-content")
 
@@ -37,7 +37,7 @@
 					--}}
                     <br>
 					<div class="form-group">
-						{!! Form::submit( 'Update', ['class'=>'btn btn-success']) !!} <button class="btn btn-default pull-right"><a href="{{ url(config('laraadmin.adminRoute') . '/__db_table_name__') }}">Cancel</a></button>
+						{!! Form::submit( 'Update', ['class'=>'btn btn-success']) !!} <button class="btn btn-default pull-right"><a href="{{ url(config('laraadmin.adminRoute') . '/__db_table_name__') }}">@tslt("Cancel")</a></button>
 					</div>
 				{!! Form::close() !!}
 			</div>

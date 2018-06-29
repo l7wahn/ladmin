@@ -13,7 +13,7 @@
                 <div class="pull-left info">
                     <p>{{ Auth::user()->name }}</p>
                     <!-- Status -->
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i> @tslt("Online")</a>
                 </div>
             </div>
         @endif
@@ -22,7 +22,7 @@
         @if(LAConfigs::getByKey('sidebar_search'))
         <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
-	                <input type="text" name="q" class="form-control" placeholder="Search..."/>
+	                <input type="text" name="q" class="form-control" placeholder="@tslt("Search")..."/>
               <span class="input-group-btn">
                 <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
               </span>
@@ -33,9 +33,9 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">MODULES</li>
+            <li class="header" style="text-transform: uppercase;">@tslt("modules")</li>
             <!-- Optionally, you can add icons to the links -->
-            <li><a href="{{ url(config('laraadmin.adminRoute')) }}"><i class='fa fa-home'></i> <span>Dashboard</span></a></li>
+            <li><a href="{{ url(config('laraadmin.adminRoute')) }}"><i class='fa fa-home'></i> <span>@tslt("Dashboard")</span></a></li>
             <?php
             $menuItems = Dwij\Laraadmin\Models\Menu::where("parent", 0)->orderBy('hierarchy', 'asc')->get();
             ?>

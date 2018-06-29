@@ -4,14 +4,14 @@
 use Dwij\Laraadmin\Models\Module;
 ?>
 
-@section("contentheader_title", "Modules")
-@section("contentheader_description", "modules listing")
-@section("section", "Modules")
-@section("sub_section", "Listing")
-@section("htmlheader_title", "Modules Listing")
+@section("contentheader_title", __t("Modules"))
+@section("contentheader_description", __t("modules listing"))
+@section("section", __t("Modules"))
+@section("sub_section", __t("Listing"))
+@section("htmlheader_title", __t("Modules Listing"))
 
 @section("headerElems")
-<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">Add Module</button>
+<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">@tslt("Add Module")</button>
 @endsection
 
 @section("main-content")
@@ -22,11 +22,11 @@ use Dwij\Laraadmin\Models\Module;
 		<table id="dt_modules" class="table table-bordered">
 		<thead>
 		<tr class="success">
-			<th>ID</th>
-			<th>Name</th>
-			<th>Table</th>
-			<th>Items</th>
-			<th>Actions</th>
+			<th>@tslt("ID")</th>
+			<th>@tslt("Name")</th>
+			<th>@tslt("Table")</th>
+			<th>@tslt("Items")</th>
+			<th>@tslt("Actions")</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -55,26 +55,26 @@ use Dwij\Laraadmin\Models\Module;
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Add Module</h4>
+				<h4 class="modal-title" id="myModalLabel">@tslt("Add Module")</h4>
 			</div>
 			{!! Form::open(['route' => config('laraadmin.adminRoute') . '.modules.store', 'id' => 'module-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
 					<div class="form-group">
-						<label for="name">Module Name :</label>
-						{{ Form::text("name", null, ['class'=>'form-control', 'placeholder'=>'Module Name', 'data-rule-minlength' => 2, 'data-rule-maxlength'=>20, 'required' => 'required']) }}
+						<label for="name">@tslt("Module Name") :</label>
+						{{ Form::text("name", null, ['class'=>'form-control', 'placeholder'=>__t('Module Name'), 'data-rule-minlength' => 2, 'data-rule-maxlength'=>20, 'required' => 'required']) }}
 					</div>
 					<div class="form-group">
-						<label for="icon">Icon</label>
+						<label for="icon">@tslt("Icon")</label>
 						<div class="input-group">
-							<input class="form-control" placeholder="FontAwesome Icon" name="icon" type="text" value="fa-cube"  data-rule-minlength="1" required>
+							<input class="form-control" placeholder="@tslt("FontAwesome Icon")" name="icon" type="text" value="fa-cube"  data-rule-minlength="1" required>
 							<span class="input-group-addon"></span>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">@tslt("Close")</button>
 				{!! Form::submit( 'Submit', ['class'=>'btn btn-success']) !!}
 			</div>
 			{!! Form::close() !!}
@@ -90,19 +90,19 @@ use Dwij\Laraadmin\Models\Module;
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">×</span>
 				</button>
-				<h4 class="modal-title">Module Delete</h4>
+				<h4 class="modal-title">@tslt("Module Delete")</h4>
 			</div>
 			<div class="modal-body">
-				<p>Do you really want to delete module <b id="moduleNameStr" class="text-danger"></b> ?</p>
-				<p>Following files will be deleted:</p>
+				<p>>@tslt("Do you really want to delete module") <b id="moduleNameStr" class="text-danger"></b> ?</p>
+				<p>>@tslt("Following files will be deleted"):</p>
 				<div id="moduleDeleteFiles"></div>
-				<p class="text-danger">Note: Migration file will not be deleted but modified.</p>
+				<p class="text-danger">>@tslt("Note: Migration file will not be deleted but modified").</p>
 			</div>
 			<div class="modal-footer">
 				{{ Form::open(['route' => [config('laraadmin.adminRoute') . '.modules.destroy', 0], 'id' => 'module_del_form', 'method' => 'delete', 'style'=>'display:inline']) }}
-					<button class="btn btn-danger btn-delete pull-left" type="submit">Yes</button>
+					<button class="btn btn-danger btn-delete pull-left" type="submit">@tslt('Yes')</button>
 				{{ Form::close() }}
-				<a data-dismiss="modal" class="btn btn-default pull-right" >No</a>				
+				<a data-dismiss="modal" class="btn btn-default pull-right" >@tslt('No')</a>				
 			</div>
 		</div>
 		<!-- /.modal-content -->
