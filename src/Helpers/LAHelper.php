@@ -1,12 +1,27 @@
 <?php
 
+<<<<<<< HEAD
 namespace Dwij\Laraadmin\Helpers;
+=======
+namespace Dwij\LaradminHelpers;
+>>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 
 use DB;
 use Log;
 
+<<<<<<< HEAD
 use Dwij\Laraadmin\Models\Module;
 
+=======
+use Dwij\LaradminModels\Module;
+
+/**
+ * Class LAHelper
+ * @package Dwij\LaradminHelpers
+ *
+ * This is LaraAdmin Helper class contains methods required for Admin Panel functionality.
+ */
+>>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 class LAHelper
 {
 	// $names = LAHelper::generateModuleNames($module_name);
@@ -259,6 +274,7 @@ class LAHelper
 		}
 		$str = '<li class="dd-item dd3-item" data-id="'.$menu->id.'">
 			<div class="dd-handle dd3-handle"></div>
+<<<<<<< HEAD
 			<div class="dd3-content"><i class="fa '.$menu->icon.'"></i> '.$menu->name.' '.$editing.'</div>';
 		
 		$childrens = \Dwij\Laraadmin\Models\Menu::where("parent", $menu->id)->orderBy('hierarchy', 'asc')->get();
@@ -391,4 +407,259 @@ class LAHelper
 		$md = file_get_contents($from);
 		return $md;
 	}
+=======
+			<div class="dd3-content"><i class="fa ' . $menu->icon . '"></i> ' . $menu->name . ' ' . $editing . '</div>';
+        
+        $childrens = \Dwij\LaradminModels\Menu::where("parent", $menu->id)->orderBy('hierarchy', 'asc')->get();
+        
+        if(count($childrens) > 0) {
+            $str .= '<ol class="dd-list">';
+            foreach($childrens as $children) {
+                $str .= LAHelper::print_menu_editor($children);
+            }
+            $str .= '</ol>';
+        }
+        $str .= '</li>';
+        return $str;
+    }
+    
+    /**
+     * Print the sidebar menu view.
+     * This needs to be done recursively
+     *
+     * LAHelper::print_menu($menu)
+     *
+     * @param $menu menu array from database
+     * @return string menu in html string
+     */
+    public static function print_menu($menu, $active = false)
+    {
+        $childrens = \Dwij\LaradminModels\Menu::where("parent", $menu->id)->orderBy('hierarchy', 'asc')->get();
+
+        $treeview = "";
+        $subviewSign = "";
+        if(count($childrens)) {
+            $treeview = " class=\"treeview\"";
+            $subviewSign = '<i class="fa fa-angle-left pull-right"></i>';
+        }
+        $active_str = '';
+        if($active) {
+            $active_str = 'class="active"';
+        }
+        
+        $str = '<li' . $treeview . ' ' . $active_str . '><a href="' . url(config("laraadmin.adminRoute") . '/' . $menu->url) . '"><i class="fa ' . $menu->icon . '"></i> <span>' . LAHelper::real_module_name($menu->name) . '</span> ' . $subviewSign . '</a>';
+        
+        if(count($childrens)) {
+            $str .= '<ul class="treeview-menu">';
+            foreach($childrens as $children) {
+                $module = Module::get($children->url);
+                if(Module::hasAccess($module->id)) {
+                    $str .= LAHelper::print_menu($children);
+                }
+            }
+            $str .= '</ul>';
+        }
+        $str .= '</li>';
+        return $str;
+    }
+    
+    /**
+     * Print the top navbar menu view.
+     * This needs to be done recursively
+     *
+     * LAHelper::print_menu_topnav($menu)
+     *
+     * @param $menu menu array from database
+     * @param bool $active is this menu active or not
+     * @return string menu in html string
+     */
+    public static function print_menu_topnav($menu, $active = false)
+    {
+        $childrens = \Dwij\LaradminModels\Menu::where("parent", $menu->id)->orderBy('hierarchy', 'asc')->get();
+        
+        $treeview = "";
+        $treeview2 = "";
+        $subviewSign = "";
+        if(count($childrens)) {
+            $treeview = " class=\"dropdown\"";
+            $treeview2 = " class=\"dropdown-toggle\" data-toggle=\"dropdown\"";
+            $subviewSign = ' <span class="caret"></span>';
+        }
+        $active_str = '';
+        if($active) {
+            $active_str = 'class="active"';
+        }
+        
+        $str = '<li ' . $treeview . '' . $active_str . '><a ' . $treeview2 . ' href="' . url(config("laraadmin.adminRoute") . '/' . $menu->url) . '">' . LAHelper::real_module_name($menu->name) . $subviewSign . '</a>';
+        
+        if(count($childrens)) {
+            $str .= '<ul class="dropdown-menu" role="menu">';
+            foreach($childrens as $children) {
+                $str .= LAHelper::print_menu_topnav($children);
+            }
+            $str .= '</ul>';
+        }
+        $str .= '</li>';
+        return $str;
+    }
+    
+    /**
+     * Get laravel version. very important in installation and handling Laravel 5.3 changes.
+     *
+     * LAHelper::laravel_ver()
+     *
+     * @return float|string laravel version
+     */
+    public static function laravel_ver()
+    {
+        $var = \App::VERSION();
+        
+        if(starts_with($var, "5.2")) {
+            return 5.2;
+        } else if(starts_with($var, "5.3")) {
+            return 5.3;
+        } else if(substr_count($var, ".") == 3) {
+            $var = substr($var, 0, strrpos($var, "."));
+            return $var . "-str";
+        } else {
+            return floatval($var);
+        }
+    }
+    
+    /**
+     * Get real Module name by replacing underscores within name
+     *
+     * @param $name Module Name with whitespace filled by underscores
+     * @return mixed return Module Name
+     */
+    public static function real_module_name($name)
+    {
+        $name = str_replace('_', ' ', $name);
+        return $name;
+    }
+    
+    /**
+     * Get complete line within file by comparing passed substring $str
+     *
+     * LAHelper::getLineWithString()
+     *
+     * @param $fileName file name to be scanned
+     * @param $str substring to be checked for line match
+     * @return int/string return -1 if failed to find otherwise complete line in string format
+     */
+    public static function getLineWithString($fileName, $str)
+    {
+        $lines = file($fileName);
+        foreach($lines as $lineNumber => $line) {
+            if(strpos($line, $str) !== false) {
+                return $line;
+            }
+        }
+        return -1;
+    }
+    
+    /**
+     * Get complete line within given file contents by comparing passed substring $str
+     *
+     * LAHelper::getLineWithString2()
+     *
+     * @param $content content to be scanned
+     * @param $str substring to be checked for line match
+     * @return int/string return -1 if failed to find otherwise complete line in string format
+     */
+    public static function getLineWithString2($content, $str)
+    {
+        $lines = explode(PHP_EOL, $content);
+        foreach($lines as $lineNumber => $line) {
+            if(strpos($line, $str) !== false) {
+                return $line;
+            }
+        }
+        return -1;
+    }
+    
+    /**
+     * Method sets parameter in ".env" file as well as into php environment.
+     *
+     * LAHelper::setenv("CACHE_DRIVER", "array");
+     *
+     * @param $param parameter name
+     * @param $value parameter value
+     */
+    public static function setenv($param, $value)
+    {
+        
+        $envfile = LAHelper::openFile('.env');
+        $line = LAHelper::getLineWithString('.env', $param . '=');
+        $envfile = str_replace($line, $param . "=" . $value . "\n", $envfile);
+        file_put_contents('.env', $envfile);
+        
+        $_ENV[$param] = $value;
+        putenv($param . "=" . $value);
+    }
+    
+    /**
+     * Get file contents
+     *
+     * @param $from file path
+     * @return string file contents in String
+     */
+    public static function openFile($from)
+    {
+        $md = file_get_contents($from);
+        return $md;
+    }
+    
+    /**
+     * Delete file
+     *
+     * LAHelper::deleteFile();
+     *
+     * @param $file_path file's path to be deleted
+     */
+    public static function deleteFile($file_path)
+    {
+        if(file_exists($file_path)) {
+            unlink($file_path);
+        }
+    }
+    
+    /**
+     * Get Migration file name by passing matching table name
+     *
+     * LAHelper::get_migration_file("students_table");
+     *
+     * @param $file_name matching table name like 'create_employees_table'
+     * @return string returns migration file name if found else blank string
+     */
+    public static function get_migration_file($file_name)
+    {
+        $mfiles = scandir(base_path('database/migrations/'));
+        foreach($mfiles as $mfile) {
+            if(str_contains($mfile, $file_name)) {
+                $mgr_file = base_path('database/migrations/' . $mfile);
+                if(file_exists($mgr_file)) {
+                    return 'database/migrations/' . $mfile;
+                }
+            }
+        }
+        return "";
+    }
+    
+    /**
+     * Check if passed array is associative
+     *
+     * @param array $array array to be checked associative or not
+     * @return bool true if associative
+     */
+    public static function is_assoc_array(array $array)
+    {
+        // Keys of the array
+        $keys = array_keys($array);
+        
+        // If the array keys of the keys match the keys, then the array must
+        // not be associative (e.g. the keys array looked like {0:0, 1:1...}).
+        return array_keys($keys) !== $keys;
+    }
+>>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 }

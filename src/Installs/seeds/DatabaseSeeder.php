@@ -2,11 +2,19 @@
 
 use Illuminate\Database\Seeder;
 
+<<<<<<< HEAD
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
 use Dwij\Laraadmin\Models\ModuleFieldTypes;
 use Dwij\Laraadmin\Models\Menu;
 use Dwij\Laraadmin\Models\LAConfigs;
+=======
+use Dwij\LaradminModels\Module;
+use Dwij\LaradminModels\ModuleFields;
+use Dwij\LaradminModels\ModuleFieldTypes;
+use Dwij\LaradminModels\Menu;
+use Dwij\LaradminModels\LAConfigs;
+>>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 
 use App\Role;
 use App\Permission;

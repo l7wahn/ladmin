@@ -1,5 +1,10 @@
 <?php
 
+<<<<<<< HEAD
+=======
+use Dwij\LaradminHelpers\LAHelper;
+
+>>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 /* ================== Homepage ================== */
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');

@@ -8,7 +8,11 @@ namespace App\Http\Controllers\LA;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use Dwij\Laraadmin\Models\LAConfigs;
+=======
+use Dwij\LaradminModels\LAConfigs;
+>>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 
 class LAConfigController extends Controller
 {

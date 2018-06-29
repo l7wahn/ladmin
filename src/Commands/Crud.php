@@ -1,15 +1,31 @@
 <?php
 
+<<<<<<< HEAD
 namespace Dwij\Laraadmin\Commands;
+=======
+namespace Dwij\LaradminCommands;
+>>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 
 use Config;
 use Artisan;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+<<<<<<< HEAD
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\CodeGenerator;
 
+=======
+use Dwij\LaradminModels\Module;
+use Dwij\LaradminCodeGenerator;
+
+/**
+ * Class Crud
+ * @package Dwij\LaradminCommands
+ *
+ * Command that generates CRUD's for a Module. Takes Module name as input.
+ */
+>>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 class Crud extends Command
 {
     /**

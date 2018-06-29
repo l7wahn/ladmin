@@ -3,7 +3,12 @@
 @section('htmlheader_title', 'Module View')
 
 <?php
+<<<<<<< HEAD
 use Dwij\Laraadmin\Models\Module;
+=======
+use Dwij\LaradminModels\Module;
+use Dwij\LaradminModels\ModuleFields;
+>>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 ?>
 
 @section('main-content')

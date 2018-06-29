@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 namespace Dwij\Laraadmin\Models;
+=======
+namespace Dwij\LaradminModels;
+>>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 
 use Illuminate\Database\Eloquent\Model;
 

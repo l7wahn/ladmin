@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 namespace Dwij\Laraadmin\Models;
+=======
+namespace Dwij\LaradminModels;
+>>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
@@ -8,8 +12,20 @@ use Illuminate\Database\Schema\Blueprint;
 use Exception;
 use Log;
 use DB;
+<<<<<<< HEAD
 use Dwij\Laraadmin\Helpers\LAHelper;
 
+=======
+use Dwij\LaradminHelpers\LAHelper;
+
+/**
+ * Class LAConfigs
+ * @package Dwij\LaradminModels
+ *
+ * Config Class looks after LaraAdmin configurations.
+ * Check details on http://laraadmin.com/docs
+ */
+>>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 class LAConfigs extends Model
 {   
 	protected $table = 'la_configs';

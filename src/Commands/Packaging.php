@@ -4,12 +4,28 @@
  * Help: http://laraadmin.com
  */
 
+<<<<<<< HEAD
 namespace Dwij\Laraadmin\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Dwij\Laraadmin\Helpers\LAHelper;
 
+=======
+namespace Dwij\LaradminCommands;
+
+use Illuminate\Console\Command;
+use Illuminate\Filesystem\Filesystem;
+use Dwij\LaradminHelpers\LAHelper;
+
+/**
+ * Class Packaging
+ * @package Dwij\LaradminCommands
+ *
+ * Command to put latest development and changes of project into LaraAdmin package.
+ * [For LaraAdmin Developer's Only]
+ */
+>>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 class Packaging extends Command
 {
     /**

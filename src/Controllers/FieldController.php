@@ -4,7 +4,11 @@
  * Help: http://laraadmin.com
  */
 
+<<<<<<< HEAD
 namespace Dwij\Laraadmin\Controllers;
+=======
+namespace Dwij\LaradminControllers;
+>>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,11 +16,25 @@ use App\Http\Requests;
 use DB;
 use Schema;
 
+<<<<<<< HEAD
 use Dwij\Laraadmin\Models\Module;
 use Dwij\Laraadmin\Models\ModuleFields;
 use Dwij\Laraadmin\Models\ModuleFieldTypes;
 use Dwij\Laraadmin\Helpers\LAHelper;
 
+=======
+use Dwij\LaradminModels\Module;
+use Dwij\LaradminModels\ModuleFields;
+use Dwij\LaradminModels\ModuleFieldTypes;
+use Dwij\LaradminHelpers\LAHelper;
+
+/**
+ * Class FieldController
+ * @package Dwij\LaradminControllers
+ *
+ * Controller looks after
+ */
+>>>>>>> aef8cb55e536e158f387f2a82498a6467c05a84d
 class FieldController extends Controller
 {
 	
