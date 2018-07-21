@@ -318,8 +318,8 @@ class LAFormMaker
 					}
 					
 					// ############### Remaining
-					$out .= '<div class="htmlbox" id="htmlbox_'.$field_name.'" contenteditable>'.__($default_val).'</div>';
-					$out .= Form::hidden($field_name, $default_val, $params);
+					//$out .= '<div class="htmlbox" id="htmlbox_'.$field_name.'" contenteditable>'.__($default_val).'</div>';
+					$out .= Form::textarea($field_name, $default_val, $params + ['data-type' => 'html']);
 					break;
 				case 'Image':
 					$out .= '<label for="'.$field_name.'" style="display:block;">'.__t($label).$required_ast.' :</label>';
