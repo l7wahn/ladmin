@@ -181,14 +181,13 @@ class LAFormMaker
 					$out .= Form::number($field_name, $default_val, $params);
 					break;
 				case 'Dropdown':
-					$out .= '<label for="'.$field_name.'">'.__t($label).$required_ast.' :</label>';
+					$out .= '<label for="'.$field_name.'">'.$label.$required_ast.' :</label>';
 					
 					unset($params['data-rule-maxlength']);
 					$params['data-placeholder'] = $params['placeholder'];
 					unset($params['placeholder']);
 					$params['rel'] = "select2";
-					
-					
+
 					if($default_val == null && $required == 1){
 						$default_val = 1;
 						
@@ -695,7 +694,7 @@ class LAFormMaker
 						if($value != 0) {
 							$moduleVal = Module::getByTable(str_replace("@", "", $fieldObj['popup_vals']));
 							if(isset($moduleVal->id)) {
-								$value = "<a href='".url(config("laraadmin.adminRoute")."/".$moduleVal->name_db."/".$value)."' class='label label-primary'>".__t($values[$value])."</a> ";
+								$value = "<a href='".url(config("laraadmin.adminRoute")."/".$moduleVal->name_db."/".$value)."' class='label label-primary'>".$values[$value]."</a> ";
 							} else {
 								$value = "<a class='label label-primary'>".$values[$value]."</a> ";
 							}

@@ -929,6 +929,7 @@ class Module extends Model
 			//$row = new $module_path;
 			$row = $model::find($id);
 			$row = Module::processDBRow($module, $request, $row);
+			
 			$row->save();
 			return $row->id;
 		} else {
@@ -988,7 +989,7 @@ class Module extends Model
 						$row->{$field['colname']} = json_encode($files2);
 						break;
 					case 'Dropdown':
-						if($row->{$field['colname']}  != '')
+
 							$row->{$field['colname']} = $request->{$field['colname']};
 						break;
 					default:
