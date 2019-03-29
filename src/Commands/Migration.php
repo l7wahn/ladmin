@@ -1,10 +1,10 @@
 <?php
 
-namespace Dwij\Laraadmin\Commands;
+namespace WahnStudios\Laraadmin\Commands;
 
 use Illuminate\Console\Command;
 
-use Dwij\Laraadmin\CodeGenerator;
+use WahnStudios\Laraadmin\CodeGenerator;
 
 class Migration extends Command
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Dwij\Laraadmin\Models;
+namespace WahnStudios\Laraadmin\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
@@ -8,10 +8,12 @@ use Illuminate\Database\Schema\Blueprint;
 use Exception;
 use Log;
 use DB;
-use Dwij\Laraadmin\Helpers\LAHelper;
+use WahnStudios\Laraadmin\Helpers\LAHelper;
 
 class Module extends Model
 {
+	private static $protectModules = ["Backups", "Departments", "Texts", "Languages", "Translations", "Users", "Roles", "Permissions", "Uploads"];
+
 	protected $table = 'modules';
 	
 	protected $fillable = [
@@ -21,6 +23,18 @@ class Module extends Model
 	protected $hidden = [
 		
 	];
+
+	public static function custom() 
+	{
+		try {
+			return Module::whereNotIn("name", self::$protectModules)->get();
+		}
+		catch(\Exception $e)
+		{
+			Log::debug($e);
+			return [];
+		}
+	}
 	
 	public static function generateBase($module_name, $icon) {
 		
@@ -215,6 +229,8 @@ class Module extends Model
 					$var->default($field->defaultvalue);
 				} else if($field->required) {
 					$var->default("");
+				} else {
+					$var->nullable();
 				}
 				break;
 			case 'Checkbox':
@@ -258,6 +274,8 @@ class Module extends Model
 					$var->default($field->defaultvalue);
 				} else if($field->required) {
 					$var->default("1970-01-01");
+				}else {
+					$var->nullable();
 				}
 				break;
 			case 'Datetime':
@@ -269,7 +287,7 @@ class Module extends Model
 				}
 				else
 				{
-					$var = $table->timestamp($field->colname)->default(null)->nullable(true);
+					$var = $table->timestamp($field->colname)->default(null)->nullable();
 				}
 
 				if($update) 
@@ -382,6 +400,8 @@ class Module extends Model
 					$var->default($field->defaultvalue);
 				} else if($field->required) {
 					$var->default("");
+				}else {
+					$var->nullable();
 				}
 				break;
 			case 'File':
@@ -432,6 +452,8 @@ class Module extends Model
 					$var->default($field->defaultvalue);
 				} else if($field->required) {
 					$var->default("");
+				}else {
+					$var->nullable();
 				}
 				break;
 			case 'Image':
@@ -478,6 +500,8 @@ class Module extends Model
 					$var->default($field->defaultvalue);
 				} else if($field->required) {
 					$var->default("");
+				}else {
+					$var->nullable();
 				}
 				break;
 			case 'Multiselect':
@@ -523,6 +547,8 @@ class Module extends Model
 					$var->default($field->defaultvalue);
 				} else if($field->required) {
 					$var->default("");
+				}else {
+					$var->nullable();
 				}
 				break;
 			case 'Password':
@@ -619,6 +645,8 @@ class Module extends Model
 					$var->default($field->defaultvalue);
 				} else if($field->required) {
 					$var->default("");
+				}else {
+					$var->nullable();
 				}
 				break;
 			case 'Taginput':
@@ -662,6 +690,8 @@ class Module extends Model
 						$var->default($field->defaultvalue);
 					} else if($field->required) {
 						$var->default("");
+					}else {
+						$var->nullable();
 					}
 				}
 				break;
@@ -684,6 +714,8 @@ class Module extends Model
 					$var->default($field->defaultvalue);
 				} else if($field->required) {
 					$var->default("");
+				}else {
+					$var->nullable();
 				}
 				break;
 			case 'URL':
@@ -705,6 +737,8 @@ class Module extends Model
 					$var->default($field->defaultvalue);
 				} else if($field->required) {
 					$var->default("");
+				}else {
+					$var->nullable();
 				}
 				break;
 		}
@@ -713,12 +747,12 @@ class Module extends Model
 		if($update) {
 			if($isFieldTypeChange) {
 				if($field->unique && $var != null && $field->maxlength < 256) {
-					$table->unique($field->colname);
+					$table->unique([\DB::raw("{$field->colname}(191)")]);
 				}
 			}
 		} else {
 			if($field->unique && $var != null && $field->maxlength < 256) {
-				$table->unique($field->colname);
+				$table->unique([\DB::raw("{$field->colname}(191)")]);
 			}
 		}
 	}

@@ -4,20 +4,20 @@
  * Help: http://laraadmin.com
  */
 
-namespace Dwij\Laraadmin\Controllers;
+namespace WahnStudios\Laraadmin\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
-use Dwij\Laraadmin\Helpers\LAHelper;
-use Dwij\Laraadmin\Models\Module;
-use Dwij\Laraadmin\Models\ModuleFields;
-use Dwij\Laraadmin\Models\ModuleFieldTypes;
-use Dwij\Laraadmin\CodeGenerator;
+use WahnStudios\Laraadmin\Helpers\LAHelper;
+use WahnStudios\Laraadmin\Models\Module;
+use WahnStudios\Laraadmin\Models\ModuleFields;
+use WahnStudios\Laraadmin\Models\ModuleFieldTypes;
+use WahnStudios\Laraadmin\CodeGenerator;
 use App\Role;
 use Schema;
-use Dwij\Laraadmin\Models\Menu;
+use WahnStudios\Laraadmin\Models\Menu;
 
 class ModuleController extends Controller
 {
@@ -34,7 +34,7 @@ class ModuleController extends Controller
 	 */
 	public function index()
 	{
-		$modules = Module::all();
+		$modules = Module::custom();
 		
 		return View('la.modules.index', [
 			'modules' => $modules
@@ -164,7 +164,7 @@ class ModuleController extends Controller
 		}
 		
 		// Delete Admin Routes
-		if(LAHelper::laravel_ver() == 5.3) {
+		if(LAHelper::laravel_ver() >= 5.3) {
 			$file_admin_routes = base_path("/routes/admin_routes.php");
 		} else {
 			$file_admin_routes = base_path("/app/Http/admin_routes.php");
@@ -208,7 +208,7 @@ class ModuleController extends Controller
 		CodeGenerator::createController($config);
 		CodeGenerator::createModel($config);
 		CodeGenerator::createViews($config);
-		CodeGenerator::appendRoutes($config);
+		//CodeGenerator::appendRoutes($config);
 		CodeGenerator::addMenu($config);
 
 		// Set Module Generated = True
@@ -287,8 +287,7 @@ class ModuleController extends Controller
 		// Generate CRUD
 		CodeGenerator::createController($config);
 		CodeGenerator::createModel($config);
-		CodeGenerator::createViews($config);
-		
+		//CodeGenerator::createViews($config);		
 		// Set Module Generated = True
 		$module = Module::find($module_id);
 		$module->is_gen='1';

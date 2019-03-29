@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Dwij\Laraadmin\Models\ModuleFieldTypes;
+use WahnStudios\Laraadmin\Models\ModuleFieldTypes;
 
 class CreateModuleFieldTypesTable extends Migration
 {

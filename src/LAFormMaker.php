@@ -1,10 +1,10 @@
 <?php
-namespace Dwij\Laraadmin;
+namespace WahnStudios\Laraadmin;
 
 use Schema;
 use Collective\Html\FormFacade as Form;
-use Dwij\Laraadmin\Models\Module;
-use Dwij\Laraadmin\Models\ModuleFieldTypes;
+use WahnStudios\Laraadmin\Models\Module;
+use WahnStudios\Laraadmin\Models\ModuleFieldTypes;
 
 class LAFormMaker
 {
@@ -199,10 +199,20 @@ class LAFormMaker
 					
 					if($popup_vals != "") {
 						$popup_vals = LAFormMaker::process_values($popup_vals);
+						if($default_val == null)
+						{
+							$popup_vals[''] = "";
+						}
 					} else {
 						$popup_vals = array();
 					}
 
+					echo "<script>";
+					echo "console.log(".json_encode($popup_vals).");";
+					echo "console.log(\"".$default_val."\");";
+					echo "</script>";
+
+					
 
 					$out .= Form::select($field_name, $popup_vals, $default_val, $params);
 					break;
@@ -690,6 +700,7 @@ class LAFormMaker
 					break;
 				case 'Dropdown':
 					$values = LAFormMaker::process_values($fieldObj['popup_vals']);
+					
 					if(starts_with($fieldObj['popup_vals'], "@")) {
 						if($value != 0) {
 							$moduleVal = Module::getByTable(str_replace("@", "", $fieldObj['popup_vals']));

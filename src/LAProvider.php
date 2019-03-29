@@ -1,13 +1,13 @@
 <?php
 
-namespace Dwij\Laraadmin;
+namespace WahnStudios\Laraadmin;
 
 use Artisan;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
-
-use Dwij\Laraadmin\Helpers\LAHelper;
+use Illuminate\Support\Facades\Schema;
+use WahnStudios\Laraadmin\Helpers\LAHelper;
 
 class LAProvider extends ServiceProvider
 {
@@ -28,16 +28,16 @@ class LAProvider extends ServiceProvider
         ]);
         */
         //echo "Laraadmin Migrations started...";
-        // Artisan::call('migrate', ['--path' => "vendor/dwij/laraadmin/src/Migrations/"]);
+        // Artisan::call('migrate', ['--path' => "vendor/l7wahn/laraadmin/src/Migrations/"]);
         //echo "Migrations completed !!!.";
-        // Execute by php artisan vendor:publish --provider="Dwij\Laraadmin\LAProvider"
+        // Execute by php artisan vendor:publish --provider="WahnStudios\Laraadmin\LAProvider"
 		
 		/*
         |--------------------------------------------------------------------------
         | Blade Directives for Entrust not working in Laravel 5.3
         |--------------------------------------------------------------------------
         */
-		if(LAHelper::laravel_ver() == 5.3) {
+		if(LAHelper::laravel_ver() >= 5.3) {
 			
 			// Call to Entrust::hasRole
 			Blade::directive('role', function($expression) {
@@ -52,8 +52,16 @@ class LAProvider extends ServiceProvider
 			// Call to Entrust::ability
 			Blade::directive('ability', function($expression) {
 				return "<?php if (\\Entrust::ability({$expression})) : ?>";
-			});
-		}
+            });
+            
+            Blade::directive('tslt', function ($expression, $where = "app") {
+                $text = substr ( $expression, 1, -1 );
+                                
+                return "<?php echo __(\"{$text}\", \"{$where}\") ?>";    
+            });
+        }
+        
+        Schema::defaultStringLength(191);
     }
 
     /**
@@ -103,19 +111,19 @@ class LAProvider extends ServiceProvider
         $loader->alias('Gravatar', \Creativeorange\Gravatar\Facades\Gravatar::class);
         
         // For LaraAdmin Code Generation
-        $loader->alias('CodeGenerator', \Dwij\Laraadmin\CodeGenerator::class);
+        $loader->alias('CodeGenerator', \WahnStudios\Laraadmin\CodeGenerator::class);
         
         // For LaraAdmin Form Helper
-        $loader->alias('LAFormMaker', \Dwij\Laraadmin\LAFormMaker::class);
+        $loader->alias('LAFormMaker', \WahnStudios\Laraadmin\LAFormMaker::class);
         
         // For LaraAdmin Helper
-        $loader->alias('LAHelper', \Dwij\Laraadmin\Helpers\LAHelper::class);
+        $loader->alias('LAHelper', \WahnStudios\Laraadmin\Helpers\LAHelper::class);
         
         // LaraAdmin Module Model 
-        $loader->alias('Module', \Dwij\Laraadmin\Models\Module::class);
+        $loader->alias('Module', \WahnStudios\Laraadmin\Models\Module::class);
 
 		// For LaraAdmin Configuration Model
-		$loader->alias('LAConfigs', \Dwij\Laraadmin\Models\LAConfigs::class);
+		$loader->alias('LAConfigs', \WahnStudios\Laraadmin\Models\LAConfigs::class);
 		
         // For Entrust
 		$loader->alias('Entrust', \Zizaco\Entrust\EntrustFacade::class);
@@ -129,13 +137,13 @@ class LAProvider extends ServiceProvider
         |--------------------------------------------------------------------------
         */
         
-        $this->app->make('Dwij\Laraadmin\Controllers\ModuleController');
-        $this->app->make('Dwij\Laraadmin\Controllers\FieldController');
-        $this->app->make('Dwij\Laraadmin\Controllers\MenuController');
+        $this->app->make('WahnStudios\Laraadmin\Controllers\ModuleController');
+        $this->app->make('WahnStudios\Laraadmin\Controllers\FieldController');
+        $this->app->make('WahnStudios\Laraadmin\Controllers\MenuController');
 		
 		// For LAEditor
 		if(file_exists(__DIR__.'/../../laeditor')) {
-			$this->app->make('Dwij\Laeditor\Controllers\CodeEditorController');
+			$this->app->make('WahnStudios\Laeditor\Controllers\CodeEditorController');
 		}
 
 		/*
@@ -146,7 +154,7 @@ class LAProvider extends ServiceProvider
         
         // LAForm Input Maker
         Blade::directive('la_input', function($expression) {
-			if(LAHelper::laravel_ver() == 5.3) {
+			if(LAHelper::laravel_ver() >= 5.3) {
 				$expression = "(".$expression.")";
 			}
             return "<?php echo LAFormMaker::input$expression; ?>";
@@ -154,7 +162,7 @@ class LAProvider extends ServiceProvider
         
         // LAForm Form Maker
         Blade::directive('la_form', function($expression) {
-			if(LAHelper::laravel_ver() == 5.3) {
+			if(LAHelper::laravel_ver() >= 5.3) {
 				$expression = "(".$expression.")";
 			}
             return "<?php echo LAFormMaker::form$expression; ?>";
@@ -162,7 +170,7 @@ class LAProvider extends ServiceProvider
         
         // LAForm Maker - Display Values
         Blade::directive('la_display', function($expression) {
-			if(LAHelper::laravel_ver() == 5.3) {
+			if(LAHelper::laravel_ver() >= 5.3) {
 				$expression = "(".$expression.")";
 			}
             return "<?php echo LAFormMaker::display$expression; ?>";
@@ -170,7 +178,7 @@ class LAProvider extends ServiceProvider
         
         // LAForm Maker - Check Whether User has Module Access
         Blade::directive('la_access', function($expression) {
-			if(LAHelper::laravel_ver() == 5.3) {
+			if(LAHelper::laravel_ver() >= 5.3) {
 				$expression = "(".$expression.")";
 			}
             return "<?php if(LAFormMaker::la_access$expression) { ?>";
@@ -181,7 +189,7 @@ class LAProvider extends ServiceProvider
         
         // LAForm Maker - Check Whether User has Module Field Access
         Blade::directive('la_field_access', function($expression) {
-			if(LAHelper::laravel_ver() == 5.3) {
+			if(LAHelper::laravel_ver() >= 5.3) {
 				$expression = "(".$expression.")";
 			}
             return "<?php if(LAFormMaker::la_field_access$expression) { ?>";
@@ -197,15 +205,15 @@ class LAProvider extends ServiceProvider
         */
 
 		$commands = [
-            \Dwij\Laraadmin\Commands\Migration::class,
-            \Dwij\Laraadmin\Commands\Crud::class,
-            \Dwij\Laraadmin\Commands\Packaging::class,
-            \Dwij\Laraadmin\Commands\LAInstall::class
+            \WahnStudios\Laraadmin\Commands\Migration::class,
+            \WahnStudios\Laraadmin\Commands\Crud::class,
+            \WahnStudios\Laraadmin\Commands\Packaging::class,
+            \WahnStudios\Laraadmin\Commands\LAInstall::class
         ];
         
 		// For LAEditor
 		if(file_exists(__DIR__.'/../../laeditor')) {
-			$commands[] = \Dwij\Laeditor\Commands\LAEditor::class;
+			$commands[] = \WahnStudios\Laeditor\Commands\LAEditor::class;
 		}
 
         $this->commands($commands);

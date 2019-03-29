@@ -3,7 +3,7 @@
 	<ul class="nav navbar-nav">
 		<li><a href="{{ url(config('laraadmin.adminRoute')) }}">@tslt("Dashboard")</a></li>
 		<?php
-		$menuItems = Dwij\Laraadmin\Models\Menu::where("parent", 0)->orderBy('hierarchy', 'asc')->get();
+		$menuItems = WahnStudios\Laraadmin\Models\Menu::where("parent", 0)->orderBy('hierarchy', 'asc')->get();
 		?>
 		@foreach ($menuItems as $menu)
 			@if($menu->type == "module")

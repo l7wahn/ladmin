@@ -1,11 +1,11 @@
 <?php
 
-namespace Dwij\Laraadmin\Models;
+namespace WahnStudios\Laraadmin\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
-use Dwij\Laraadmin\Helpers\LAHelper;
+use WahnStudios\Laraadmin\Helpers\LAHelper;
 
 class Menu extends Model
 {

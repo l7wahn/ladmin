@@ -1,13 +1,13 @@
 <?php
 
-namespace Dwij\Laraadmin\Models;
+namespace WahnStudios\Laraadmin\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Schema;
 use Log;
 use DB;
 
-use Dwij\Laraadmin\Models\Module;
+use WahnStudios\Laraadmin\Models\Module;
 
 class ModuleFields extends Model
 {
@@ -159,18 +159,31 @@ class ModuleFields extends Model
         });
     }
 
-	public static function getModuleFields($moduleName) {
+	public static function getModuleFields($moduleName, $justNames = false) {
         $module = Module::where('name', $moduleName)->first();
         $fields = DB::table('module_fields')->where('module', $module->id)->get();
-        $ftypes = ModuleFieldTypes::getFTypes();
-		
-		$fields_popup = array();
-        $fields_popup['id'] = null;
         
-		foreach($fields as $f) {
-			$f->field_type_str = array_search($f->field_type, $ftypes);
-            $fields_popup [ $f->colname ] = $f;
+        
+        if($justNames)
+        {
+            $fields_popup = ["id"];
+            foreach($fields as $f) {                
+                array_push($fields_popup, $f->colname);
+            }
         }
+        else 
+        {
+            $ftypes = ModuleFieldTypes::getFTypes();
+            $fields_popup = ["id" => null];
+            
+            
+            
+            foreach($fields as $f) {
+                $f->field_type_str = array_search($f->field_type, $ftypes);
+                $fields_popup [ $f->colname ] = $f;
+            }
+        }
+
 		return $fields_popup;
     }
 
@@ -199,6 +212,12 @@ class ModuleFields extends Model
     }
 	
 	public static function listingColumnAccessScan($module_name, $listing_cols) {
+
+        if($listing_cols == null)
+        {
+            $listing_cols = self::getModuleFields($module_name, true);
+        }
+
         $module = Module::get($module_name);
 		$listing_cols_temp = array();
 		foreach ($listing_cols as $col) {
