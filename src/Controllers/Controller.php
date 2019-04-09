@@ -14,6 +14,8 @@ use WahnStudios\Laraadmin\Models\Module;
 use WahnStudios\Laraadmin\Models\ModuleFields;
 class Controller extends BaseController
 {
+	public static $module_name_forced = null;
+
     protected $show_action = true;
 	protected $view_col = null;
     protected $listing_cols = null;
@@ -21,10 +23,29 @@ class Controller extends BaseController
     protected $view_base = null;
     protected $model_namespace = "\\App\\Models\\";
     protected $module = null;
-    
+    protected $currentInstance = null;
     
     public function __construct() 
-    {                
+    {      
+		if(self::$module_name_forced != null)          
+		{
+			$this->module_name = self::$module_name_forced;
+			self::$module_name_forced = null;
+		}
+
+		if($this->module_name != null)
+		{
+			$this->init();
+		}
+	}
+	
+	protected function init() 
+	{
+		if(self::$module_name_forced != null)          
+		{
+			$this->module_name = self::$module_name_forced;
+			self::$module_name_forced = null;
+		}
         $this->module = Module::get($this->module_name);       
         $this->checkFields();
 		// Field Access of Listing Columns
@@ -36,7 +57,7 @@ class Controller extends BaseController
 		} else {
 			$this->listing_cols = ModuleFields::listingColumnAccessScan($this->module_name, $this->listing_cols);
 		}
-    }
+	}
 
     private function checkFields() 
     {       
@@ -81,22 +102,38 @@ class Controller extends BaseController
 	public function store(Request $request)
 	{
 		if(Module::hasAccess($this->module_name, "create")) {
-		
-			$rules = Module::validateRules($this->module_name, $request);
+			
+			$rules = $this->storeRules($request);
 			
 			$validator = Validator::make($request->all(), $rules);
 			
+			
+
 			if ($validator->fails()) {
-				return redirect()->back()->withErrors($validator)->withInput();
+				return $this->onValidatorError($validator);	
 			}
+
+			
+
+			$this->beforeStore($request);
+
+			
 			
 			$insert_id = Module::insert($this->module_name, $request);
 			
-			return redirect()->route(config('laraadmin.adminRoute') . '.'.$this->module->name_db.'.index');
+			$this->afterStore($request, $this->instanceById($insert_id)->id);
+			
+			return $this->storeAction($request, $this->instanceById($insert_id)->id);
 			
 		} else {
-			return redirect(config('laraadmin.adminRoute')."/");
+			return $this->storeErrorAction($request);
+			
 		}
+	}	
+
+	protected function onValidatorError($validator) 
+	{
+		return redirect()->back()->withErrors($validator)->withInput();
 	}
 
 	/**
@@ -146,10 +183,7 @@ class Controller extends BaseController
 				
 				$this->module->row = $instance;
 				
-				return view($this->view_base.'.edit', [
-					'module' => $this->module,
-					'view_col' => $this->view_col,
-				])->with('instance', $instance);
+				return $this->editAction($id, $instance);
 			} else {
 				return view('errors.404', [
 					'record_id' => $id,
@@ -171,22 +205,37 @@ class Controller extends BaseController
 	public function update(Request $request, $id)
 	{
 		if(Module::hasAccess($this->module_name, "edit")) {
-			
-			$rules = Module::validateRules($this->module_name, $request, true);
+
+			$rules = $this->updateRules();
 			
 			$validator = Validator::make($request->all(), $rules);
 			
 			if ($validator->fails()) {
-				return redirect()->back()->withErrors($validator)->withInput();;
+				return $this->onValidatorError($validator);	
 			}
-			
+
+			$this->beforeUpdate($request, $id);
+
 			$insert_id = Module::updateRow($this->module_name, $request, $id);
+
+			$this->afterUpdate($request, $this->instanceById($insert_id)->id);
 			
-			return redirect()->route(config('laraadmin.adminRoute') . '.'.$this->module->name_db.'.index');
+			return $this->updateAction($request, $this->instanceById($id)->id);
 			
 		} else {
-			return redirect(config('laraadmin.adminRoute')."/");
+			return $this->updateErrorAction($request, $id);
+			
 		}
+	}
+
+	protected function storeErrorAction($request)
+	{
+		return redirect(config('laraadmin.adminRoute')."/");
+	}
+
+	protected function updateErrorAction(Request $request, $id) 
+	{
+		return redirect(config('laraadmin.adminRoute')."/");
 	}
 
 	/**
@@ -198,13 +247,26 @@ class Controller extends BaseController
 	public function destroy($id)
 	{
 		if(Module::hasAccess($this->module_name, "delete")) {
-			($this->model_namespace.$this->module->model)::find($id)->delete();
 			
+			$this->beforeDestroy($id);
+
+			$element = ($this->model_namespace.$this->module->model)::find($id);
+			$element->delete();		
+			
+			$this->afterDestroy($element);
+
+			return $this->destroyAction($element);
+
 			// Redirecting to index() method
-			return redirect()->route(config('laraadmin.adminRoute') . '.'.$this->module->name_db.'.index');
+			
 		} else {
-			return redirect(config('laraadmin.adminRoute')."/");
+			return $this->destroyErrorAction($id);
 		}
+	}
+
+	protected function destroyErrorAction($id) 
+	{
+		return redirect(config('laraadmin.adminRoute')."/");
 	}
 	
 	/**
@@ -248,4 +310,76 @@ class Controller extends BaseController
 		$out->setData($data);
 		return $out;
 	}
+
+	private function instanceById($id)
+	{
+		if($this->currentInstance == null)
+			$this->currentInstance = ($this->model_namespace.$this->module->model)::find($id);
+
+		return $this->currentInstance;
+	} 
+
+	protected function updateRules($request)
+	{
+		return Module::validateRules($this->module_name, $request, true);
+	}
+
+	protected function storeRules($request) 
+	{
+		return Module::validateRules($this->module_name, $request);
+	}
+
+	protected function editAction($id, $instance)
+	{
+		return view($this->view_base.'.edit', [
+			'module' => $this->module,
+			'view_col' => $this->view_col,
+		])->with('instance', $instance);
+	}
+
+	protected function storeAction(Request $request, $newId)
+	{
+		return redirect()->route(config('laraadmin.adminRoute') . '.'.$this->module->name_db.'.index');
+	}
+
+	protected function updateAction(Request $request, $id)
+	{
+		return redirect()->route(config('laraadmin.adminRoute') . '.'.$this->module->name_db.'.index');
+	}
+
+	protected function destroyAction($element) 
+	{
+		return redirect()->route(config('laraadmin.adminRoute') . '.'.$this->module->name_db.'.index');
+	}
+
+	protected function beforeUpdate(Request $request, $id) 
+	{
+
+	}
+
+	protected function afterUpdate(Request $request, $id)
+	{
+
+	}
+
+	protected function beforeStore(Request $request)
+	{
+
+	}
+
+	protected function afterStore(Request $request, $newId) 
+	{
+
+	}
+
+	protected function beforeDestroy($id)
+	{
+
+	}
+
+	protected function afterDestroy($element) 
+	{
+
+	}
+
 }

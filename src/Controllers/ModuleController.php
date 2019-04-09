@@ -59,7 +59,11 @@ class ModuleController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		$module_id = Module::generateBase($request->name, $request->icon);
+		
+		$is_user_child = $request->has("is_user_child");
+		
+		
+		$module_id = Module::generateBase($request->name, $request->icon, $is_user_child);
 		
 		return redirect()->route(config('laraadmin.adminRoute') . '.modules.show', [$module_id]);
 	}
@@ -182,8 +186,9 @@ class ModuleController extends Controller
 			file_put_contents($file_admin_routes, $fileData);
 		}
 		
-		// Delete Table
-		Schema::drop($module->name_db);
+		if($module->is_get)
+			Schema::drop($module->name_db);
+		
 		
 		// Delete Module
 		$module->delete();
@@ -203,7 +208,7 @@ class ModuleController extends Controller
 		$module = Module::find($module_id);
 		$module = Module::get($module->name);
 		
-		$config = CodeGenerator::generateConfig($module->name,$module->fa_icon);
+		$config = CodeGenerator::generateConfig($module->name,$module->fa_icon, $module->is_user_child);
 		
 		CodeGenerator::createController($config);
 		CodeGenerator::createModel($config);
@@ -249,7 +254,7 @@ class ModuleController extends Controller
 		CodeGenerator::generateMigration($module->name_db, true);
 		
 		// Create Config for Code Generation
-		$config = CodeGenerator::generateConfig($module->name,$module->fa_icon);
+		$config = CodeGenerator::generateConfig($module->name,$module->fa_icon, $module->is_user_child);
 		
 		// Generate CRUD
 		CodeGenerator::createController($config);
@@ -282,7 +287,7 @@ class ModuleController extends Controller
 		CodeGenerator::generateMigration($module->name_db, true);
 		
 		// Create Config for Code Generation
-		$config = CodeGenerator::generateConfig($module->name,$module->fa_icon);
+		$config = CodeGenerator::generateConfig($module->name,$module->fa_icon, $module->is_user_child);
 		
 		// Generate CRUD
 		CodeGenerator::createController($config);

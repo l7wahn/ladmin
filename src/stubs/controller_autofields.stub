@@ -1,1 +1,1 @@
- 	protected $module_name = "Test_Module_2s"; 
+ 	protected $module_name = "__module_name__"; 

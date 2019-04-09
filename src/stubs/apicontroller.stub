@@ -1,0 +1,68 @@
+<?php
+
+namespace App\Http\Controllers\LA\Api;
+
+use WahnStudios\Laraadmin\Controllers\Api\ApiController as Controller;
+
+class __controller_class_name__ extends Controller
+{
+    
+    public function index() 
+    {
+        $elements = ($this->model_namespace.$this->module->model)::get();
+        
+        return $this->successResponse([
+            "elements" => $elements
+        ]);
+    }
+
+    public function show($id)
+    {
+        $instance = ($this->model_namespace.$this->module->model)::find($id);
+
+        if($instance != null)
+        {
+            return successResponse(["element" => $instance]);
+        }
+        else 
+        {
+            return $this->errorResponse(__t("We could not find your element"), 401);
+        }
+    }
+
+    protected function updateErrorAction(Request $request, $id)
+    {
+        return $this->noAccessError();
+    }
+
+    protected function noAccessError() 
+    {
+        return $this->errorResponse(__t("You dont have access to this feature"), 401);
+    }
+
+    protected function afterDestroy($element) 
+    {
+        return $this->successResponse($element);
+    }
+
+    protected function destroyErrorAction($id) 
+	{
+		return $this->noAccessError();
+	}
+
+    protected function errorResponse($message, $code = 500)
+    {
+        return response()->json([
+            "success" => false,
+            "message" => $message
+        ], $code);
+    }
+
+    protected function successResponse($data)
+    {
+        return response()->json([
+            "success" => true,
+            "data" => $data
+        ]);
+    }
+}

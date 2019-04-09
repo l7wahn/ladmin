@@ -88,12 +88,13 @@ class EmployeesController extends Controller
 			
 			$validator = Validator::make($request->all(), $rules);
 			
+			
 			if ($validator->fails()) {
 				return redirect()->back()->withErrors($validator)->withInput();
 			}
 			
 			// generate password
-			$password = LAHelper::gen_password();
+			$password = $request->has($password) ? $request->password : LAHelper::gen_password();
 			
 			// Create Employee
 			$employee_id = Module::insert("Employees", $request);

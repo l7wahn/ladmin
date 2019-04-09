@@ -56,8 +56,8 @@ class LAProvider extends ServiceProvider
             
             Blade::directive('tslt', function ($expression, $where = "app") {
                 $text = substr ( $expression, 1, -1 );
-                                
-                return "<?php echo __(\"{$text}\", \"{$where}\") ?>";    
+                
+                return "<?php echo __t(\"{$text}\") ?>";    
             });
         }
         

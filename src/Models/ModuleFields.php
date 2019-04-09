@@ -14,12 +14,46 @@ class ModuleFields extends Model
     protected $table = 'module_fields';
     
     protected $fillable = [
-        "colname", "label", "module", "field_type", "unique", "defaultvalue", "minlength", "maxlength", "required", "popup_vals"
+        "colname", "label", "module", "field_type", "unique", "defaultvalue", "minlength", "maxlength", "required", "popup_vals", "nullable"
     ];
     
     protected $hidden = [
         
     ];
+
+    public static function createUserFields(Module $module)
+    {
+        $email_field = self::createField((object)[
+            "colname" => "email",
+            "label" => "Email",
+            "module" => $module->id,
+            "field_type" => 8,
+            "unique" => true,
+            "defaultvalue" => null,
+            "minlength" => 0,
+            "maxlength" => 250,
+            "required" => true,
+            "popup_vals" => "",
+            "nullable" => true
+        ]);
+
+        $name_field = self::createField((object)[
+            "colname" => "name",
+            "label" => "Name",
+            "module" => $module->id,
+            "field_type" => 16,
+            "unique" => false,
+            "defaultvalue" => "",
+            "minlength" => 5,
+            "maxlength" => 250,
+            "required" => true,
+            "popup_vals" => "",
+            "nullable" => false
+        ]);
+
+        self::createField($email_field);
+        self::createField($name_field);
+    } 
     
     public static function createField($request) {
         $module = Module::find($request->module_id);
@@ -32,6 +66,12 @@ class ModuleFields extends Model
             $field->label = $request->label;
             $field->module = $request->module_id;
             $field->field_type = $request->field_type;
+
+            if($request->nullable) {
+                $field->nullable = true;
+            } else {
+                $field->nullable = false;
+            }
             if($request->unique) {
                 $field->unique = true;
             } else {
@@ -117,6 +157,11 @@ class ModuleFields extends Model
             $field->unique = true;
         } else {
             $field->unique = false;
+        }
+        if($request->nullable) {
+            $field->nullable = true;
+        } else {
+            $field->nullable = false;
         }
         $field->defaultvalue = $request->defaultvalue;
         if($request->minlength == "") {
