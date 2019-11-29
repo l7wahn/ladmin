@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use WahnStudios\Laraadmin\Models\ModuleFieldTypes;
+use Dwij\Laraadmin\Models\ModuleFieldTypes;
 
 class CreateModuleFieldTypesTable extends Migration
 {
@@ -19,6 +19,7 @@ class CreateModuleFieldTypesTable extends Migration
             $table->string('name', 30);
             $table->timestamps();
         });
+        
         // Note: Do not edit below lines
         ModuleFieldTypes::create(["name" => "Address"]);
         ModuleFieldTypes::create(["name" => "Checkbox"]);

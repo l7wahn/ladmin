@@ -4,12 +4,12 @@
  * Help: http://laraadmin.com
  */
 
-namespace WahnStudios\Laraadmin\Commands;
+namespace Dwij\Laraadmin\Commands;
 
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use WahnStudios\Laraadmin\Helpers\LAHelper;
+use Dwij\Laraadmin\Helpers\LAHelper;
 use Illuminate\Support\Facades\Schema;
 use Eloquent;
 use DB;
@@ -34,7 +34,7 @@ class LAInstall extends Command
 	protected $from;
 	protected $to;
 
-	var $modelsInstalled = ["User", "Role", "Permission", "Employee", "Department", "Upload", "Organization", "Backup"];
+	var $modelsInstalled = ["User", "Role", "Permission", "Employee", "Department", "Language", "Upload", "Organization", "Backup"];
 	
 	/**
 	 * Generate Whole structure for /admin
@@ -100,10 +100,16 @@ class LAInstall extends Command
 					."\n\t database/migrations/2014_10_12_000000_create_users_table.php"
 					."\n\t gulpfile.js"
 					."\n\n Please take backup or use git. Do you wish to continue ?", true)) {
-				
+					
+				//Api
+				$this->copyFolder($from."/app/Api", $to."/app/Api");
+						
 				// Controllers
 				$this->line("\n".'Generating Controllers...');
 				$this->copyFolder($from."/app/Controllers/Auth", $to."/app/Http/Controllers/Auth");
+				$this->copyFolder($from."/app/Controllers/Api", $to."/app/Http/Controllers/Api");
+		
+
 				if(LAHelper::laravel_ver() >= 5.3) {
 					// Delete Redundant Controllers
 					unlink($to."/app/Http/Controllers/Auth/PasswordController.php");

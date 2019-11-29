@@ -1,1 +1,0 @@
-	protected $table = '__db_table_name__';

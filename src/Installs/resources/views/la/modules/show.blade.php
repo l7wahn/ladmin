@@ -3,7 +3,7 @@
 @section('htmlheader_title', __t('Module View'))
 
 <?php
-use WahnStudios\Laraadmin\Models\Module;
+use Dwij\Laraadmin\Models\Module;
 ?>
 
 @section('main-content')

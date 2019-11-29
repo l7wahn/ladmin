@@ -4,11 +4,11 @@
  * Help: http://laraadmin.com
  */
 
-namespace WahnStudios\Laraadmin\Commands;
+namespace Dwij\Laraadmin\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use WahnStudios\Laraadmin\Helpers\LAHelper;
+use Dwij\Laraadmin\Helpers\LAHelper;
 
 class Packaging extends Command
 {
@@ -24,7 +24,7 @@ class Packaging extends Command
      *
      * @var string
      */
-    protected $description = '[Developer Only] - Copy LaraAdmin-Dev files to package: "l7wahn/laraadmin"';
+    protected $description = '[Developer Only] - Copy LaraAdmin-Dev files to package: "dwij/laraadmin"';
     
     protected $from;
     protected $to;
@@ -41,7 +41,7 @@ class Packaging extends Command
         $this->info('Exporting started...');
         
         $from = base_path();
-        $to = base_path('vendor/l7wahn/laraadmin/src/Installs');
+        $to = base_path('vendor/dwij/laraadmin/src/Installs');
         
         $this->info('from: '.$from." to: ".$to);
         

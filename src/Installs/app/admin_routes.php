@@ -15,7 +15,7 @@ Route::get('files/{hash}/{name}', 'LA\UploadsController@get_file');
 */
 
 $as = "";
-if(\WahnStudios\Laraadmin\Helpers\LAHelper::laravel_ver() >= 5.3) {
+if(\Dwij\Laraadmin\Helpers\LAHelper::laravel_ver() >= 5.3) {
 	$as = config('laraadmin.adminRoute').'.';
 	
 	// Routes for Laravel 5.3
@@ -71,10 +71,8 @@ Route::group(['as' => $as, 'middleware' => ['auth', 'permission:ADMIN_PANEL']], 
 	Route::post(config('laraadmin.adminRoute') . '/create_backup_ajax', 'LA\BackupsController@create_backup_ajax');
 	Route::get(config('laraadmin.adminRoute') . '/downloadBackup/{id}', 'LA\BackupsController@downloadBackup');
 
-	foreach(\WahnStudios\Laraadmin\Models\Module::all() as $model)
-	{
-		/* ================== Departments ================== */
-		Route::resource(config('laraadmin.adminRoute') . '/'.$model->name_db, 'LA\\'.$model->controller);
-		Route::get(config('laraadmin.adminRoute') . '/'.$model->name_db.'_dt_ajax', 'LA\\'.$model->controller.'@dtajax');
-	}
+	/* ================== Languages ================== */
+	Route::resource(config('laraadmin.adminRoute') . '/languages', 'LA\LanguagesController');
+	Route::get(config('laraadmin.adminRoute') . '/language_dt_ajax', 'LA\LanguagesController@dtajax');
+	Route::get(config('laraadmin.adminRoute') . '/languages/google_translate/{id}', 'LA\LanguagesController@google_translate');
 });

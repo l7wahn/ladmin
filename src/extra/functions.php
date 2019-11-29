@@ -1,8 +1,6 @@
 <?php  
-
 global $fakeTranslations;
 $fakeTranslations = [];
-
 if(!function_exists("__"))
 {
 	function __($target)
@@ -10,7 +8,6 @@ if(!function_exists("__"))
 	
 		try{
 			$t = app('translator')->getFromJson($target);
-
 			if(env("DEBUG_TRANSLATION", "1"))
 			{
 				if(env("TRANSLATE_CHECK"))
@@ -32,33 +29,26 @@ if(!function_exists("__"))
 		
 	}
 }
-
 if(!function_exists("__t"))
 {
 	function __t($str) 
 	{			
 		$look = "{$str}";
 		$t = __($look);
-
 		if(env("DEBUG_TRANSLATION", "1"))
 		{
 			
-
 			if(env("TRANSLATE_CHECK"))
 			{
 				global $fakeTranslations;
 				if(!in_array($str, $fakeTranslations))
 					array_push($fakeTranslations, $str);				
 			}
-
 			return $t == $look ? $str.env('FALSE_TRASNLATION_CHAR', "") : $t;
 		}
-
 		else return $t;
 	}
 }
-
-
 if(!function_exists("jsLog"))
 {
 	function jsLog($target, $label = "jsLogged")
@@ -81,7 +71,6 @@ if(!function_exists("jsLog"))
 		<?php
 	}
 }
-
 if(!function_exists("translate_check"))
 {
 	function translate_check() {
@@ -94,7 +83,6 @@ if(!function_exists("translate_check"))
 		</script>
 			
 		<?php
-
 		\App\Models\Text::checkStringsAndInsertTheNew($fakeTranslations);
 	}
 }

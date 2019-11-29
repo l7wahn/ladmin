@@ -1,14 +1,14 @@
 <?php
 
-namespace WahnStudios\Laraadmin\Commands;
+namespace Dwij\Laraadmin\Commands;
 
 use Config;
 use Artisan;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use WahnStudios\Laraadmin\Models\Module;
-use WahnStudios\Laraadmin\CodeGenerator;
+use Dwij\Laraadmin\Models\Module;
+use Dwij\Laraadmin\CodeGenerator;
 
 class Crud extends Command
 {

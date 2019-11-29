@@ -1,11 +1,11 @@
 <?php
 
-namespace WahnStudios\Laraadmin\Models;
+namespace Dwij\Laraadmin\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
-use WahnStudios\Laraadmin\Helpers\LAHelper;
+use Dwij\Laraadmin\Helpers\LAHelper;
 
 class Menu extends Model
 {
@@ -14,4 +14,9 @@ class Menu extends Model
     protected $guarded = [
         
     ];
+
+    public function children() 
+    {
+        return $this->hasMany(Menu::class, "parent");
+    }
 }

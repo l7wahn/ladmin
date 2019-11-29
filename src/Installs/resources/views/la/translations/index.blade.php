@@ -1,14 +1,14 @@
 @extends("la.layouts.app")
 
-@section("contentheader_title", __t($module->name))
-@section("contentheader_description", __t($module->name." listing"))
-@section("section", __t($module->name))
+@section("contentheader_title", __t("Translations"))
+@section("contentheader_description", __t("Translations listing"))
+@section("section", __t("Translations"))
 @section("sub_section", __t("Listing"))
-@section("htmlheader_title", __t($module->name." Listing"))
+@section("htmlheader_title", __t("Translations Listing"))
 
 @section("headerElems")
-@la_access($module->name, "create")
-	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">@tslt("Add") {{__t($module->name)}}</button>
+@la_access("Translations", "create")
+	<button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#AddModal">@tslt("Add") @tslt("Translation")</button>
 @endla_access
 @endsection
 
@@ -25,6 +25,7 @@
 @endif
 
 <div class="box box-success">
+	<!--<div class="box-header"></div>-->
 	<div class="box-body">
 		<table id="example1" class="table table-bordered">
 		<thead>
@@ -44,18 +45,24 @@
 	</div>
 </div>
 
-@la_access($module->name, "create")
+@la_access("Translations", "create")
 <div class="modal fade" id="AddModal" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">@tslt("Add") {{__t($module->name)}}</h4>
+				<h4 class="modal-title" id="myModalLabel">@tslt("Add") @tslt("Translation")</h4>
 			</div>
-			{!! Form::open(['action' => 'LA\\'.$module->controller.'@store', 'id' => strtolower($module->name).'-add-form']) !!}
+			{!! Form::open(['action' => 'LA\TranslationsController@store', 'id' => 'translation-add-form']) !!}
 			<div class="modal-body">
 				<div class="box-body">
                     @la_form($module)
+					
+					{{--
+					@la_input($module, 'language_id')
+					@la_input($module, 'text_id')
+					@la_input($module, 'text')
+					--}}
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -81,7 +88,7 @@ $(function () {
 	$("#example1").DataTable({
 		processing: true,
         serverSide: true,
-        ajax: "{{ url(config('laraadmin.adminRoute') . '/'.$module->name_db.'_dt_ajax') }}",
+        ajax: "{{ url(config('laraadmin.adminRoute') . '/translation_dt_ajax') }}",
 		language: {
 			lengthMenu: "_MENU_",
 			search: "_INPUT_",
@@ -91,7 +98,7 @@ $(function () {
 		columnDefs: [ { orderable: false, targets: [-1] }],
 		@endif
 	});
-	$("#{{strtolower($module->name)}}-add-form").validate({
+	$("#translation-add-form").validate({
 		
 	});
 });

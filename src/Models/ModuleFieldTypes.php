@@ -1,6 +1,6 @@
 <?php
 
-namespace WahnStudios\Laraadmin\Models;
+namespace Dwij\Laraadmin\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

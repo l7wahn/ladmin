@@ -1,7 +1,7 @@
 @extends('la.layouts.app')
 
 @section('htmlheader_title')
-	@tslt("TestModule") @tslt("View")
+	@tslt("Text") @tslt("View")
 @endsection
 
 
@@ -15,7 +15,7 @@
 					<div class="profile-icon text-primary"><i class="fa {{ $module->fa_icon }}"></i></div>
 				</div>
 				<div class="col-md-9">
-					<h4 class="name">{{ $testmodule->$view_col }}</h4>
+					<h4 class="name">{{ $text->$view_col }}</h4>
 					<div class="row stats">
 						<div class="col-md-4"><i class="fa fa-facebook"></i> 234</div>
 						<div class="col-md-4"><i class="fa fa-twitter"></i> 12</div>
@@ -81,12 +81,12 @@
 			</div>
 		</div>
 		<div class="col-md-1 actions">
-			@la_access("TestModules", "edit")
-				<a href="{{ url(config('laraadmin.adminRoute') . '/testmodules/'.$testmodule->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
+			@la_access("Texts", "edit")
+				<a href="{{ url(config('laraadmin.adminRoute') . '/texts/'.$text->id.'/edit') }}" class="btn btn-xs btn-edit btn-default"><i class="fa fa-pencil"></i></a><br>
 			@endla_access
 			
-			@la_access("TestModules", "delete")
-				{{ Form::open(['route' => [config('laraadmin.adminRoute') . '.testmodules.destroy', $testmodule->id], 'method' => 'delete', 'style'=>'display:inline']) }}
+			@la_access("Texts", "delete")
+				{{ Form::open(['route' => [config('laraadmin.adminRoute') . '.texts.destroy', $text->id], 'method' => 'delete', 'style'=>'display:inline']) }}
 					<button class="btn btn-default btn-delete btn-xs" type="submit"><i class="fa fa-times"></i></button>
 				{{ Form::close() }}
 			@endla_access
@@ -94,7 +94,7 @@
 	</div>
 
 	<ul data-toggle="ajax-tab" class="nav nav-tabs profile" role="tablist">
-		<li class=""><a href="{{ url(config('laraadmin.adminRoute') . '/testmodules') }}" data-toggle="tooltip" data-placement="right" title="@tslt("Back to TestModules")"><i class="fa fa-chevron-left"></i></a></li>
+		<li class=""><a href="{{ url(config('laraadmin.adminRoute') . '/texts') }}" data-toggle="tooltip" data-placement="right" title="@tslt("Back to Texts")"><i class="fa fa-chevron-left"></i></a></li>
 		<li class="active"><a role="tab" data-toggle="tab" class="active" href="#tab-general-info" data-target="#tab-info"><i class="fa fa-bars"></i> @tslt("General Info")</a></li>
 		<li class=""><a role="tab" data-toggle="tab" href="#tab-timeline" data-target="#tab-timeline"><i class="fa fa-clock-o"></i> @tslt("Timeline") </a></li>
 	</ul>
@@ -107,7 +107,7 @@
 						<h4>@tslt("General Info")</h4>
 					</div>
 					<div class="panel-body">
-						@tslt("@la_display($module, 'test_string')")
+						@tslt("@la_display($module, 'text')")
 					</div>
 				</div>
 			</div>

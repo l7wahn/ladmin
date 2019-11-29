@@ -2,15 +2,16 @@
 
 use Illuminate\Database\Seeder;
 
-use WahnStudios\Laraadmin\Models\Module;
-use WahnStudios\Laraadmin\Models\ModuleFields;
-use WahnStudios\Laraadmin\Models\ModuleFieldTypes;
-use WahnStudios\Laraadmin\Models\Menu;
-use WahnStudios\Laraadmin\Models\LAConfigs;
+use Dwij\Laraadmin\Models\Module;
+use Dwij\Laraadmin\Models\ModuleFields;
+use Dwij\Laraadmin\Models\ModuleFieldTypes;
+use Dwij\Laraadmin\Models\Menu;
+use Dwij\Laraadmin\Models\LAConfigs;
 
 use App\Role;
 use App\Permission;
 use App\Models\Department;
+use App\Models\Language;
 
 class DatabaseSeeder extends Seeder
 {
@@ -55,7 +56,7 @@ class DatabaseSeeder extends Seeder
 		$dept->name = "Administration";
 		$dept->tags = "[]";
 		$dept->color = "#000";
-		$dept->save();
+		$dept->save();		
 		
 		// Create Super Admin Role
 		$role = new Role;
@@ -70,6 +71,12 @@ class DatabaseSeeder extends Seeder
 		foreach ($modules as $module) {
 			Module::setDefaultRoleAccess($module->id, $role->id, "full");
 		}
+
+		//Create first Language
+		$lang = new Language;
+		$lang->name = "English";
+		$lang->iso = "en";
+		$lang->save();
 		
 		// Create Admin Panel Permission
 		$perm = new Permission;

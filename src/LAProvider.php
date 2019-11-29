@@ -1,13 +1,13 @@
 <?php
 
-namespace WahnStudios\Laraadmin;
+namespace Dwij\Laraadmin;
 
 use Artisan;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use WahnStudios\Laraadmin\Helpers\LAHelper;
+use Dwij\Laraadmin\Helpers\LAHelper;
 
 class LAProvider extends ServiceProvider
 {
@@ -28,9 +28,9 @@ class LAProvider extends ServiceProvider
         ]);
         */
         //echo "Laraadmin Migrations started...";
-        // Artisan::call('migrate', ['--path' => "vendor/l7wahn/laraadmin/src/Migrations/"]);
+        // Artisan::call('migrate', ['--path' => "vendor/dwij/laraadmin/src/Migrations/"]);
         //echo "Migrations completed !!!.";
-        // Execute by php artisan vendor:publish --provider="WahnStudios\Laraadmin\LAProvider"
+        // Execute by php artisan vendor:publish --provider="Dwij\Laraadmin\LAProvider"
 		
 		/*
         |--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ class LAProvider extends ServiceProvider
             
             Blade::directive('tslt', function ($expression, $where = "app") {
                 $text = substr ( $expression, 1, -1 );
-                
-                return "<?php echo __t(\"{$text}\") ?>";    
+                                
+                return "<?php echo __(\"{$text}\", \"{$where}\") ?>";    
             });
         }
         
@@ -111,19 +111,19 @@ class LAProvider extends ServiceProvider
         $loader->alias('Gravatar', \Creativeorange\Gravatar\Facades\Gravatar::class);
         
         // For LaraAdmin Code Generation
-        $loader->alias('CodeGenerator', \WahnStudios\Laraadmin\CodeGenerator::class);
+        $loader->alias('CodeGenerator', \Dwij\Laraadmin\CodeGenerator::class);
         
         // For LaraAdmin Form Helper
-        $loader->alias('LAFormMaker', \WahnStudios\Laraadmin\LAFormMaker::class);
+        $loader->alias('LAFormMaker', \Dwij\Laraadmin\LAFormMaker::class);
         
         // For LaraAdmin Helper
-        $loader->alias('LAHelper', \WahnStudios\Laraadmin\Helpers\LAHelper::class);
+        $loader->alias('LAHelper', \Dwij\Laraadmin\Helpers\LAHelper::class);
         
         // LaraAdmin Module Model 
-        $loader->alias('Module', \WahnStudios\Laraadmin\Models\Module::class);
+        $loader->alias('Module', \Dwij\Laraadmin\Models\Module::class);
 
 		// For LaraAdmin Configuration Model
-		$loader->alias('LAConfigs', \WahnStudios\Laraadmin\Models\LAConfigs::class);
+		$loader->alias('LAConfigs', \Dwij\Laraadmin\Models\LAConfigs::class);
 		
         // For Entrust
 		$loader->alias('Entrust', \Zizaco\Entrust\EntrustFacade::class);
@@ -137,13 +137,13 @@ class LAProvider extends ServiceProvider
         |--------------------------------------------------------------------------
         */
         
-        $this->app->make('WahnStudios\Laraadmin\Controllers\ModuleController');
-        $this->app->make('WahnStudios\Laraadmin\Controllers\FieldController');
-        $this->app->make('WahnStudios\Laraadmin\Controllers\MenuController');
+        $this->app->make('Dwij\Laraadmin\Controllers\ModuleController');
+        $this->app->make('Dwij\Laraadmin\Controllers\FieldController');
+        $this->app->make('Dwij\Laraadmin\Controllers\MenuController');
 		
 		// For LAEditor
 		if(file_exists(__DIR__.'/../../laeditor')) {
-			$this->app->make('WahnStudios\Laeditor\Controllers\CodeEditorController');
+			$this->app->make('Dwij\Laeditor\Controllers\CodeEditorController');
 		}
 
 		/*
@@ -205,15 +205,15 @@ class LAProvider extends ServiceProvider
         */
 
 		$commands = [
-            \WahnStudios\Laraadmin\Commands\Migration::class,
-            \WahnStudios\Laraadmin\Commands\Crud::class,
-            \WahnStudios\Laraadmin\Commands\Packaging::class,
-            \WahnStudios\Laraadmin\Commands\LAInstall::class
+            \Dwij\Laraadmin\Commands\Migration::class,
+            \Dwij\Laraadmin\Commands\Crud::class,
+            \Dwij\Laraadmin\Commands\Packaging::class,
+            \Dwij\Laraadmin\Commands\LAInstall::class
         ];
         
 		// For LAEditor
 		if(file_exists(__DIR__.'/../../laeditor')) {
-			$commands[] = \WahnStudios\Laeditor\Commands\LAEditor::class;
+			$commands[] = \Dwij\Laeditor\Commands\LAEditor::class;
 		}
 
         $this->commands($commands);

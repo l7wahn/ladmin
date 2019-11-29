@@ -23,7 +23,9 @@ class CreateModulesTable extends Migration
             $table->string('controller', 100);
             $table->string('fa_icon', 30)->default("fa-cube");
             $table->boolean('is_gen');
-            $table->boolean('is_user_child');
+            $table->boolean('show_in_app')->default(false);
+            $table->string('category_field')->nullable();
+            $table->boolean('printable')->default(false);
             $table->timestamps();
         });
     }

@@ -1,59 +1,25 @@
 <?php
 
-namespace WahnStudios\Laraadmin\Models;
+namespace Dwij\Laraadmin\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Schema;
 use Log;
 use DB;
 
-use WahnStudios\Laraadmin\Models\Module;
+use Dwij\Laraadmin\Models\Module;
 
 class ModuleFields extends Model
 {
     protected $table = 'module_fields';
     
     protected $fillable = [
-        "colname", "label", "module", "field_type", "unique", "defaultvalue", "minlength", "maxlength", "required", "popup_vals", "nullable"
+        "info", "description", "colname", "label", "module", "field_type", "unique", "defaultvalue", "minlength", "maxlength", "required", "popup_vals", "show_in_app"
     ];
     
     protected $hidden = [
         
     ];
-
-    public static function createUserFields(Module $module)
-    {
-        $email_field = self::createField((object)[
-            "colname" => "email",
-            "label" => "Email",
-            "module" => $module->id,
-            "field_type" => 8,
-            "unique" => true,
-            "defaultvalue" => null,
-            "minlength" => 0,
-            "maxlength" => 250,
-            "required" => true,
-            "popup_vals" => "",
-            "nullable" => true
-        ]);
-
-        $name_field = self::createField((object)[
-            "colname" => "name",
-            "label" => "Name",
-            "module" => $module->id,
-            "field_type" => 16,
-            "unique" => false,
-            "defaultvalue" => "",
-            "minlength" => 5,
-            "maxlength" => 250,
-            "required" => true,
-            "popup_vals" => "",
-            "nullable" => false
-        ]);
-
-        self::createField($email_field);
-        self::createField($name_field);
-    } 
     
     public static function createField($request) {
         $module = Module::find($request->module_id);
@@ -65,17 +31,18 @@ class ModuleFields extends Model
             $field->colname = $request->colname;
             $field->label = $request->label;
             $field->module = $request->module_id;
+            $field->info = $request->info;
+            $field->description = $request->description;
             $field->field_type = $request->field_type;
-
-            if($request->nullable) {
-                $field->nullable = true;
-            } else {
-                $field->nullable = false;
-            }
             if($request->unique) {
                 $field->unique = true;
             } else {
                 $field->unique = false;
+            }
+            if($request->show_in_app) {
+                $field->show_in_app = true;
+            } else {
+                $field->show_in_app = false;
             }
             $field->defaultvalue = $request->defaultvalue;
             if($request->minlength == "") {
@@ -106,6 +73,9 @@ class ModuleFields extends Model
                     $request->popup_vals_list = json_encode($request->popup_vals_list);
                     $field->popup_vals = $request->popup_vals_list;
                 }
+            }
+            else if($request->field_type == 1) {
+                $field->popup_vals = "@"."addresses";
             } else {
 				$field->popup_vals = "";
 			}
@@ -148,6 +118,8 @@ class ModuleFields extends Model
         // Update Context in ModuleFields
         $field->colname = $request->colname;
         $field->label = $request->label;
+        $field->info = $request->info;
+        $field->description = $request->description;
         $field->module = $request->module_id;
         $field->field_type = $request->field_type;
 		if($field->field_type != $request->field_type) {
@@ -158,10 +130,10 @@ class ModuleFields extends Model
         } else {
             $field->unique = false;
         }
-        if($request->nullable) {
-            $field->nullable = true;
+        if($request->show_in_app) {
+            $field->show_in_app = true;
         } else {
-            $field->nullable = false;
+            $field->show_in_app = false;
         }
         $field->defaultvalue = $request->defaultvalue;
         if($request->minlength == "") {
@@ -204,31 +176,18 @@ class ModuleFields extends Model
         });
     }
 
-	public static function getModuleFields($moduleName, $justNames = false) {
+	public static function getModuleFields($moduleName) {
         $module = Module::where('name', $moduleName)->first();
         $fields = DB::table('module_fields')->where('module', $module->id)->get();
+        $ftypes = ModuleFieldTypes::getFTypes();
+		
+		$fields_popup = array();
+        $fields_popup['id'] = null;
         
-        
-        if($justNames)
-        {
-            $fields_popup = ["id"];
-            foreach($fields as $f) {                
-                array_push($fields_popup, $f->colname);
-            }
+		foreach($fields as $f) {
+			$f->field_type_str = array_search($f->field_type, $ftypes);
+            $fields_popup [ $f->colname ] = $f;
         }
-        else 
-        {
-            $ftypes = ModuleFieldTypes::getFTypes();
-            $fields_popup = ["id" => null];
-            
-            
-            
-            foreach($fields as $f) {
-                $f->field_type_str = array_search($f->field_type, $ftypes);
-                $fields_popup [ $f->colname ] = $f;
-            }
-        }
-
 		return $fields_popup;
     }
 
@@ -257,12 +216,6 @@ class ModuleFields extends Model
     }
 	
 	public static function listingColumnAccessScan($module_name, $listing_cols) {
-
-        if($listing_cols == null)
-        {
-            $listing_cols = self::getModuleFields($module_name, true);
-        }
-
         $module = Module::get($module_name);
 		$listing_cols_temp = array();
 		foreach ($listing_cols as $col) {

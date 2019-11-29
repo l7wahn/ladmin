@@ -28,8 +28,4 @@ return [
         'default_public' => false,
         'allow_filename_change' => true
     ],
-
-    "defaults" => [
-        "viewsfolder" => "la.default"
-    ]
 ];

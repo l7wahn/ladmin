@@ -3,8 +3,8 @@
     "description": "Fork of Laradmin for my own work",
     "keywords": ["php", "laravel", "crm", "admin", "cms", "administrator"],
     "license": "MIT",
-    "homepage": "http://laraadmin.com", 
-    "version": "2.0.2",
+    "homepage": "http://desarrollatuapp.com", 
+    "version": "2.1",
 
     "require": {
         "illuminate/support": "5.*",

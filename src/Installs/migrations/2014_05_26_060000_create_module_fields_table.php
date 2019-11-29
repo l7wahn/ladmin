@@ -22,12 +22,15 @@ class CreateModuleFieldsTable extends Migration
             $table->integer('field_type')->unsigned();
             $table->foreign('field_type')->references('id')->on('module_field_types')->onUpdate('cascade')->onDelete('cascade');
             $table->boolean('unique')->default(false);
-            $table->string('defaultvalue')->nullale();
+            $table->string('defaultvalue')->nullable();
             $table->integer('minlength')->unsigned()->default(0);
             $table->integer('maxlength')->unsigned()->default(0);
             $table->boolean('required')->default(false);
             $table->text('popup_vals');
             $table->integer('sort')->unsigned()->default(0);
+            $table->boolean('show_in_app')->default(false);
+            $table->string('info')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

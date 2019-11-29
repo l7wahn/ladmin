@@ -1,10 +1,10 @@
 <?php
-namespace WahnStudios\Laraadmin;
+namespace Dwij\Laraadmin;
 
 use Schema;
 use Collective\Html\FormFacade as Form;
-use WahnStudios\Laraadmin\Models\Module;
-use WahnStudios\Laraadmin\Models\ModuleFieldTypes;
+use Dwij\Laraadmin\Models\Module;
+use Dwij\Laraadmin\Models\ModuleFieldTypes;
 
 class LAFormMaker
 {
