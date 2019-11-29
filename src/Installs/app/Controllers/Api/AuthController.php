@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Validation\ValidationException;
-use Dwij\Laraadmin\Models\Module;
+use DesarrollatuApp\NWCRM\Models\Module;
 use App\User;
 use Mail;
 use Log;

@@ -4,7 +4,7 @@
  * Help: http://laraadmin.com
  */
 
-namespace Dwij\Laraadmin\Controllers;
+namespace DesarrollatuApp\NWCRM\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
@@ -12,11 +12,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
 
-use Dwij\Laraadmin\Models\Menu;
-use Dwij\Laraadmin\Models\Module;
-use Dwij\Laraadmin\Models\ModuleFields;
-use Dwij\Laraadmin\Models\ModuleFieldTypes;
-use Dwij\Laraadmin\Helpers\LAHelper;
+use DesarrollatuApp\NWCRM\Models\Menu;
+use DesarrollatuApp\NWCRM\Models\Module;
+use DesarrollatuApp\NWCRM\Models\ModuleFields;
+use DesarrollatuApp\NWCRM\Models\ModuleFieldTypes;
+use DesarrollatuApp\NWCRM\Helpers\LAHelper;
 
 class MenuController extends Controller
 {

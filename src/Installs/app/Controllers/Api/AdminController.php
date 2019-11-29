@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Traits\AssociatedToAccount;
-use Dwij\Laraadmin\Models\Module;
+use DesarrollatuApp\NWCRM\Models\Module;
 use App\Models\Request as ServerRequest;
 use DB;
 class AdminController extends Controller

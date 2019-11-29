@@ -24,7 +24,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "WahnStudios\\Laraadmin\\": "src/"
+            "DesarrollatuApp\\NWCRM\\": "src/"
         },
         "files": [
             "src/extra/functions.php"

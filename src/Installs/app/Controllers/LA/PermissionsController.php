@@ -14,9 +14,9 @@ use DB;
 use Validator;
 use Datatables;
 use Collective\Html\FormFacade as Form;
-use Dwij\Laraadmin\Models\Module;
-use Dwij\Laraadmin\Models\ModuleFields;
-use Dwij\Laraadmin\Helpers\LAHelper;
+use DesarrollatuApp\NWCRM\Models\Module;
+use DesarrollatuApp\NWCRM\Models\ModuleFields;
+use DesarrollatuApp\NWCRM\Helpers\LAHelper;
 use Zizaco\Entrust\EntrustFacade as Entrust;
 
 use App\Permission;
@@ -30,7 +30,7 @@ class PermissionsController extends Controller
 	
 	public function __construct() {
 		// Field Access of Listing Columns
-		if(\Dwij\Laraadmin\Helpers\LAHelper::laravel_ver() >= 5.3) {
+		if(\DesarrollatuApp\NWCRM\Helpers\LAHelper::laravel_ver() >= 5.3) {
 			$this->middleware(function ($request, $next) {
 				$this->listing_cols = ModuleFields::listingColumnAccessScan('Permissions', $this->listing_cols);
 				return $next($request);

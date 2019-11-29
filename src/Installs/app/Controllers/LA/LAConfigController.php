@@ -8,7 +8,7 @@ namespace App\Http\Controllers\LA;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Dwij\Laraadmin\Models\LAConfigs;
+use DesarrollatuApp\NWCRM\Models\LAConfigs;
 
 class LAConfigController extends Controller
 {

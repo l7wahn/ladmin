@@ -1,6 +1,6 @@
 <?php
 
-namespace Dwij\Laraadmin\Models;
+namespace DesarrollatuApp\NWCRM\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

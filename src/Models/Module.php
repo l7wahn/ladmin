@@ -1,6 +1,6 @@
 <?php
 
-namespace Dwij\Laraadmin\Models;
+namespace DesarrollatuApp\NWCRM\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
@@ -8,7 +8,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Exception;
 use Log;
 use DB;
-use Dwij\Laraadmin\Helpers\LAHelper;
+use DesarrollatuApp\NWCRM\Helpers\LAHelper;
 use Image;
 use App\Models\Upload;
 use Auth;

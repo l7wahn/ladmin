@@ -14,9 +14,9 @@ use DB;
 use Validator;
 use Datatables;
 use Collective\Html\FormFacade as Form;
-use Dwij\Laraadmin\Models\Module;
-use Dwij\Laraadmin\Models\ModuleFields;
-use Dwij\Laraadmin\Helpers\LAHelper;
+use DesarrollatuApp\NWCRM\Models\Module;
+use DesarrollatuApp\NWCRM\Models\ModuleFields;
+use DesarrollatuApp\NWCRM\Helpers\LAHelper;
 use Artisan;
 use App\Models\Backup;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace Dwij\Laraadmin\Commands;
+namespace DesarrollatuApp\NWCRM\Commands;
 
 use Illuminate\Console\Command;
 
-use Dwij\Laraadmin\CodeGenerator;
+use DesarrollatuApp\NWCRM\CodeGenerator;
 
 class Migration extends Command
 {

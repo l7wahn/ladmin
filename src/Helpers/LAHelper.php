@@ -1,11 +1,11 @@
 <?php
 
-namespace Dwij\Laraadmin\Helpers;
+namespace DesarrollatuApp\NWCRM\Helpers;
 
 use DB;
 use Log;
 
-use Dwij\Laraadmin\Models\Module;
+use DesarrollatuApp\NWCRM\Models\Module;
 
 class LAHelper
 {
@@ -228,7 +228,7 @@ class LAHelper
 			<div class="dd-handle dd3-handle"></div>
 			<div class="dd3-content"><i class="fa '.$menu->icon.'"></i> '.__t("$menu->name").' '.$editing.'</div>';
 		
-		$childrens = \Dwij\Laraadmin\Models\Menu::where("parent", $menu->id)->orderBy('hierarchy', 'asc')->get();
+		$childrens = \DesarrollatuApp\NWCRM\Models\Menu::where("parent", $menu->id)->orderBy('hierarchy', 'asc')->get();
 		
 		if(count($childrens) > 0) {
 			$str .= '<ol class="dd-list">';
@@ -243,7 +243,7 @@ class LAHelper
 
 	// LAHelper::print_menu($menu)
 	public static function print_menu($menu, $active = false) {
-		$childrens = \Dwij\Laraadmin\Models\Menu::where("parent", $menu->id)->orderBy('hierarchy', 'asc')->get();
+		$childrens = \DesarrollatuApp\NWCRM\Models\Menu::where("parent", $menu->id)->orderBy('hierarchy', 'asc')->get();
 
 		$treeview = "";
 		$subviewSign = "";
@@ -271,7 +271,7 @@ class LAHelper
 
 	// LAHelper::print_menu_topnav($menu)
 	public static function print_menu_topnav($menu, $active = false) {
-		$childrens = \Dwij\Laraadmin\Models\Menu::where("parent", $menu->id)->orderBy('hierarchy', 'asc')->get();
+		$childrens = \DesarrollatuApp\NWCRM\Models\Menu::where("parent", $menu->id)->orderBy('hierarchy', 'asc')->get();
 
 		$treeview = "";
 		$treeview2 = "";

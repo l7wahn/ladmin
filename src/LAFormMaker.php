@@ -1,10 +1,10 @@
 <?php
-namespace Dwij\Laraadmin;
+namespace DesarrollatuApp\NWCRM;
 
 use Schema;
 use Collective\Html\FormFacade as Form;
-use Dwij\Laraadmin\Models\Module;
-use Dwij\Laraadmin\Models\ModuleFieldTypes;
+use DesarrollatuApp\NWCRM\Models\Module;
+use DesarrollatuApp\NWCRM\Models\ModuleFieldTypes;
 
 class LAFormMaker
 {

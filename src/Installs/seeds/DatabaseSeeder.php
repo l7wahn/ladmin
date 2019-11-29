@@ -2,11 +2,11 @@
 
 use Illuminate\Database\Seeder;
 
-use Dwij\Laraadmin\Models\Module;
-use Dwij\Laraadmin\Models\ModuleFields;
-use Dwij\Laraadmin\Models\ModuleFieldTypes;
-use Dwij\Laraadmin\Models\Menu;
-use Dwij\Laraadmin\Models\LAConfigs;
+use DesarrollatuApp\NWCRM\Models\Module;
+use DesarrollatuApp\NWCRM\Models\ModuleFields;
+use DesarrollatuApp\NWCRM\Models\ModuleFieldTypes;
+use DesarrollatuApp\NWCRM\Models\Menu;
+use DesarrollatuApp\NWCRM\Models\LAConfigs;
 
 use App\Role;
 use App\Permission;

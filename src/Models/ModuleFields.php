@@ -1,13 +1,13 @@
 <?php
 
-namespace Dwij\Laraadmin\Models;
+namespace DesarrollatuApp\NWCRM\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Schema;
 use Log;
 use DB;
 
-use Dwij\Laraadmin\Models\Module;
+use DesarrollatuApp\NWCRM\Models\Module;
 
 class ModuleFields extends Model
 {

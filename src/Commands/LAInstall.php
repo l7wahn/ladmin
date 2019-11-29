@@ -4,12 +4,12 @@
  * Help: http://laraadmin.com
  */
 
-namespace Dwij\Laraadmin\Commands;
+namespace DesarrollatuApp\NWCRM\Commands;
 
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
-use Dwij\Laraadmin\Helpers\LAHelper;
+use DesarrollatuApp\NWCRM\Helpers\LAHelper;
 use Illuminate\Support\Facades\Schema;
 use Eloquent;
 use DB;

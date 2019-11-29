@@ -1,13 +1,13 @@
 <?php
 
-namespace Dwij\Laraadmin;
+namespace DesarrollatuApp\NWCRM;
 
 use Artisan;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use Dwij\Laraadmin\Helpers\LAHelper;
+use DesarrollatuApp\NWCRM\Helpers\LAHelper;
 
 class LAProvider extends ServiceProvider
 {
@@ -27,10 +27,10 @@ class LAProvider extends ServiceProvider
             __DIR__.'/Migrations' => base_path('database/migrations/laraadmin')
         ]);
         */
-        //echo "Laraadmin Migrations started...";
-        // Artisan::call('migrate', ['--path' => "vendor/dwij/laraadmin/src/Migrations/"]);
+        //echo "NWCRM Migrations started...";
+        // Artisan::call('migrate', ['--path' => "vendor/desarrollatuapp/laraadmin/src/Migrations/"]);
         //echo "Migrations completed !!!.";
-        // Execute by php artisan vendor:publish --provider="Dwij\Laraadmin\LAProvider"
+        // Execute by php artisan vendor:publish --provider="DesarrollatuApp\NWCRM\LAProvider"
 		
 		/*
         |--------------------------------------------------------------------------
@@ -111,19 +111,19 @@ class LAProvider extends ServiceProvider
         $loader->alias('Gravatar', \Creativeorange\Gravatar\Facades\Gravatar::class);
         
         // For LaraAdmin Code Generation
-        $loader->alias('CodeGenerator', \Dwij\Laraadmin\CodeGenerator::class);
+        $loader->alias('CodeGenerator', \DesarrollatuApp\NWCRM\CodeGenerator::class);
         
         // For LaraAdmin Form Helper
-        $loader->alias('LAFormMaker', \Dwij\Laraadmin\LAFormMaker::class);
+        $loader->alias('LAFormMaker', \DesarrollatuApp\NWCRM\LAFormMaker::class);
         
         // For LaraAdmin Helper
-        $loader->alias('LAHelper', \Dwij\Laraadmin\Helpers\LAHelper::class);
+        $loader->alias('LAHelper', \DesarrollatuApp\NWCRM\Helpers\LAHelper::class);
         
         // LaraAdmin Module Model 
-        $loader->alias('Module', \Dwij\Laraadmin\Models\Module::class);
+        $loader->alias('Module', \DesarrollatuApp\NWCRM\Models\Module::class);
 
 		// For LaraAdmin Configuration Model
-		$loader->alias('LAConfigs', \Dwij\Laraadmin\Models\LAConfigs::class);
+		$loader->alias('LAConfigs', \DesarrollatuApp\NWCRM\Models\LAConfigs::class);
 		
         // For Entrust
 		$loader->alias('Entrust', \Zizaco\Entrust\EntrustFacade::class);
@@ -137,13 +137,13 @@ class LAProvider extends ServiceProvider
         |--------------------------------------------------------------------------
         */
         
-        $this->app->make('Dwij\Laraadmin\Controllers\ModuleController');
-        $this->app->make('Dwij\Laraadmin\Controllers\FieldController');
-        $this->app->make('Dwij\Laraadmin\Controllers\MenuController');
+        $this->app->make('DesarrollatuApp\NWCRM\Controllers\ModuleController');
+        $this->app->make('DesarrollatuApp\NWCRM\Controllers\FieldController');
+        $this->app->make('DesarrollatuApp\NWCRM\Controllers\MenuController');
 		
 		// For LAEditor
 		if(file_exists(__DIR__.'/../../laeditor')) {
-			$this->app->make('Dwij\Laeditor\Controllers\CodeEditorController');
+			$this->app->make('DesarrollatuApp\Laeditor\Controllers\CodeEditorController');
 		}
 
 		/*
@@ -205,15 +205,15 @@ class LAProvider extends ServiceProvider
         */
 
 		$commands = [
-            \Dwij\Laraadmin\Commands\Migration::class,
-            \Dwij\Laraadmin\Commands\Crud::class,
-            \Dwij\Laraadmin\Commands\Packaging::class,
-            \Dwij\Laraadmin\Commands\LAInstall::class
+            \DesarrollatuApp\NWCRM\Commands\Migration::class,
+            \DesarrollatuApp\NWCRM\Commands\Crud::class,
+            \DesarrollatuApp\NWCRM\Commands\Packaging::class,
+            \DesarrollatuApp\NWCRM\Commands\LAInstall::class
         ];
         
 		// For LAEditor
 		if(file_exists(__DIR__.'/../../laeditor')) {
-			$commands[] = \Dwij\Laeditor\Commands\LAEditor::class;
+			$commands[] = \DesarrollatuApp\Laeditor\Commands\LAEditor::class;
 		}
 
         $this->commands($commands);
