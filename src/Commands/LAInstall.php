@@ -309,7 +309,7 @@ class LAInstall extends Command
 						'gender' => 'Male',
 						'dept' => "1",
 						'city' => "Pune",
-						'address' => "Karve nagar, Pune 411030",
+						'address' => null,
 						'about' => "About user / biography",
 						'date_birth' => date("Y-m-d"),
 						'date_hire' => date("Y-m-d"),
