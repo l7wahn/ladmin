@@ -4,7 +4,7 @@
     "keywords": ["php", "laravel", "crm", "admin", "cms", "administrator"],
     "license": "MIT",
     "homepage": "http://desarrollatuapp.com", 
-    "version": "2.1.32",
+    "version": "2.1.33",
 
     "require": {
         "illuminate/support": "5.*",
