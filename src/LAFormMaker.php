@@ -187,6 +187,7 @@ class LAFormMaker
 					$params['data-placeholder'] = $params['placeholder'];
 					unset($params['placeholder']);
 					$params['rel'] = "select2";
+					
 
 					if($default_val == null && $required == 1){
 						$default_val = 1;
@@ -198,7 +199,9 @@ class LAFormMaker
 					}
 					
 					if($popup_vals != "") {
-						$popup_vals = LAFormMaker::process_values($popup_vals);
+						$params['data-ajaxurl'] = url(config("laraadmin.adminRoute")."/api/v1/models/popupQuery/" . str_replace("@", "", $popup_vals));
+						//$popup_vals = LAFormMaker::process_values($popup_vals);
+						$popup_vals = array();
 						if($default_val == null)
 						{
 							$popup_vals[''] = "";
@@ -577,6 +580,7 @@ class LAFormMaker
 	// $values = LAFormMaker::process_values($data);
 	public static function process_values($json) {
 		$out = array();
+		return $out;
 		// Check if populated values are from Module or Database Table
 		if(is_string($json) && starts_with($json, "@")) {
 			
