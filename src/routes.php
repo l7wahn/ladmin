@@ -4,6 +4,14 @@ $as = "";
 if(\DesarrollatuApp\NWCRM\Helpers\LAHelper::laravel_ver() >= 5.3) {
 	$as = config('laraadmin.adminRoute').'.';
 }
+Route::group([
+    'namespace'  => '\DesarrollatuApp\NWCRM\Controllers',
+	'as' => $as,
+    'middleware' => ['web', 'auth', 'permission:ADMIN_PANEL']
+], function () {
+    
+	Route::post(config('laraadmin.adminRoute') . '/check_unique_val/{field_id}', 'FieldController@check_unique_val');	
+});
 
 Route::group([
     'namespace'  => 'DesarrollatuApp\NWCRM\Controllers',
@@ -21,19 +29,10 @@ Route::group([
 	Route::get(config('laraadmin.adminRoute') . '/modules/{model_id}/set_view_col/{column_name}', 'ModuleController@set_view_col');
 	Route::post(config('laraadmin.adminRoute') . '/save_role_module_permissions/{id}', 'ModuleController@save_role_module_permissions');
 	Route::get(config('laraadmin.adminRoute') . '/save_module_field_sort/{model_id}', 'ModuleController@save_module_field_sort');
-	Route::post(config('laraadmin.adminRoute') . '/check_unique_val/{field_id}', 'FieldController@check_unique_val');
+	//Route::post(config('laraadmin.adminRoute') . '/check_unique_val/{field_id}', 'FieldController@check_unique_val');
 	Route::get(config('laraadmin.adminRoute') . '/module_fields/{id}/delete', 'FieldController@destroy');
 	Route::post(config('laraadmin.adminRoute') . '/get_module_files/{module_id}', 'ModuleController@get_module_files');
 	
-	/* ================== Code Editor ================== */
-	Route::get(config('laraadmin.adminRoute') . '/lacodeeditor', function () {
-		if(file_exists(resource_path("views/la/editor/index.blade.php"))) {
-			return redirect(config('laraadmin.adminRoute') . '/laeditor');
-		} else {
-			// show install code editor page
-			return View('la.editor.install');
-		}
-	});
 
 	/* ================== Menu Editor ================== */
 	Route::resource(config('laraadmin.adminRoute') . '/la_menus', 'MenuController');

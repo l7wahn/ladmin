@@ -57,7 +57,7 @@ class LAProvider extends ServiceProvider
             Blade::directive('tslt', function ($expression, $where = "app") {
                 $text = substr ( $expression, 1, -1 );
                                 
-                return "<?php echo __(\"{$text}\", \"{$where}\") ?>";    
+                return "<?php echo __(\"{$text}\", [\"{$where}\"]) ?>";    
             });
         }
         
@@ -93,7 +93,7 @@ class LAProvider extends ServiceProvider
         // For Entrust
         $this->app->register(\Zizaco\Entrust\EntrustServiceProvider::class);
         // For Spatie Backup
-        $this->app->register(\Spatie\Backup\BackupServiceProvider::class);
+        //$this->app->register(\Spatie\Backup\BackupServiceProvider::class);
         
         /*
         |--------------------------------------------------------------------------

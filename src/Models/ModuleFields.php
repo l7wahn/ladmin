@@ -219,7 +219,7 @@ class ModuleFields extends Model
         $module = Module::get($module_name);
 		$listing_cols_temp = array();
 		foreach ($listing_cols as $col) {
-			if($col == 'id') {
+			if($col == 'id'|| $col == 'created_at' || $col == 'updated_at') {
 				$listing_cols_temp[] = $col;
 			} else if(Module::hasFieldAccess($module->id, $module->fields[$col]['id'])) {
 				$listing_cols_temp[] = $col;

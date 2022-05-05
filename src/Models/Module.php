@@ -29,6 +29,11 @@ class Module extends Model
 		return $this->hasMany(ModuleFields::class, "module")->where("show_in_app", true);
 	}
 
+	public function isFieldPopup($name)
+	{
+		return $this->fields()->where("colname", $name)->where("popup_vals", "<>", "")->first() != null;
+	}
+
 	public function fields()
 	{
 		return $this->hasMany(ModuleFields::class, "module");
@@ -903,6 +908,7 @@ class Module extends Model
 		}
 		return $rules;
 	}
+
 
 	public static function insert($module_name, $request)
 	{

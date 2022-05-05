@@ -243,8 +243,14 @@ class LAHelper
 
 	// LAHelper::print_menu($menu)
 	public static function print_menu($menu, $active = false) {
-		$childrens = \DesarrollatuApp\NWCRM\Models\Menu::where("parent", $menu->id)->orderBy('hierarchy', 'asc')->get();
 
+		if($menu->access_roles != null && !\Auth::user()->hasRole($menu->access_roles))
+		{
+			return "";
+		}
+
+		$childrens = \DesarrollatuApp\NWCRM\Models\Menu::where("parent", $menu->id)->orderBy('hierarchy', 'asc')->get();
+		
 		$treeview = "";
 		$subviewSign = "";
 		if(count($childrens)) {
@@ -261,6 +267,7 @@ class LAHelper
 		if(count($childrens)) {
 			$str .= '<ul class="treeview-menu">';
 			foreach($childrens as $children) {
+				
 				$str .= LAHelper::print_menu($children);
 			}
 			$str .= '</ul>';
