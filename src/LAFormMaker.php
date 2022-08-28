@@ -15,7 +15,7 @@ class LAFormMaker
 	public static function input($module, $field_name, $default_val = null, $required2 = null, $class = 'form-control', $params = [])
 	{
 		// Check Field Write Aceess
-		if(true) {
+		if(Module::hasFieldAccess($module->id, $module->fields[$field_name]['id'], $access_type = "write")) {
 			
 			$row = null;
 			if(isset($module->row)) {
@@ -38,12 +38,9 @@ class LAFormMaker
 			
 			$field_type = ModuleFieldTypes::find($field_type);
 			
-			$out = '<div class="form-group '.(Module::hasFieldAccess($module->id, $module->fields[$field_name]['id'], $access_type = "view") ? "" : "hidden").'">';
+			$out = '<div class="form-group">';
 			$required_ast = "";
-			if(!Module::hasFieldAccess($module->id, $module->fields[$field_name]['id'], $access_type = "write"))
-			{
-				$params["readonly"] = "";
-			}
+			
 			if(!isset($params['class'])) {
 				$params['class'] = $class;
 			}
@@ -62,7 +59,7 @@ class LAFormMaker
 				$params['adminRoute'] = config('laraadmin.adminRoute');
 				if(isset($row)) {
 					$params['isEdit'] = true;
-					$params['row_id'] = $row->id; 
+					$params['row_id'] = $row->id;
 				} else {
 					$params['isEdit'] = false;
 					$params['row_id'] = 0;
@@ -189,6 +186,7 @@ class LAFormMaker
 					unset($params['data-rule-maxlength']);
 					$params['data-placeholder'] = $params['placeholder'];
 					unset($params['placeholder']);
+					if(!isset($params["readonly"]))
 					$params['rel'] = "select2";
 
 					// Override the edit value
@@ -198,8 +196,13 @@ class LAFormMaker
 					if($popup_vals != "") {
 						if(starts_with($popup_vals, ["@"]))
 						{
-							$params['data-ajaxurl'] = url("/api/v1/models/popupQuery/" . str_replace("@", "", $popup_vals)."?api_token=".\Auth::user()->api_token);	
-							$params['data-newurl'] = url(config("laraadmin.adminRoute")."/".str_replace("@", "", $popup_vals));					
+
+							if(!isset($params["readonly"]))
+							{
+								$params['data-ajaxurl'] = url("/api/v1/models/popupQuery/" . str_replace("@", "", $popup_vals)."?api_token=".\Auth::user()->api_token);	
+								$params['data-newurl'] = url(config("laraadmin.adminRoute")."/".str_replace("@", "", $popup_vals));	
+							}
+											
 							
 							if(isset($default_val))
 							{
@@ -583,7 +586,7 @@ class LAFormMaker
 			$out .= '</div>';
 			return $out;
 		} else {
-			return Form::text($field_name, $default_val, ["disabled_true"]);
+			return "";
 		}
 	}
 	
@@ -668,9 +671,8 @@ class LAFormMaker
 					if(starts_with($fieldObj['popup_vals'], "@")) {
 						if($value != 0) {
 							$moduleVal = Module::getByTable(str_replace("@", "", $fieldObj['popup_vals']));
-
 							if(isset($moduleVal->id)) {
-								$value = "<a href='".url(config("laraadmin.adminRoute")."/".$moduleVal->name_db."/".$value)."' class='label label-primary'>".\DB::table(str_replace("@", "", $fieldObj['popup_vals']))->find($value)->{$moduleVal["view_col"]}."</a> ";
+								$value = "<a href='".url(config("laraadmin.adminRoute")."/".$moduleVal->name_db."/".$value)."' class='label label-primary'>".$values[$value]."</a> ";
 							} else {
 								$value = "<a class='label label-primary'>".$values[$value]."</a> ";
 							}

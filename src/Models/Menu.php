@@ -15,10 +15,6 @@ class Menu extends Model
         
     ];
 
-    protected $casts = [
-        "access_roles" => "array"
-    ];
-
     public function children() 
     {
         return $this->hasMany(Menu::class, "parent");

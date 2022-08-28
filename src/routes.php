@@ -4,19 +4,11 @@ $as = "";
 if(\DesarrollatuApp\NWCRM\Helpers\LAHelper::laravel_ver() >= 5.3) {
 	$as = config('laraadmin.adminRoute').'.';
 }
-Route::group([
-    'namespace'  => '\DesarrollatuApp\NWCRM\Controllers',
-	'as' => $as,
-    'middleware' => ['web', 'auth', 'permission:ADMIN_PANEL']
-], function () {
-    
-	Route::post(config('laraadmin.adminRoute') . '/check_unique_val/{field_id}', 'FieldController@check_unique_val');	
-});
 
 Route::group([
     'namespace'  => 'DesarrollatuApp\NWCRM\Controllers',
 	'as' => $as,
-    'middleware' => ['web', 'auth', 'permission:ADMIN_PANEL', 'role:SUPER_ADMIN']
+    'middleware' => ['web', 'auth', 'permission:ADMIN_PANEL']
 ], function () {
     
 	/* ================== Modules ================== */
@@ -29,7 +21,7 @@ Route::group([
 	Route::get(config('laraadmin.adminRoute') . '/modules/{model_id}/set_view_col/{column_name}', 'ModuleController@set_view_col');
 	Route::post(config('laraadmin.adminRoute') . '/save_role_module_permissions/{id}', 'ModuleController@save_role_module_permissions');
 	Route::get(config('laraadmin.adminRoute') . '/save_module_field_sort/{model_id}', 'ModuleController@save_module_field_sort');
-	//Route::post(config('laraadmin.adminRoute') . '/check_unique_val/{field_id}', 'FieldController@check_unique_val');
+	Route::post(config('laraadmin.adminRoute') . '/check_unique_val/{field_id}', 'FieldController@check_unique_val');
 	Route::get(config('laraadmin.adminRoute') . '/module_fields/{id}/delete', 'FieldController@destroy');
 	Route::post(config('laraadmin.adminRoute') . '/get_module_files/{module_id}', 'ModuleController@get_module_files');
 	

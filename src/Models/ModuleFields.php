@@ -192,14 +192,32 @@ class ModuleFields extends Model
     }
 
 	public static function getFieldValue($field, $value) {
+        
         $external_table_name = substr($field->popup_vals, 1);
-		if(Schema::hasTable($external_table_name)) {
+		if(Schema::hasTable($external_table_name)) {            
 			$external_value = DB::table($external_table_name)->where('id', $value)->get();
 			if(isset($external_value[0])) {
-                $external_module = DB::table('modules')->where('name_db', $external_table_name)->first();
-                if(isset($external_module->view_col)) {
-                    $external_value_viewcol_name = $external_module->view_col;
-				    return $external_value[0]->$external_value_viewcol_name;
+                $external_module = Module::where('name_db', $external_table_name)->first();
+                
+                if(isset($external_module->view_col) || $external_module->name_db == "users") {
+                    $external_module_field = ModuleFields::where("module", $external_module->id)->where("colname", $external_module->view_col)->first();
+                    if(starts_with( $external_module_field->popup_vals, "@"))
+                    {
+                        return self::getFieldValue($external_module_field, $external_value[0]->{$external_module_field->colname});
+                    }
+                    else {
+                        if(isset($external_module->view_col))
+                        {
+                            return $external_value[0]->{$external_module->view_col};
+                        }
+                        else if(isset($external_value[0]->{"name"})) {
+                            return $external_value[0]->name;
+                        } else if(isset($external_value[0]->{"title"})) {
+                            return $external_value[0]->title;
+                        }
+                    }
+                    
+                    
                 } else {
                     if(isset($external_value[0]->{"name"})) {
                         return $external_value[0]->name;
@@ -219,7 +237,7 @@ class ModuleFields extends Model
         $module = Module::get($module_name);
 		$listing_cols_temp = array();
 		foreach ($listing_cols as $col) {
-			if($col == 'id'|| $col == 'created_at' || $col == 'updated_at') {
+			if($col == 'id') {
 				$listing_cols_temp[] = $col;
 			} else if(Module::hasFieldAccess($module->id, $module->fields[$col]['id'])) {
 				$listing_cols_temp[] = $col;

@@ -29,11 +29,6 @@ class Module extends Model
 		return $this->hasMany(ModuleFields::class, "module")->where("show_in_app", true);
 	}
 
-	public function isFieldPopup($name)
-	{
-		return $this->fields()->where("colname", $name)->where("popup_vals", "<>", "")->first() != null;
-	}
-
 	public function fields()
 	{
 		return $this->hasMany(ModuleFields::class, "module");
@@ -909,7 +904,6 @@ class Module extends Model
 		return $rules;
 	}
 
-
 	public static function insert($module_name, $request)
 	{
 		$module = Module::get($module_name);
@@ -959,7 +953,7 @@ class Module extends Model
 			//$row = new $module_path;
 			$row = $model::find($id);
 			$row = Module::processDBRow($module, $request, $row);
-
+			
 			$row->save();
 			return $row->id;
 		} else {
@@ -972,7 +966,9 @@ class Module extends Model
 		$ftypes = ModuleFieldTypes::getFTypes2();
 
 		foreach ($module->fields as $field) {
-			if (isset($request->{$field['colname']}) || isset($request->{$field['colname'] . "_hidden"})) {
+			if(!$request->has($field['colname']) && $ftypes[$field['field_type']] != "Checkbox") continue;
+			
+			if (isset($request->{$field['colname']}) || $request->{$field['colname']} == null || isset($request->{$field['colname'] . "_hidden"})) {
 
 				switch ($ftypes[$field['field_type']]) {
 					case 'Checkbox':
@@ -1064,7 +1060,9 @@ class Module extends Model
 						$row->{$field['colname']} = $request->{$field['colname']};
 						break;
 					default:
+						
 						$row->{$field['colname']} = $request->{$field['colname']};
+						
 						break;
 				}
 			}

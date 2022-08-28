@@ -286,7 +286,7 @@ class ModuleController extends Controller
 		
 		// Generate CRUD
 		CodeGenerator::createController($config);
-		CodeGenerator::createModel($config);
+		//CodeGenerator::createModel($config);
 		CodeGenerator::createViews($config);
 		
 		// Set Module Generated = True
