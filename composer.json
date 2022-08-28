@@ -4,13 +4,9 @@
     "keywords": ["php", "laravel", "crm", "admin", "cms", "administrator"],
     "license": "MIT",
     "homepage": "http://desarrollatuapp.com", 
-    "version": "2.5",
+    "version": "2.5.1",
 
     "require": {
-        "laravelcollective/html": "^5.2|^5.1",
-        "illuminate/container": "^5.2|^5.1",
-        "yajra/laravel-datatables-oracle": "~6.0",
-        "creativeorange/gravatar": "^1.0"
     },
     "authors": [
         {
